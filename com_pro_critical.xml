@@ -1,0 +1,53 @@
+<updates>
+	<update>
+		<name>proCritical</name>
+		<description>Критические Css and Js</description>
+		<element>com_pro_critical</element>
+		<type>component</type>
+		<version>1.4.69</version>
+		<infourl title="proCritical!">https://nobd.ml</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://joomla-upd.ga/com__css_and_js__J3.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>Nikolaychuk Oleg</maintainer>
+		<maintainerurl>https://nobd.ml</maintainerurl>
+		<targetplatform name="joomla" version="3.*"/>
+	</update>
+	<update>
+		<name>proCritical</name>
+		<description>Критические Css and Js</description>
+		<element>com_pro_critical</element>
+		<type>component</type>
+		<version>1.4.71</version>
+		<infourl title="proCritical!">https://nobd.ml</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://joomla-upd.ga/com__css_and_js__J3.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>Nikolaychuk Oleg</maintainer>
+		<maintainerurl>https://nobd.ml</maintainerurl>
+		<targetplatform name="joomla" version="3.*"/>
+	</update>
+	<update>
+		<name>proCritical</name>
+		<description>Критические Css and Js</description>
+		<element>com_pro_critical</element>
+		<type>component</type>
+		<version>1.4.72</version>
+		<infourl title="proCritical!">https://nobd.ml</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://joomla-upd.ga/com__css_and_js__J3.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>Nikolaychuk Oleg</maintainer>
+		<maintainerurl>https://nobd.ml</maintainerurl>
+		<targetplatform name="joomla" version="3.*"/>
+	</update>
+</updates>

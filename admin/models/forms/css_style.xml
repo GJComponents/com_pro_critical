@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_pro_critical/models/rules"
+	addfieldpath="/administrator/components/com_pro_critical/models/fields"
+>
+	<fieldset name="details">
+		<!-- [Fields 492] Default Fields. -->
+		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
+		<field
+			name="id"
+			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
+			readonly="true"
+		/>
+		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
+		<field
+			name="created"
+			type="calendar"
+			label="COM_PRO_CRITICAL_CSS_STYLE_CREATED_DATE_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_CREATED_DATE_DESC"
+			size="22"
+			format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc"
+		/>
+		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
+		<field
+			name="created_by"
+			type="user"
+			label="COM_PRO_CRITICAL_CSS_STYLE_CREATED_BY_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_CREATED_BY_DESC"
+		/>
+		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<field name="published" type="list" label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
+			filter="intval" size="1" default="1" >
+			<option value="1">
+				JPUBLISHED</option>
+			<option value="0">
+				JUNPUBLISHED</option>
+			<option value="2">
+				JARCHIVED</option>
+			<option value="-2">
+				JTRASHED</option>
+		</field>
+		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<field name="modified" type="calendar" class="readonly"
+			label="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_DATE_DESC"
+			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<field name="modified_by" type="user"
+			label="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_BY_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_BY_DESC"
+			class="readonly"
+			readonly="true"
+			filter="unset"
+		/>
+		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
+		<field
+			name="ordering"
+			type="number"
+			class="inputbox validate-ordering"
+			label="COM_PRO_CRITICAL_CSS_STYLE_ORDERING_LABEL"
+			description=""
+			default="0"
+			size="6"
+			required="false"
+		/>
+		<!-- [Fields 632] Version Field. Type: Text (joomla) -->
+		<field
+			name="version"
+			type="text"
+			class="readonly"
+			label="COM_PRO_CRITICAL_CSS_STYLE_VERSION_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_VERSION_DESC"
+			size="6"
+			readonly="true"
+			filter="unset"
+		/>
+		<!-- [Fields 683] Dynamic Fields. -->
+		<!-- [Fields 1465] Content Field. Type: Textarea. (joomla) -->
+		<field
+			type="textarea"
+			name="content"
+			label="COM_PRO_CRITICAL_CSS_STYLE_CONTENT_LABEL"
+			rows="10"
+			cols="5"
+			default=""
+			class="text_area"
+			filter="raw"
+			required="false"
+			readonly="true"
+			disabled="false"
+			showon="load:1"
+		/>
+		<!-- [Fields 1278] Load Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="load"
+			label="COM_PRO_CRITICAL_CSS_STYLE_LOAD_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_LOAD_DESCRIPTION"
+			class="btn-group btn-group-yesno"
+			default="0"
+			readonly="false"
+			disabled="false">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="1">
+				COM_PRO_CRITICAL_CSS_STYLE_YES</option>
+			<option value="0">
+				COM_PRO_CRITICAL_CSS_STYLE_NO</option>
+		</field>
+		<!-- [Fields 1278] Minify Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="minify"
+			label="COM_PRO_CRITICAL_CSS_STYLE_MINIFY_LABEL"
+			description="COM_PRO_CRITICAL_CSS_STYLE_MINIFY_DESCRIPTION"
+			class="btn-group btn-group-yesno"
+			default="0"
+			readonly="false"
+			disabled="false"
+			showon="load:1"
+			onchange="Minify.Fire()">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="1">
+				COM_PRO_CRITICAL_CSS_STYLE_YES</option>
+			<option value="0">
+				COM_PRO_CRITICAL_CSS_STYLE_NO</option>
+		</field>
+		<!-- [Fields 1465] Hash Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="hash"
+			label="COM_PRO_CRITICAL_CSS_STYLE_HASH_LABEL"
+			maxlength="32"
+			default=""
+			description="COM_PRO_CRITICAL_CSS_STYLE_HASH_DESCRIPTION"
+			class="text_area"
+			readonly="true"
+			disabled="false"
+			required="false"
+			filter="STRING"
+			showon="load:1"
+		/>
+		<!-- [Fields 1465] Content_min Field. Type: Textarea. (joomla) -->
+		<field
+			type="textarea"
+			name="content_min"
+			label="COM_PRO_CRITICAL_CSS_STYLE_CONTENT_MIN_LABEL"
+			rows="10"
+			cols="5"
+			default=""
+			description="COM_PRO_CRITICAL_CSS_STYLE_CONTENT_MIN_DESCRIPTION"
+			class="text_area"
+			filter="raw"
+			required="false"
+			readonly="true"
+			disabled="false"
+			showon="load:1[AND]minify:1"
+		/>
+	</fieldset>
+	
+	<!-- [Interpretation 12352] Access Control Fields. -->
+	<fieldset name="accesscontrol">
+		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<field
+			name="asset_id"
+			type="hidden"
+			filter="unset"
+		/>
+		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<field
+			name="rules"
+			type="rules"
+			label="Permissions in relation to this css_style"
+			translate_label="false"
+			filter="rules"
+			validate="rules"
+			class="inputbox"
+			component="com_pro_critical"
+			section="css_style"
+		/>
+	</fieldset>
+</form>

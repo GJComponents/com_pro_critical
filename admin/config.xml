@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset
+		addrulepath="/administrator/components/com_pro_critical/models/rules"
+		addfieldpath="/administrator/components/com_pro_critical/models/fields"
+		name="global_config"
+		label="COM_PRO_CRITICAL_CONFIG_GLOBAL_LABEL"
+		description="COM_PRO_CRITICAL_CONFIG_GLOBAL_DESC">
+		<field
+			name="check_in"
+			type="list"
+			default="0"
+			label="COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_DESC">
+			<option
+				value="-5 hours">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_ONE</option>
+			<option
+				value="-12 hours">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_TWO</option>
+			<option
+				value="-1 day">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_THREE</option>
+			<option
+				value="-2 day">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_FOUR</option>
+			<option
+				value="-1 week">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_FIVE</option>
+			<option
+				value="0">COM_PRO_CRITICAL_CONFIG_CHECK_TIMER_OPTION_SIX</option>
+		</field>
+		<field type="spacer" name="spacerAuthor" hr="true" />
+
+		<!-- [Fields 1465] Static_quantity_api Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="static_quantity_api"
+			label="COM_PRO_CRITICAL_CONFIG_STATIC_QUANTITY_API_LABEL"
+			maxlength="50"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_STATIC_QUANTITY_API_DESCRIPTION"
+			class="text_area"
+			readonly="true"
+			disabled="false"
+			required="false"
+			filter="INT"
+			autocomplete="off"
+		/>
+		<field name="autorTitle"
+			type="spacer"
+			label="COM_PRO_CRITICAL_CONFIG_AUTHOR"
+		/>
+		<field name="autorName"
+			type="text"
+			label="COM_PRO_CRITICAL_CONFIG_AUTHOR_NAME_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_AUTHOR_NAME_DESC"
+			size="60"
+			default="Nikolaychuk Oleg"
+			readonly="true"
+			class="readonly"
+		/>
+		<field name="autorEmail"
+			type="email"
+			label="COM_PRO_CRITICAL_CONFIG_AUTHOR_EMAIL_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_AUTHOR_EMAIL_DESC"
+			size="60"
+			default="sad.net79@gmail.com"
+			readonly="true"
+			class="readonly"
+		/>
+	</fieldset>
+	<fieldset
+		name="global_excluded_request_custom_config"
+		label="COM_PRO_CRITICAL_CONFIG_GLOBAL_EXCLUDED_REQUEST">
+
+		<!-- [Fields 1479] Note_joomla_setting Field. Type: Note. A None Database Field. (joomla) -->
+		<field type="note" name="note_joomla_setting" label="COM_PRO_CRITICAL_CONFIG_NOTE_JOOMLA_SETTING_LABEL" description="COM_PRO_CRITICAL_CONFIG_NOTE_JOOMLA_SETTING_DESCRIPTION" heading="h4" class="alert alert-info note_joomla_setting" close="false" />
+		<!-- [Fields 1596] Excluded_request_global Field. Type: Subform. (joomla) -->
+		<field
+			type="subform"
+			name="excluded_request_global"
+			label="COM_PRO_CRITICAL_CONFIG_EXCLUDED_REQUEST_GLOBAL_LABEL"
+			layout="joomla.form.field.subform.repeatable-table"
+			multiple="true"
+			buttons="add,remove"
+			description="COM_PRO_CRITICAL_CONFIG_EXCLUDED_REQUEST_GLOBAL_DESCRIPTION"
+			default=""
+			icon="list"
+			max="50"
+			min="1">
+			<form hidden="true" name="list_excluded_request_global_modal" repeat="true">
+				<!-- [Fields 1465] Query Field. Type: Text. (joomla) -->
+				<field
+					type="text"
+					name="query"
+					label="COM_PRO_CRITICAL_CONFIG_QUERY_LABEL"
+					maxlength="64"
+					default=""
+					description="COM_PRO_CRITICAL_CONFIG_QUERY_DESCRIPTION"
+					class="text_area"
+					readonly="false"
+					disabled="false"
+					required="false"
+					filter="STRING"
+					message="COM_PRO_CRITICAL_CONFIG_QUERY_MESSAGE"
+					hint="COM_PRO_CRITICAL_CONFIG_QUERY_HINT"
+					autocomplete="off"
+				/>
+			</form>
+		</field>
+	</fieldset>
+	<fieldset
+		name="defaul_size_custom_config"
+		label="COM_PRO_CRITICAL_CONFIG_DEFAUL_SIZE">
+
+		<!-- [Fields 1596] Defaulsize Field. Type: Subform. (joomla) -->
+		<field
+			type="subform"
+			name="defaulsize"
+			label="COM_PRO_CRITICAL_CONFIG_DEFAULSIZE_LABEL"
+			layout="joomla.form.field.subform.repeatable-table"
+			multiple="false"
+			formsource="/administrator/components/com_pro_critical/sub_form/defaul_size_form.xml"
+			default=""
+			icon="false"
+			max="50">
+			<form hidden="true" name="list_defaulsize_modal" repeat="true">
+			</form>
+		</field>
+	</fieldset>
+	<fieldset
+		name="other_settings_custom_config"
+		label="COM_PRO_CRITICAL_CONFIG_OTHER_SETTINGS">
+
+		<!-- [Fields 1596] Shorten_setting Field. Type: Subform. (joomla) -->
+		<field
+			type="subform"
+			name="shorten_setting"
+			label="COM_PRO_CRITICAL_CONFIG_SHORTEN_SETTING_LABEL"
+			layout="joomla.form.field.subform.repeatable-table"
+			multiple="true"
+			buttons="add,remove,move"
+			default=""
+			icon="list"
+			max="50">
+			<form hidden="true" name="list_shorten_setting_modal" repeat="true">
+				<!-- [Fields 1465] View_component Field. Type: Text. (joomla) -->
+				<field
+					type="text"
+					name="view_component"
+					label="COM_PRO_CRITICAL_CONFIG_VIEW_COMPONENT_LABEL"
+					maxlength="50"
+					default=""
+					description="COM_PRO_CRITICAL_CONFIG_VIEW_COMPONENT_DESCRIPTION"
+					class="text_area"
+					readonly="false"
+					disabled="false"
+					required="true"
+					filter="STRING"
+					autocomplete="off"
+				/>
+				<!-- [Fields 1465] Length Field. Type: Text. (joomla) -->
+				<field
+					type="text"
+					name="length"
+					label="COM_PRO_CRITICAL_CONFIG_LENGTH_LABEL"
+					maxlength="255"
+					default=""
+					class="text_area"
+					readonly="false"
+					disabled="false"
+					required="false"
+					filter="INT"
+					message="COM_PRO_CRITICAL_CONFIG_LENGTH_MESSAGE"
+					autocomplete="on"
+				/>
+			</form>
+		</field>
+	</fieldset>
+	<fieldset
+		name="files_and_directories_custom_config"
+		label="COM_PRO_CRITICAL_CONFIG_FILES_AND_DIRECTORIES">
+
+		<!-- [Fields 1465] External_cache_directory Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="external_cache_directory"
+			label="COM_PRO_CRITICAL_CONFIG_EXTERNAL_CACHE_DIRECTORY_LABEL"
+			size="500"
+			maxlength="255"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_EXTERNAL_CACHE_DIRECTORY_DESCRIPTION"
+			class="text_area"
+			readonly="false"
+			disabled="false"
+			required="false"
+			filter="PATH"
+			hint="COM_PRO_CRITICAL_CONFIG_EXTERNAL_CACHE_DIRECTORY_HINT"
+		/>
+		<!-- [Fields 1479] Note_one_gnzeleven Field. Type: Note. A None Database Field. (joomla) -->
+		<field type="note" name="note_one_gnzeleven" label="COM_PRO_CRITICAL_CONFIG_NOTE_ONE_GNZELEVEN_LABEL" description="COM_PRO_CRITICAL_CONFIG_NOTE_ONE_GNZELEVEN_DESCRIPTION" heading="h4" class="alert alert-info note_one_gnzeleven" close="false" />
+		<!-- [Fields 1465] Gnzlib_path_file_corejs Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="gnzlib_path_file_corejs"
+			label="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_FILE_COREJS_LABEL"
+			maxlength="255"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_FILE_COREJS_DESCRIPTION"
+			class="text_area "
+			readonly="false"
+			disabled="false"
+			required="false"
+			filter="STRING"
+			autocomplete="on"
+		/>
+		<!-- [Fields 1278] Gnzlib_debug_off Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="gnzlib_debug_off"
+			label="COM_PRO_CRITICAL_CONFIG_GNZLIB_DEBUG_OFF_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_GNZLIB_DEBUG_OFF_DESCRIPTION"
+			class="btn-group btn-group-yesno onGNZ11_Debug"
+			default="1"
+			readonly="false"
+			disabled="false">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="0">
+				COM_PRO_CRITICAL_CONFIG_YES</option>
+			<option value="1">
+				COM_PRO_CRITICAL_CONFIG_NO</option>
+		</field>
+		<!-- [Fields 1465] Gnzlib_path_file_corejs_min Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="gnzlib_path_file_corejs_min"
+			label="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_FILE_COREJS_MIN_LABEL"
+			maxlength="255"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_FILE_COREJS_MIN_DESCRIPTION"
+			class="text_area"
+			readonly="true"
+			disabled="false"
+			required="false"
+			filter="STRING"
+			autocomplete="on"
+			showon="gnzlib_debug_off:1"
+		/>
+		<!-- [Fields 1465] Gnzlib_path_modules Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="gnzlib_path_modules"
+			label="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_MODULES_LABEL"
+			maxlength="255"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_MODULES_DESCRIPTION"
+			class="text_area"
+			readonly="false"
+			disabled="false"
+			filter="STRING"
+			message="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_MODULES_MESSAGE"
+			autocomplete="on"
+		/>
+		<!-- [Fields 1465] Gnzlib_path_plugins Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="gnzlib_path_plugins"
+			label="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_PLUGINS_LABEL"
+			maxlength="255"
+			default=""
+			description="COM_PRO_CRITICAL_CONFIG_GNZLIB_PATH_PLUGINS_DESCRIPTION"
+			class="text_area"
+			readonly="false"
+			disabled="false"
+			filter="STRING"
+			autocomplete="on"
+		/>
+	</fieldset>
+	<fieldset
+		name="css_custom_config"
+		label="COM_PRO_CRITICAL_CONFIG_CSS">
+
+		<!-- [Fields 1479] Note_one_css_style Field. Type: Note. A None Database Field. (joomla) -->
+		<field type="note" name="note_one_css_style" label="COM_PRO_CRITICAL_CONFIG_NOTE_ONE_CSS_STYLE_LABEL" description="COM_PRO_CRITICAL_CONFIG_NOTE_ONE_CSS_STYLE_DESCRIPTION" heading="h4" class="alert alert-info note_one_css_style" close="false" />
+		<!-- [Fields 1278] Css_style_load_method Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="css_style_load_method"
+			label="COM_PRO_CRITICAL_CONFIG_CSS_STYLE_LOAD_METHOD_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_CSS_STYLE_LOAD_METHOD_DESCRIPTION"
+			class="btn-group btn-group-yesno"
+			default="1"
+			readonly="false"
+			disabled="false">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="0">
+				COM_PRO_CRITICAL_CONFIG_JOIN</option>
+			<option value="1">
+				COM_PRO_CRITICAL_CONFIG_NORMAL</option>
+		</field>
+		<!-- [Fields 1278] Css_link_load_method Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="css_link_load_method"
+			label="COM_PRO_CRITICAL_CONFIG_CSS_LINK_LOAD_METHOD_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_CSS_LINK_LOAD_METHOD_DESCRIPTION"
+			class="btn-group btn-group-yesno"
+			default="1"
+			readonly="false"
+			disabled="false">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="0">
+				COM_PRO_CRITICAL_CONFIG_JOIN</option>
+			<option value="1">
+				COM_PRO_CRITICAL_CONFIG_NORMAL</option>
+		</field>
+		<!-- [Fields 1278] Use_critical_css Field. Type: Radio. (joomla) -->
+		<field
+			type="radio"
+			name="use_critical_css"
+			label="COM_PRO_CRITICAL_CONFIG_USE_CRITICAL_CSS_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_USE_CRITICAL_CSS_DESCRIPTION"
+			class="btn-group btn-group-yesno"
+			default="1"
+			readonly="false"
+			disabled="false">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="1">
+				COM_PRO_CRITICAL_CONFIG_ON</option>
+			<option value="0">
+				COM_PRO_CRITICAL_CONFIG_OFF</option>
+		</field>
+		<!-- [Fields 1278] Url_server Field. Type: List. (joomla) -->
+		<field
+			type="list"
+			name="url_server"
+			label="COM_PRO_CRITICAL_CONFIG_URL_SERVER_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_URL_SERVER_DESCRIPTION"
+			class="list_class"
+			multiple="false"
+			useglobal="false"
+			default="0"
+			showon="use_critical_css:1">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="https://pro-critical.cf/tools/assets/">
+				COM_PRO_CRITICAL_CONFIG_PROCRITICALCF</option>
+		</field>
+		<!-- [Fields 1278] Css_loading_method Field. Type: List. (joomla) -->
+		<field
+			type="list"
+			name="css_loading_method"
+			label="COM_PRO_CRITICAL_CONFIG_CSS_LOADING_METHOD_LABEL"
+			description="COM_PRO_CRITICAL_CONFIG_CSS_LOADING_METHOD_DESCRIPTION"
+			class="list_class"
+			multiple="false"
+			useglobal="false"
+			default="2"
+			showon="use_critical_css:1">
+			<!-- [Fields 1445] Option Set. -->
+			<option value="2">
+				COM_PRO_CRITICAL_CONFIG_PRELOAD</option>
+			<option value="1">
+				COM_PRO_CRITICAL_CONFIG_SCRIPT</option>
+			<option value="0">
+				COM_PRO_CRITICAL_CONFIG_IN_PAGE</option>
+		</field>
+	</fieldset>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC">
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_pro_critical"
+			section="component"
+		/>
+	</fieldset>
+</config>
