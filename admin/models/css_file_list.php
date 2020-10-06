@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		css_file_list.php
@@ -40,15 +40,12 @@ class Pro_criticalModelCss_file_list extends JModelList
 				'a.load','load',
 				'a.override','override',
 				'a.minify','minify',
-				'a.no_external','no_external',
-				'a.load_if_criticalis_set','load_if_criticalis_set'
+				'a.no_external','no_external'
 			);
 		}
 
 		parent::__construct($config);
 	}
-
-#Custom Buttons PHP List view (model methods)[css_file]
 	
 	/**
 	 * Method to auto-populate the model state.
@@ -78,9 +75,6 @@ class Pro_criticalModelCss_file_list extends JModelList
 
 		$no_external = $this->getUserStateFromRequest($this->context . '.filter.no_external', 'filter_no_external');
 		$this->setState('filter.no_external', $no_external);
-
-		$load_if_criticalis_set = $this->getUserStateFromRequest($this->context . '.filter.load_if_criticalis_set', 'filter_load_if_criticalis_set');
-		$this->setState('filter.load_if_criticalis_set', $load_if_criticalis_set);
         
 		$sorting = $this->getUserStateFromRequest($this->context . '.filter.sorting', 'filter_sorting', 0, 'int');
 		$this->setState('filter.sorting', $sorting);
@@ -103,116 +97,118 @@ class Pro_criticalModelCss_file_list extends JModelList
 		// List state information.
 		parent::populateState($ordering, $direction);
 	}
-	
-	/**
-	 * Method to get an array of data items.
-	 *
-	 * @return  mixed  An array of data items on success, false on failure.
-	 */
-	public function getItems()
+
+    /**
+     * Метод получения массива элементов данных.
+     * Method to get an array of data items.
+     *
+     * @param bool $onlyData - не переводить Bool - данные
+     * @return  mixed  An array of data items on success, false on failure.
+     * @since 3.9
+     */
+	public function getItems( $onlyData = false )
 	{
-		// [Interpretation 12857] check in items
+		// [Interpretation 19606] check in items
 		$this->checkInNow();
 
-		// load parent items
+		# load parent items
 		$items = parent::getItems();
+
 
 #Add PHP (getItems Method - before translation fix & decryption) *
 
-		// [Interpretation 13351] set selection value to a translatable value
+
+		// [Interpretation 20424] set selection value to a translatable value
 		if (Pro_criticalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
-				// [Interpretation 13358] convert load
-				$item->load = $this->selectionTranslation($item->load, 'load');
-				// [Interpretation 13358] convert override
-				$item->override = $this->selectionTranslation($item->override, 'override');
-				// [Interpretation 13358] convert minify
-				$item->minify = $this->selectionTranslation($item->minify, 'minify');
-				// [Interpretation 13358] convert no_external
-				$item->no_external = $this->selectionTranslation($item->no_external, 'no_external');
-				// [Interpretation 13358] convert load_if_criticalis_set
-				$item->load_if_criticalis_set = $this->selectionTranslation($item->load_if_criticalis_set, 'load_if_criticalis_set');
+                if( !$onlyData )
+                {
+                    // [Interpretation 20438] convert load
+                    $item->load = $this->selectionTranslation($item->load, 'load');
+                    // [Interpretation 20438] convert override
+                    $item->override = $this->selectionTranslation($item->override, 'override');
+                    // [Interpretation 20438] convert minify
+                    $item->minify = $this->selectionTranslation($item->minify, 'minify');
+                    // [Interpretation 20438] convert no_external
+                    $item->no_external = $this->selectionTranslation($item->no_external, 'no_external');
+                }#END IF
+
 			}
 		}
 
+
 #Add PHP (getItems Method - after all) *
-        
+
+
 		// return items
 		return $items;
 	}
 
 	/**
+     * Метод преобразования значений выбора в переводимую строку.
 	 * Method to convert selection values to translatable string.
 	 *
-	 * @return translatable string
+	 * @return  string translatable
+     * @since 3.9 
 	 */
 	public function selectionTranslation($value,$name)
 	{
-		// [Interpretation 13384] Array of load language strings
+	    
+	    
+		// [Interpretation 20478] Array of load language strings
 		if ($name === 'load')
 		{
+
+		    
 			$loadArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_FILE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_FILE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($loadArray[$value]) && Pro_criticalHelper::checkString($loadArray[$value]))
 			{
 				return $loadArray[$value];
 			}
 		}
-		// [Interpretation 13384] Array of override language strings
+		// [Interpretation 20478] Array of override language strings
 		if ($name === 'override')
 		{
 			$overrideArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_FILE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_FILE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($overrideArray[$value]) && Pro_criticalHelper::checkString($overrideArray[$value]))
 			{
 				return $overrideArray[$value];
 			}
 		}
-		// [Interpretation 13384] Array of minify language strings
+		// [Interpretation 20478] Array of minify language strings
 		if ($name === 'minify')
 		{
 			$minifyArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_FILE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_FILE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($minifyArray[$value]) && Pro_criticalHelper::checkString($minifyArray[$value]))
 			{
 				return $minifyArray[$value];
 			}
 		}
-		// [Interpretation 13384] Array of no_external language strings
+		// [Interpretation 20478] Array of no_external language strings
 		if ($name === 'no_external')
 		{
 			$no_externalArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_FILE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_FILE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($no_externalArray[$value]) && Pro_criticalHelper::checkString($no_externalArray[$value]))
 			{
 				return $no_externalArray[$value];
-			}
-		}
-		// [Interpretation 13384] Array of load_if_criticalis_set language strings
-		if ($name === 'load_if_criticalis_set')
-		{
-			$load_if_criticalis_setArray = array(
-				1 => 'COM_PRO_CRITICAL_CSS_FILE_YES',
-				0 => 'COM_PRO_CRITICAL_CSS_FILE_NO'
-			);
-			// [Interpretation 13415] Now check if value is found in this array
-			if (isset($load_if_criticalis_setArray[$value]) && Pro_criticalHelper::checkString($load_if_criticalis_setArray[$value]))
-			{
-				return $load_if_criticalis_setArray[$value];
 			}
 		}
 		return $value;
@@ -225,21 +221,21 @@ class Pro_criticalModelCss_file_list extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_css_file', 'a'));
 
 #Add PHP (getListQuery - JModelList) *
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -249,7 +245,7 @@ class Pro_criticalModelCss_file_list extends JModelList
 		{
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
-		// [Interpretation 9708] Filter by search.
+		// [Interpretation 14779] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -264,38 +260,33 @@ class Pro_criticalModelCss_file_list extends JModelList
 			}
 		}
 
-		// [Interpretation 9776] Filter by Load.
+		// [Interpretation 14911] Filter by Load.
 		if ($load = $this->getState('filter.load'))
 		{
 			$query->where('a.load = ' . $db->quote($db->escape($load)));
 		}
-		// [Interpretation 9776] Filter by Override.
+		// [Interpretation 14911] Filter by Override.
 		if ($override = $this->getState('filter.override'))
 		{
 			$query->where('a.override = ' . $db->quote($db->escape($override)));
 		}
-		// [Interpretation 9776] Filter by Minify.
+		// [Interpretation 14911] Filter by Minify.
 		if ($minify = $this->getState('filter.minify'))
 		{
 			$query->where('a.minify = ' . $db->quote($db->escape($minify)));
 		}
-		// [Interpretation 9776] Filter by No_external.
+		// [Interpretation 14911] Filter by No_external.
 		if ($no_external = $this->getState('filter.no_external'))
 		{
 			$query->where('a.no_external = ' . $db->quote($db->escape($no_external)));
 		}
-		// [Interpretation 9776] Filter by Load_if_criticalis_set.
-		if ($load_if_criticalis_set = $this->getState('filter.load_if_criticalis_set'))
-		{
-			$query->where('a.load_if_criticalis_set = ' . $db->quote($db->escape($load_if_criticalis_set)));
-		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
 		{
-			$query->order($db->escape($orderCol . ' ' . $orderDirn));
+            $query->order( $db->escape($db->quoteName( $orderCol ) . ' ' . $orderDirn));
 		}
 
 		return $query;
@@ -309,7 +300,7 @@ class Pro_criticalModelCss_file_list extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -321,7 +312,6 @@ class Pro_criticalModelCss_file_list extends JModelList
 		$id .= ':' . $this->getState('filter.override');
 		$id .= ':' . $this->getState('filter.minify');
 		$id .= ':' . $this->getState('filter.no_external');
-		$id .= ':' . $this->getState('filter.load_if_criticalis_set');
 
 		return parent::getStoreId($id);
 	}
@@ -334,15 +324,15 @@ class Pro_criticalModelCss_file_list extends JModelList
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 12873] Get set check in time
+		// [Interpretation 19624] Get set check in time
 		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 12877] Get a db connection.
+			// [Interpretation 19632] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
+			// [Interpretation 19635] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__pro_critical_css_file'));
@@ -350,24 +340,24 @@ class Pro_criticalModelCss_file_list extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 12887] Get Yesterdays date
+				// [Interpretation 19646] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
+				// [Interpretation 19650] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 12891] Fields to update.
+				// [Interpretation 19654] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 12896] Conditions for which records should be updated.
+				// [Interpretation 19663] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 12901] Check table
+				// [Interpretation 19672] Check table
 				$query->update($db->quoteName('#__pro_critical_css_file'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

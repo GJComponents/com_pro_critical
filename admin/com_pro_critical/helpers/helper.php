@@ -32,10 +32,12 @@
 		public static function settingsAdminViews (){
 			$app = JFactory::getApplication() ;
 			$doc = JFactory::getDocument() ;
-			
+
+
 			$option = $app->input->get( 'option' ) ;
 			$view = $app->input->get( 'view' ) ;
-			
+
+
 			switch( $option )
 			{
 				case 'com_config' :

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default_head.php
@@ -38,14 +38,17 @@ defined('_JEXEC') or die('Restricted access');
 			&#9632;
 		</th>
 	<?php endif; ?>
-	<th class="nowrap" >
-			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_CSS_QUERY_STRING_LABEL', 'query_string', $this->listDirn, $this->listOrder); ?>
+	<th class="nowrap hidden-phone" >
+			<?php echo JText::_('COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
 			<?php echo JText::_('COM_PRO_CRITICAL_CSS_OPTION_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
 			<?php echo JText::_('COM_PRO_CRITICAL_CSS_VIEW_LABEL'); ?>
+	</th>
+	<th class="nowrap hidden-phone" >
+			<?php echo JText::_('COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_LABEL'); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >

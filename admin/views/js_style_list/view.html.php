@@ -86,7 +86,7 @@ class Pro_criticalViewJs_style_list extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_PRO_CRITICAL_JS_STYLE_LIST'), 'joomla');
+		JToolBarHelper::title(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_STYLE_LIST'), 'joomla');
 		JHtmlSidebar::setAction('index.php?option=com_pro_critical&view=js_style_list');
 		JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 
@@ -141,7 +141,7 @@ class Pro_criticalViewJs_style_list extends JViewLegacy
 		if ($this->user->authorise('js_style.delete_all_records', 'com_pro_critical'))
 		{
 			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('js_style_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
+			JToolBarHelper::custom('js_style_list.OnBtnCleanTable', 'warning', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
 		}
 
 		// set help url for this view if found
@@ -262,7 +262,7 @@ class Pro_criticalViewJs_style_list extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_('COM_PRO_CRITICAL_JS_STYLE_LIST'));
+		$this->document->setTitle(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_STYLE_LIST'));
 		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_pro_critical/assets/css/js_style_list.css", (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
 	}
 

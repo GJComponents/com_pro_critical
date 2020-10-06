@@ -4,17 +4,15 @@
 	addfieldpath="/administrator/components/com_pro_critical/models/fields"
 >
 	<fieldset name="details">
-		<!-- [Fields 492] Default Fields. -->
-		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
-		<field
-			name="id"
+		<!-- [Fields 621] Default Fields. -->
+		<!-- [Fields 623] Id Field. Type: Text (joomla) -->
+		<field name="id"
 			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
 			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
 			readonly="true"
 		/>
-		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
-		<field
-			name="created"
+		<!-- [Fields 642] Date Created Field. Type: Calendar (joomla) -->
+		<field name="created"
 			type="calendar"
 			label="COM_PRO_CRITICAL_CSS_STYLE_CREATED_DATE_LABEL"
 			description="COM_PRO_CRITICAL_CSS_STYLE_CREATED_DATE_DESC"
@@ -22,14 +20,13 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
-		<field
-			name="created_by"
+		<!-- [Fields 665] User Created Field. Type: User (joomla) -->
+		<field name="created_by"
 			type="user"
 			label="COM_PRO_CRITICAL_CSS_STYLE_CREATED_BY_LABEL"
 			description="COM_PRO_CRITICAL_CSS_STYLE_CREATED_BY_DESC"
 		/>
-		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<!-- [Fields 685] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
 			filter="intval" size="1" default="1" >
@@ -42,11 +39,11 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<!-- [Fields 712] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
 			label="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
-		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<!-- [Fields 727] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
 			label="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_BY_LABEL"
 			description="COM_PRO_CRITICAL_CSS_STYLE_MODIFIED_BY_DESC"
@@ -54,9 +51,8 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
-		<field
-			name="ordering"
+		<!-- [Fields 768] Ordering Field. Type: Numbers (joomla) -->
+		<field name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
 			label="COM_PRO_CRITICAL_CSS_STYLE_ORDERING_LABEL"
@@ -65,9 +61,8 @@
 			size="6"
 			required="false"
 		/>
-		<!-- [Fields 632] Version Field. Type: Text (joomla) -->
-		<field
-			name="version"
+		<!-- [Fields 791] Version Field. Type: Text (joomla) -->
+		<field name="version"
 			type="text"
 			class="readonly"
 			label="COM_PRO_CRITICAL_CSS_STYLE_VERSION_LABEL"
@@ -76,11 +71,11 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 683] Dynamic Fields. -->
-		<!-- [Fields 1465] Content Field. Type: Textarea. (joomla) -->
-		<field
+		<!-- [Fields 854] Dynamic Fields. -->
+		<!-- [Fields 1922] Content Field. Type: Textarea. (joomla) -->
+		<field name="content"
 			type="textarea"
-			name="content"
+
 			label="COM_PRO_CRITICAL_CSS_STYLE_CONTENT_LABEL"
 			rows="10"
 			cols="5"
@@ -92,26 +87,26 @@
 			disabled="false"
 			showon="load:1"
 		/>
-		<!-- [Fields 1278] Load Field. Type: Radio. (joomla) -->
-		<field
+		<!-- [Fields 1635] Load Field. Type: Radio. (joomla) -->
+		<field name="load"
 			type="radio"
-			name="load"
+
 			label="COM_PRO_CRITICAL_CSS_STYLE_LOAD_LABEL"
 			description="COM_PRO_CRITICAL_CSS_STYLE_LOAD_DESCRIPTION"
 			class="btn-group btn-group-yesno"
 			default="0"
 			readonly="false"
 			disabled="false">
-			<!-- [Fields 1445] Option Set. -->
+			<!-- [Fields 1898] Option Set. -->
 			<option value="1">
 				COM_PRO_CRITICAL_CSS_STYLE_YES</option>
 			<option value="0">
 				COM_PRO_CRITICAL_CSS_STYLE_NO</option>
 		</field>
-		<!-- [Fields 1278] Minify Field. Type: Radio. (joomla) -->
-		<field
+		<!-- [Fields 1635] Minify Field. Type: Radio. (joomla) -->
+		<field name="minify"
 			type="radio"
-			name="minify"
+
 			label="COM_PRO_CRITICAL_CSS_STYLE_MINIFY_LABEL"
 			description="COM_PRO_CRITICAL_CSS_STYLE_MINIFY_DESCRIPTION"
 			class="btn-group btn-group-yesno"
@@ -120,16 +115,16 @@
 			disabled="false"
 			showon="load:1"
 			onchange="Minify.Fire()">
-			<!-- [Fields 1445] Option Set. -->
+			<!-- [Fields 1898] Option Set. -->
 			<option value="1">
 				COM_PRO_CRITICAL_CSS_STYLE_YES</option>
 			<option value="0">
 				COM_PRO_CRITICAL_CSS_STYLE_NO</option>
 		</field>
-		<!-- [Fields 1465] Hash Field. Type: Text. (joomla) -->
-		<field
+		<!-- [Fields 1922] Hash Field. Type: Text. (joomla) -->
+		<field name="hash"
 			type="text"
-			name="hash"
+			
 			label="COM_PRO_CRITICAL_CSS_STYLE_HASH_LABEL"
 			maxlength="32"
 			default=""
@@ -141,7 +136,33 @@
 			filter="STRING"
 			showon="load:1"
 		/>
-		<!-- [Fields 1465] Content_min Field. Type: Textarea. (joomla) -->
+		<field name="type"
+			   type="text"
+			   default=""
+			   class="type "
+			   readonly="1"
+			   required=""
+			   label="CSS_STYLE_TYPE"
+			   description="CSS_STYLE_TYPE_DESC"
+			   showon="load:1"
+			   hint=""
+			   filter="raw"/>
+		<field name="media"
+			   type="text"
+			   default=""
+			   class="media "
+			   readonly="1"
+			   required=""
+			   label="CSS_STYLE_MEDIA"
+			   description="CSS_STYLE_MEDIA_DESC"
+			   showon="load:1"
+			   hint=""
+			   filter="raw"/>
+
+
+			
+			
+		<!-- [Fields 1922] Content_min Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="content_min"
@@ -159,15 +180,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 12352] Access Control Fields. -->
+	<!-- [Interpretation 18855] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 18860] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 18868] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

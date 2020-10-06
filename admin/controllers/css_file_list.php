@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		css_file_list.php
@@ -49,21 +49,4 @@ class Pro_criticalControllerCss_file_list extends JControllerAdmin
 	{
 		return parent::getModel($name, $prefix, $config);
 	}
-
-#Custom Buttons PHP List view (controller methods) [css_file]
-public function OnBtnCleanTable( ){
-         #  Delete all records
-         $view = 'css_file' ;
-
-         $prefix = 'pro_critical' ;
-         $app = \JFactory::getApplication() ;
-         $db = JFactory::getDbo();
-         $db->truncateTable('#__'.$prefix.'_' . $view );
-         $app->enqueueMessage('Записи удалены!');
-		$app->redirect(JRoute::_('index.php?'
-			.'option=com_'.$prefix
-			.'&view='. $app->input->get( 'view' , false , 'RAW' )
-			, false));
-	return true ;
-}
 }

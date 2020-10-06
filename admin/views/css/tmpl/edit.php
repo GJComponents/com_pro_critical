@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		edit.php
@@ -53,7 +53,6 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 <div id="pro_critical_loader" style="display: none;">
 <form action="<?php echo JRoute::_('index.php?option=com_pro_critical&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
-	<?php echo JLayoutHelper::render('css.params_css_above', $this); ?>
 <div class="form-horizontal">
 
 	<?php echo JHtml::_('bootstrap.startTabSet', 'cssTab', array('active' => 'params_css')); ?>

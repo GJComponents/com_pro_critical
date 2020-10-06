@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		directory_views_list.php
@@ -97,7 +97,7 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 	 */
 	public function getItems()
 	{
-		// [Interpretation 12857] check in items
+		// [Interpretation 19606] check in items
 		$this->checkInNow();
 
 		// load parent items
@@ -114,23 +114,23 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_directory_views', 'a'));
 
-		// [Interpretation 9740] From the pro_critical_directory_components table.
+		// [Interpretation 14839] From the yeightflq_pro_critical_directory_components table.
 		$query->select($db->quoteName('g.copmonent_name','id_component_copmonent_name'));
 		$query->join('LEFT', $db->quoteName('#__pro_critical_directory_components', 'g') . ' ON (' . $db->quoteName('a.id_component') . ' = ' . $db->quoteName('g.id') . ')');
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -140,7 +140,7 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 		{
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
-		// [Interpretation 9708] Filter by search.
+		// [Interpretation 14779] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -155,23 +155,23 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 			}
 		}
 
-		// [Interpretation 9776] Filter by View_component.
+		// [Interpretation 14911] Filter by View_component.
 		if ($view_component = $this->getState('filter.view_component'))
 		{
 			$query->where('a.view_component = ' . $db->quote($db->escape($view_component)));
 		}
-		// [Interpretation 9768] Filter by id_component.
+		// [Interpretation 14896] Filter by id_component.
 		if ($id_component = $this->getState('filter.id_component'))
 		{
 			$query->where('a.id_component = ' . $db->quote($db->escape($id_component)));
 		}
-		// [Interpretation 9776] Filter by Value_view.
+		// [Interpretation 14911] Filter by Value_view.
 		if ($value_view = $this->getState('filter.value_view'))
 		{
 			$query->where('a.value_view = ' . $db->quote($db->escape($value_view)));
 		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
@@ -190,7 +190,7 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -212,15 +212,15 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 12873] Get set check in time
+		// [Interpretation 19624] Get set check in time
 		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 12877] Get a db connection.
+			// [Interpretation 19632] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
+			// [Interpretation 19635] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__pro_critical_directory_views'));
@@ -228,24 +228,24 @@ class Pro_criticalModelDirectory_views_list extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 12887] Get Yesterdays date
+				// [Interpretation 19646] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
+				// [Interpretation 19650] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 12891] Fields to update.
+				// [Interpretation 19654] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 12896] Conditions for which records should be updated.
+				// [Interpretation 19663] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 12901] Check table
+				// [Interpretation 19672] Check table
 				$query->update($db->quoteName('#__pro_critical_directory_views'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

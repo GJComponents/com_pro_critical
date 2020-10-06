@@ -129,8 +129,8 @@ class Pro_criticalModelJs_style_list extends JModelList
 		if ($name === 'load')
 		{
 			$loadArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_STYLE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_STYLE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($loadArray[$value]) && Pro_criticalHelper::checkString($loadArray[$value]))
@@ -142,8 +142,8 @@ class Pro_criticalModelJs_style_list extends JModelList
 		if ($name === 'minify')
 		{
 			$minifyArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_STYLE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_STYLE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($minifyArray[$value]) && Pro_criticalHelper::checkString($minifyArray[$value]))

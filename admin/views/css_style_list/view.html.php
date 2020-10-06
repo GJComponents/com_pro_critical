@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -26,20 +26,43 @@ defined('_JEXEC') or die('Restricted access');
  */
 class Pro_criticalViewCss_style_list extends JViewLegacy
 {
-	/**
-	 * Css_style_list view display method
-	 * @return void
-	 */
+    /**
+     * @var mixed
+     * @since version
+     */
+    protected  $pagination;
+    /**
+     * @var mixed
+     * @since version
+     */
+    protected  $items;
+    /**
+     * @var mixed
+     * @since version
+     */
+    protected  $state;
+
+    /**
+     * Css_style_list view display method
+     * @param null $tpl
+     * @return Exception|mixed|void
+     * @throws Exception
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 25.08.2020 17:24
+     *
+     */
 	function display($tpl = null)
 	{
 		if ($this->getLayout() !== 'modal')
 		{
 			// Include helper submenu
-			Pro_criticalHelper::addSubmenu('css_style_list');
+			 Pro_criticalHelper::addSubmenu('css_style_list');
 		}
 
 		// Assign data to the view
 		$this->items = $this->get('Items');
+
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 		$this->user = JFactory::getUser();
@@ -83,6 +106,7 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 
 	/**
 	 * Setting the toolbar
+     * @since 3.9
 	 */
 	protected function addToolBar()
 	{
@@ -138,11 +162,6 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 				JToolbarHelper::trash('css_style_list.trash');
 			}
 		}
-		if ($this->user->authorise('css_style.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('css_style_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
-		}
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('css_style_list');
@@ -190,19 +209,19 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Load Selection
+		// [Interpretation 17054] Set Load Selection
 		$this->loadOptions = $this->getTheLoadSelections();
-		// [Interpretation 11274] We do some sanitation for Load filter
+		// [Interpretation 17059] We do some sanitation for Load filter
 		if (Pro_criticalHelper::checkArray($this->loadOptions) &&
 			isset($this->loadOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->loadOptions[0]->value))
 		{
 			unset($this->loadOptions[0]);
 		}
-		// [Interpretation 11281] Only load Load filter if it has values
+		// [Interpretation 17075] Only load Load filter if it has values
 		if (Pro_criticalHelper::checkArray($this->loadOptions))
 		{
-			// [Interpretation 11284] Load Filter
+			// [Interpretation 17083] Load Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_STYLE_LOAD_LABEL').' -',
 				'filter_load',
@@ -211,7 +230,7 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Load Batch Selection
+				// [Interpretation 17101] Load Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_STYLE_LOAD_LABEL').' -',
 					'batch[load]',
@@ -220,19 +239,19 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Minify Selection
+		// [Interpretation 17054] Set Minify Selection
 		$this->minifyOptions = $this->getTheMinifySelections();
-		// [Interpretation 11274] We do some sanitation for Minify filter
+		// [Interpretation 17059] We do some sanitation for Minify filter
 		if (Pro_criticalHelper::checkArray($this->minifyOptions) &&
 			isset($this->minifyOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->minifyOptions[0]->value))
 		{
 			unset($this->minifyOptions[0]);
 		}
-		// [Interpretation 11281] Only load Minify filter if it has values
+		// [Interpretation 17075] Only load Minify filter if it has values
 		if (Pro_criticalHelper::checkArray($this->minifyOptions))
 		{
-			// [Interpretation 11284] Minify Filter
+			// [Interpretation 17083] Minify Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_STYLE_MINIFY_LABEL').' -',
 				'filter_minify',
@@ -241,7 +260,7 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Minify Batch Selection
+				// [Interpretation 17101] Minify Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_STYLE_MINIFY_LABEL').' -',
 					'batch[minify]',
@@ -252,9 +271,11 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 	}
 
 	/**
+     * Method настройки свойств документа
 	 * Method to set up the document properties
 	 *
 	 * @return void
+     * @since 3.9
 	 */
 	protected function setDocument()
 	{
@@ -302,33 +323,33 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 
 	protected function getTheLoadSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('load'));
 		$query->from($db->quoteName('#__pro_critical_css_style'));
 		$query->order($db->quoteName('load') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $load)
 			{
-				// [Interpretation 11155] Translate the load selection
+				// [Interpretation 16847] Translate the load selection
 				$text = $model->selectionTranslation($load,'load');
-				// [Interpretation 11157] Now add the load and its text to the options array
+				// [Interpretation 16854] Now add the load and its text to the options array
 				$_filter[] = JHtml::_('select.option', $load, JText::_($text));
 			}
 			return $_filter;
@@ -338,33 +359,33 @@ class Pro_criticalViewCss_style_list extends JViewLegacy
 
 	protected function getTheMinifySelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('minify'));
 		$query->from($db->quoteName('#__pro_critical_css_style'));
 		$query->order($db->quoteName('minify') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $minify)
 			{
-				// [Interpretation 11155] Translate the minify selection
+				// [Interpretation 16847] Translate the minify selection
 				$text = $model->selectionTranslation($minify,'minify');
-				// [Interpretation 11157] Now add the minify and its text to the options array
+				// [Interpretation 16854] Now add the minify and its text to the options array
 				$_filter[] = JHtml::_('select.option', $minify, JText::_($text));
 			}
 			return $_filter;

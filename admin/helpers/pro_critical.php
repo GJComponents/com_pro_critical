@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		pro_critical.php
@@ -30,6 +30,13 @@ use Joomla\Utilities\ArrayHelper;
  */
 abstract class Pro_criticalHelper
 {
+	/**
+	 * Composer Switch
+	 * 
+	 * @var      array
+	 */
+	protected static $composer = array();
+
 	/**
 	 * The Main Active Language
 	 * 
@@ -201,8 +208,28 @@ abstract class Pro_criticalHelper
 ###### END PHP (admin helper) *######
 
 	/**
-	* Load the Component xml manifest.
-	**/
+	 * Load the Composer Vendors
+	 */
+	public static function composerAutoload($target)
+	{
+		// insure we load the composer vendor only once
+		if (!isset(self::$composer[$target]))
+		{
+			// get the function name
+			$functionName = self::safeString('compose' . $target);
+			// check if method exist
+			if (method_exists(__CLASS__, $functionName))
+			{
+				return self::{$functionName}();
+			}
+			return false;
+		}
+		return self::$composer[$target];
+	}
+
+	/**
+	 * Load the Component xml manifest.
+	 */
 	public static function manifest()
 	{
 		$manifestUrl = JPATH_ADMINISTRATOR."/components/com_pro_critical/pro_critical.xml";
@@ -210,13 +237,13 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Joomla version object
-	**/	
+	 * Joomla version object
+	 */	
 	protected static $JVersion;
 
 	/**
-	* set/get Joomla version
-	**/
+	 * set/get Joomla version
+	 */
 	public static function jVersion()
 	{
 		// check if set
@@ -228,12 +255,19 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Load the Contributors details.
-	**/
+	 * Load the Contributors details.
+	 */
 	public static function getContributors()
 	{
+
+
+
+
+
+
+
 		// get params
-		$params	= JComponentHelper::getParams('com_pro_critical');
+		$params	= \Joomla\CMS\Component\ComponentHelper::getParams('pro_critical');
 		// start contributors array
 		$contributors = array();
 		// get all Contributors (max 20)
@@ -274,14 +308,17 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Configure the Linkbar.
-	**/
+     * Configure панель ссылок.
+	 * Configure the Linkbar.
+     * @since 3.9
+	 */
 	public static function addSubmenu($submenu)
 	{
 		// load user for access menus
 		$user = JFactory::getUser();
 		// load the submenus to sidebar
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_DASHBOARD'), 'index.php?option=com_pro_critical&view=pro_critical', $submenu === 'pro_critical');
+		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_URL_LIST'), 'index.php?option=com_pro_critical&view=url_list', $submenu === 'url_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_CSS_LIST'), 'index.php?option=com_pro_critical&view=css_list', $submenu === 'css_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_USER_AGENT_LIST'), 'index.php?option=com_pro_critical&view=user_agent_list', $submenu === 'user_agent_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_USER_AGENT_OS_LIST'), 'index.php?option=com_pro_critical&view=user_agent_os_list', $submenu === 'user_agent_os_list');
@@ -295,188 +332,10 @@ abstract class Pro_criticalHelper
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_DIRECTORY_VIEWS_LIST'), 'index.php?option=com_pro_critical&view=directory_views_list', $submenu === 'directory_views_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_CSS_FILE_LIST'), 'index.php?option=com_pro_critical&view=css_file_list', $submenu === 'css_file_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_CSS_STYLE_LIST'), 'index.php?option=com_pro_critical&view=css_style_list', $submenu === 'css_style_list');
+
+
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_FILE_LIST'), 'index.php?option=com_pro_critical&view=js_file_list', $submenu === 'js_file_list');
 		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_STYLE_LIST'), 'index.php?option=com_pro_critical&view=js_style_list', $submenu === 'js_style_list');
-		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_URL_LIST'), 'index.php?option=com_pro_critical&view=url_list', $submenu === 'url_list');
-		JHtmlSidebar::addEntry(JText::_('COM_PRO_CRITICAL_SUBMENU_HELP_DOCUMENT_DATA_LIST'), 'index.php?option=com_pro_critical&view=help_document_data_list', $submenu === 'help_document_data_list');
-	}
-
-	/**
-	 * Prepares the xml document
-	 */
-	public static function xls($rows,$fileName = null,$title = null,$subjectTab = null,$creator = 'Gartes',$description = null,$category = null,$keywords = null,$modified = null)
-	{
-		// [Interpretation 1181] set the user
-		$user = JFactory::getUser();
-		
-		// [Interpretation 1184] set fieldname if not set
-		if (!$fileName)
-		{
-			$fileName = 'exported_'.JFactory::getDate()->format('jS_F_Y');
-		}
-		// [Interpretation 1189] set modiefied if not set
-		if (!$modified)
-		{
-			$modified = $user->name;
-		}
-		// [Interpretation 1194] set title if not set
-		if (!$title)
-		{
-			$title = 'Book1';
-		}
-		// [Interpretation 1199] set tab name if not set
-		if (!$subjectTab)
-		{
-			$subjectTab = 'Sheet1';
-		}
-
-		// [Interpretation 1204] make sure the file is loaded
-		JLoader::import('PHPExcel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
-
-		// [Interpretation 1206] Create new PHPExcel object
-		$objPHPExcel = new PHPExcel();
-
-		// [Interpretation 1208] Set document properties
-		$objPHPExcel->getProperties()->setCreator($creator)
-			->setCompany('Gartes')
-			->setLastModifiedBy($modified)
-			->setTitle($title)
-			->setSubject($subjectTab);
-		if (!$description)
-		{
-			$objPHPExcel->getProperties()->setDescription($description);
-		}
-		if (!$keywords)
-		{
-			$objPHPExcel->getProperties()->setKeywords($keywords);
-		}
-		if (!$category)
-		{
-			$objPHPExcel->getProperties()->setCategory($category);
-		}
-
-		// [Interpretation 1226] Some styles
-		$headerStyles = array(
-			'font'  => array(
-				'bold'  => true,
-				'color' => array('rgb' => '1171A3'),
-				'size'  => 12,
-				'name'  => 'Verdana'
-		));
-		$sideStyles = array(
-			'font'  => array(
-				'bold'  => true,
-				'color' => array('rgb' => '444444'),
-				'size'  => 11,
-				'name'  => 'Verdana'
-		));
-		$normalStyles = array(
-			'font'  => array(
-				'color' => array('rgb' => '444444'),
-				'size'  => 11,
-				'name'  => 'Verdana'
-		));
-
-		// [Interpretation 1247] Add some data
-		if (self::checkArray($rows))
-		{
-			$i = 1;
-			foreach ($rows as $array){
-				$a = 'A';
-				foreach ($array as $value){
-					$objPHPExcel->setActiveSheetIndex(0)->setCellValue($a.$i, $value);
-					if ($i == 1){
-						$objPHPExcel->getActiveSheet()->getColumnDimension($a)->setAutoSize(true);
-						$objPHPExcel->getActiveSheet()->getStyle($a.$i)->applyFromArray($headerStyles);
-						$objPHPExcel->getActiveSheet()->getStyle($a.$i)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-					} elseif ($a === 'A'){
-						$objPHPExcel->getActiveSheet()->getStyle($a.$i)->applyFromArray($sideStyles);
-					} else {
-						$objPHPExcel->getActiveSheet()->getStyle($a.$i)->applyFromArray($normalStyles);
-					}
-					$a++;
-				}
-				$i++;
-			}
-		}
-		else
-		{
-			return false;
-		}
-
-		// [Interpretation 1273] Rename worksheet
-		$objPHPExcel->getActiveSheet()->setTitle($subjectTab);
-
-		// [Interpretation 1275] Set active sheet index to the first sheet, so Excel opens this as the first sheet
-		$objPHPExcel->setActiveSheetIndex(0);
-
-		// [Interpretation 1277] Redirect output to a client's web browser (Excel5)
-		header('Content-Type: application/vnd.ms-excel');
-		header('Content-Disposition: attachment;filename="'.$fileName.'.xls"');
-		header('Cache-Control: max-age=0');
-		// [Interpretation 1281] If you're serving to IE 9, then the following may be needed
-		header('Cache-Control: max-age=1');
-
-		// [Interpretation 1283] If you're serving to IE over SSL, then the following may be needed
-		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-		header ('Pragma: public'); // HTTP/1.0
-
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$objWriter->save('php://output');
-		jexit();
-	}
-
-	/**
-	 * Get CSV Headers
-	 */
-	public static function getFileHeaders($dataType)
-	{
-		// [Interpretation 1297] make sure these files are loaded
-		JLoader::import('PHPExcel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers');
-		JLoader::import('ChunkReadFilter', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/PHPExcel/Reader');
-		// [Interpretation 1300] get session object
-		$session = JFactory::getSession();
-		$package = $session->get('package', null);
-		$package = json_decode($package, true);
-		// [Interpretation 1304] set the headers
-		if(isset($package['dir']))
-		{
-			$chunkFilter = new PHPExcel_Reader_chunkReadFilter();
-			// [Interpretation 1308] only load first three rows
-			$chunkFilter->setRows(2,1);
-			// [Interpretation 1310] identify the file type
-			$inputFileType = PHPExcel_IOFactory::identify($package['dir']);
-			// [Interpretation 1312] create the reader for this file type
-			$excelReader = PHPExcel_IOFactory::createReader($inputFileType);
-			// [Interpretation 1314] load the limiting filter
-			$excelReader->setReadFilter($chunkFilter);
-			$excelReader->setReadDataOnly(true);
-			// [Interpretation 1317] load the rows (only first three)
-			$excelObj = $excelReader->load($package['dir']);
-			$headers = array();
-			foreach ($excelObj->getActiveSheet()->getRowIterator() as $row)
-			{
-				if($row->getRowIndex() == 1)
-				{
-					$cellIterator = $row->getCellIterator();
-					$cellIterator->setIterateOnlyExistingCells(false);
-					foreach ($cellIterator as $cell)
-					{
-						if (!is_null($cell))
-						{
-							$headers[$cell->getColumn()] = $cell->getValue();
-						}
-					}
-					$excelObj->disconnectWorksheets();
-					unset($excelObj);
-					break;
-				}
-			}
-			return $headers;
-		}
-		return false;
 	}
 
 	/**
@@ -604,7 +463,7 @@ abstract class Pro_criticalHelper
 
 	public static function jsonToString($value, $sperator = ", ", $table = null, $id = 'id', $name = 'name')
 	{
-		// do some table inetglobalt work
+		// do some table foot work
 		$external = false;
 		if (strpos($table, '#__') !== false)
 		{
@@ -690,18 +549,18 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Get the action permissions
-	*
-	* @param  string   $view        The related view name
-	* @param  int      $record      The item to act upon
-	* @param  string   $views       The related list view name
-	* @param  mixed    $target      Only get this permission (like edit, create, delete)
-	* @param  string   $component   The target component
-	* @param  object   $user        The user whose permissions we are loading
-	*
-	* @return  object   The JObject of permission/authorised actions
-	* 
-	**/
+	 * Get the action permissions
+	 *
+	 * @param  string   $view        The related view name
+	 * @param  int      $record      The item to act upon
+	 * @param  string   $views       The related list view name
+	 * @param  mixed    $target      Only get this permission (like edit, create, delete)
+	 * @param  string   $component   The target component
+	 * @param  object   $user        The user whose permissions we are loading
+	 *
+	 * @return  object   The JObject of permission/authorised actions
+	 * 
+	 */
 	public static function getActions($view, &$record = null, $views = null, $target = null, $component = 'pro_critical', $user = 'null')
 	{
 		// load the user if not given
@@ -865,14 +724,14 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Filter the action permissions
-	*
-	* @param  string   $action   The action to check
-	* @param  array    $targets  The array of target actions
-	*
-	* @return  boolean   true if action should be filtered out
-	* 
-	**/
+	 * Filter the action permissions
+	 *
+	 * @param  string   $action   The action to check
+	 * @param  array    $targets  The array of target actions
+	 *
+	 * @return  boolean   true if action should be filtered out
+	 * 
+	 */
 	protected static function filterActions(&$view, &$action, &$targets)
 	{
 		foreach ($targets as $target)
@@ -888,8 +747,8 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Get any component's model
-	**/
+	 * Get any component's model
+	 */
 	public static function getModel($name, $path = JPATH_COMPONENT_ADMINISTRATOR, $Component = 'Pro_critical', $config = array())
 	{
 		// fix the name
@@ -936,8 +795,8 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Add to asset Table
-	*/
+	 * Add to asset Table
+	 */
 	public static function setAsset($id, $table, $inherit = true)
 	{
 		$parent = JTable::getInstance('Asset');
@@ -1244,12 +1103,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Check if have an json string
-	*
-	* @input	string   The json string to check
-	*
-	* @returns bool true on success
-	**/
+	 * Check if have an json string
+	 *
+	 * @input	string   The json string to check
+	 *
+	 * @returns bool true on success
+	 */
 	public static function checkJson($string)
 	{
 		if (self::checkString($string))
@@ -1261,12 +1120,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Check if have an object with a length
-	*
-	* @input	object   The object to check
-	*
-	* @returns bool true on success
-	**/
+	 * Check if have an object with a length
+	 *
+	 * @input	object   The object to check
+	 *
+	 * @returns bool true on success
+	 */
 	public static function checkObject($object)
 	{
 		if (isset($object) && is_object($object))
@@ -1277,12 +1136,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Check if have an array with a length
-	*
-	* @input	array   The array to check
-	*
-	* @returns bool/int  number of items in array on success
-	**/
+	 * Check if have an array with a length
+	 *
+	 * @input	array   The array to check
+	 *
+	 * @returns bool/int  number of items in array on success
+	 */
 	public static function checkArray($array, $removeEmptyString = false)
 	{
 		if (isset($array) && is_array($array) && ($nr = count((array)$array)) > 0)
@@ -1305,12 +1164,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Check if have a string with a length
-	*
-	* @input	string   The string to check
-	*
-	* @returns bool true on success
-	**/
+	 * Check if have a string with a length
+	 *
+	 * @input	string   The string to check
+	 *
+	 * @returns bool true on success
+	 */
 	public static function checkString($string)
 	{
 		if (isset($string) && is_string($string) && strlen($string) > 0)
@@ -1321,11 +1180,11 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Check if we are connected
-	* Thanks https://stackoverflow.com/a/4860432/1429677
-	*
-	* @returns bool true on success
-	**/
+	 * Check if we are connected
+	 * Thanks https://stackoverflow.com/a/4860432/1429677
+	 *
+	 * @returns bool true on success
+	 */
 	public static function isConnected()
 	{
 		// If example.com is down, then probably the whole internet is down, since IANA maintains the domain. Right?
@@ -1346,12 +1205,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Merge an array of array's
-	*
-	* @input	array   The arrays you would like to merge
-	*
-	* @returns array on success
-	**/
+	 * Merge an array of array's
+	 *
+	 * @input	array   The arrays you would like to merge
+	 *
+	 * @returns array on success
+	 */
 	public static function mergeArrays($arrays)
 	{
 		if(self::checkArray($arrays))
@@ -1376,13 +1235,14 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Shorten a string
-	*
-	* @input	string   The you would like to shorten
-	*
-	* @returns string on success
-	**/
-	public static function shorten($string, $length = 40, $addTip = true)
+	 * Укоротить строку
+	 *
+	 * @input	string   The you would like to shorten
+	 *
+	 * @returns string on success
+     * @since 3.9
+	 */
+	public static function shorten($string, $length = 200, $addTip = true)
 	{
 		if (self::checkString($string))
 		{
@@ -1417,12 +1277,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Making strings safe (various ways)
-	*
-	* @input	string   The you would like to make safe
-	*
-	* @returns string on success
-	**/
+	 * Making strings safe (various ways)
+	 *
+	 * @input	string   The you would like to make safe
+	 *
+	 * @returns string on success
+	 */
 	public static function safeString($string, $type = 'L', $spacer = '_', $replaceNumbers = true, $keepOnlyCharacters = true)
 	{
 		if ($replaceNumbers === true)
@@ -1524,19 +1384,31 @@ abstract class Pro_criticalHelper
 
 	public static function transliterate($string)
 	{
+
+       /* echo'<pre>';print_r( \Joomla\CMS\Component\ComponentHelper::getParams('pro_critical') );echo'</pre>'.__FILE__.' '.__LINE__;
+        die(__FILE__ .' '. __LINE__ );*/
+
 		// set tag only once
 		if (!self::checkString(self::$langTag))
 		{
-			// get global value
-			self::$langTag = JComponentHelper::getParams('com_pro_critical')->get('language', 'en-GB');
+            // get global value
+			self::$langTag = \Joomla\CMS\Component\ComponentHelper::getParams('pro_critical')->get('language', 'ru-RU');
+//			self::$langTag = \Joomla\CMS\Component\ComponentHelper::getParams('pro_critical')->get('language', 'en-GB');
 		}
+
+
+
+
+
 		// Transliterate on the language requested
 		$lang = Language::getInstance(self::$langTag);
 		return $lang->transliterate($string);
 	}
 
-	public static function htmlEscape($var, $charset = 'UTF-8', $shorten = false, $length = 40)
+	public static function htmlEscape($var, $charset = 'UTF-8', $shorten = false, $length = 150)
 	{
+
+
 		if (self::checkString($var))
 		{
 			$filter = new JFilterInput();
@@ -1576,12 +1448,12 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Convert an integer into an English word string
-	* Thanks to Tom Nicholson <http://php.net/manual/en/function.strval.php#41988>
-	*
-	* @input	an int
-	* @returns a string
-	**/
+	 * Convert an integer into an English word string
+	 * Thanks to Tom Nicholson <http://php.net/manual/en/function.strval.php#41988>
+	 *
+	 * @input	an int
+	 * @returns a string
+	 */
 	public static function numberToString($x)
 	{
 		$nwords = array( "zero", "one", "two", "three", "four", "five", "six", "seven",
@@ -1667,10 +1539,10 @@ abstract class Pro_criticalHelper
 	}
 
 	/**
-	* Random Key
-	*
-	* @returns a string
-	**/
+	 * Random Key
+	 *
+	 * @returns a string
+	 */
 	public static function randomkey($size)
 	{
 		$bag = "abcefghijknopqrstuwxyzABCDDEFGHIJKLLMMNOPQRSTUVVWXYZabcddefghijkllmmnopqrstuvvwxyzABCEFGHIJKNOPQRSTUWXYZ";

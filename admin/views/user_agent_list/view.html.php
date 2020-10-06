@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -140,7 +140,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 		}
 		if ($this->user->authorise('user_agent._', 'com_pro_critical'))
 		{
-			// [Interpretation 3712] add Очистить таблицы button.
+			// [Interpretation 5505] add Очистить таблицы button.
 			JToolBarHelper::custom('user_agent_list.OnBtnCleanAllTable', 'delete', '', 'COM_PRO_CRITICAL__', false);
 		}
 
@@ -190,19 +190,19 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Ua Selection
+		// [Interpretation 17054] Set Ua Selection
 		$this->uaOptions = $this->getTheUaSelections();
-		// [Interpretation 11274] We do some sanitation for Ua filter
+		// [Interpretation 17059] We do some sanitation for Ua filter
 		if (Pro_criticalHelper::checkArray($this->uaOptions) &&
 			isset($this->uaOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->uaOptions[0]->value))
 		{
 			unset($this->uaOptions[0]);
 		}
-		// [Interpretation 11281] Only load Ua filter if it has values
+		// [Interpretation 17075] Only load Ua filter if it has values
 		if (Pro_criticalHelper::checkArray($this->uaOptions))
 		{
-			// [Interpretation 11284] Ua Filter
+			// [Interpretation 17083] Ua Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_UA_LABEL').' -',
 				'filter_ua',
@@ -211,7 +211,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Ua Batch Selection
+				// [Interpretation 17101] Ua Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_UA_LABEL').' -',
 					'batch[ua]',
@@ -220,19 +220,19 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11230] Set Type Device Id Type Device Selection
+		// [Interpretation 16971] Set Type Device Id Type Device Selection
 		$this->type_device_idType_deviceOptions = JFormHelper::loadFieldType('Typedeviceid')->options;
-		// [Interpretation 11232] We do some sanitation for Type Device Id Type Device filter
+		// [Interpretation 16977] We do some sanitation for Type Device Id Type Device filter
 		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions) &&
 			isset($this->type_device_idType_deviceOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->type_device_idType_deviceOptions[0]->value))
 		{
 			unset($this->type_device_idType_deviceOptions[0]);
 		}
-		// [Interpretation 11239] Only load Type Device Id Type Device filter if it has values
+		// [Interpretation 16993] Only load Type Device Id Type Device filter if it has values
 		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions))
 		{
-			// [Interpretation 11242] Type Device Id Type Device Filter
+			// [Interpretation 17001] Type Device Id Type Device Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_TYPE_DEVICE_ID_LABEL').' -',
 				'filter_type_device_id',
@@ -241,7 +241,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Type Device Id Type Device Batch Selection
+				// [Interpretation 17018] Type Device Id Type Device Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_TYPE_DEVICE_ID_LABEL').' -',
 					'batch[type_device_id]',
@@ -250,19 +250,19 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11230] Set Type Browser Id Type Selection
+		// [Interpretation 16971] Set Type Browser Id Type Selection
 		$this->type_browser_idTypeOptions = JFormHelper::loadFieldType('Typebrowserid')->options;
-		// [Interpretation 11232] We do some sanitation for Type Browser Id Type filter
+		// [Interpretation 16977] We do some sanitation for Type Browser Id Type filter
 		if (Pro_criticalHelper::checkArray($this->type_browser_idTypeOptions) &&
 			isset($this->type_browser_idTypeOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->type_browser_idTypeOptions[0]->value))
 		{
 			unset($this->type_browser_idTypeOptions[0]);
 		}
-		// [Interpretation 11239] Only load Type Browser Id Type filter if it has values
+		// [Interpretation 16993] Only load Type Browser Id Type filter if it has values
 		if (Pro_criticalHelper::checkArray($this->type_browser_idTypeOptions))
 		{
-			// [Interpretation 11242] Type Browser Id Type Filter
+			// [Interpretation 17001] Type Browser Id Type Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_TYPE_BROWSER_ID_LABEL').' -',
 				'filter_type_browser_id',
@@ -271,7 +271,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Type Browser Id Type Batch Selection
+				// [Interpretation 17018] Type Browser Id Type Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_TYPE_BROWSER_ID_LABEL').' -',
 					'batch[type_browser_id]',
@@ -280,19 +280,19 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Brand Selection
+		// [Interpretation 17054] Set Brand Selection
 		$this->brandOptions = $this->getTheBrandSelections();
-		// [Interpretation 11274] We do some sanitation for Brand filter
+		// [Interpretation 17059] We do some sanitation for Brand filter
 		if (Pro_criticalHelper::checkArray($this->brandOptions) &&
 			isset($this->brandOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->brandOptions[0]->value))
 		{
 			unset($this->brandOptions[0]);
 		}
-		// [Interpretation 11281] Only load Brand filter if it has values
+		// [Interpretation 17075] Only load Brand filter if it has values
 		if (Pro_criticalHelper::checkArray($this->brandOptions))
 		{
-			// [Interpretation 11284] Brand Filter
+			// [Interpretation 17083] Brand Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BRAND_LABEL').' -',
 				'filter_brand',
@@ -301,7 +301,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Brand Batch Selection
+				// [Interpretation 17101] Brand Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BRAND_LABEL').' -',
 					'batch[brand]',
@@ -310,19 +310,19 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Name Selection
+		// [Interpretation 17054] Set Name Selection
 		$this->nameOptions = $this->getTheNameSelections();
-		// [Interpretation 11274] We do some sanitation for Name filter
+		// [Interpretation 17059] We do some sanitation for Name filter
 		if (Pro_criticalHelper::checkArray($this->nameOptions) &&
 			isset($this->nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->nameOptions[0]->value))
 		{
 			unset($this->nameOptions[0]);
 		}
-		// [Interpretation 11281] Only load Name filter if it has values
+		// [Interpretation 17075] Only load Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->nameOptions))
 		{
-			// [Interpretation 11284] Name Filter
+			// [Interpretation 17083] Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_NAME_LABEL').' -',
 				'filter_name',
@@ -331,7 +331,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Name Batch Selection
+				// [Interpretation 17101] Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_NAME_LABEL').' -',
 					'batch[name]',
@@ -395,18 +395,18 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 	protected function getTheUaSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('ua'));
 		$query->from($db->quoteName('#__pro_critical_user_agent'));
 		$query->order($db->quoteName('ua') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -417,7 +417,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $ua)
 			{
-				// [Interpretation 11172] Now add the ua and its text to the options array
+				// [Interpretation 16888] Now add the ua and its text to the options array
 				$_filter[] = JHtml::_('select.option', $ua, $ua);
 			}
 			return $_filter;
@@ -427,18 +427,18 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 	protected function getTheBrandSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('brand'));
 		$query->from($db->quoteName('#__pro_critical_user_agent'));
 		$query->order($db->quoteName('brand') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -449,7 +449,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $brand)
 			{
-				// [Interpretation 11172] Now add the brand and its text to the options array
+				// [Interpretation 16888] Now add the brand and its text to the options array
 				$_filter[] = JHtml::_('select.option', $brand, $brand);
 			}
 			return $_filter;
@@ -459,18 +459,18 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 
 	protected function getTheNameSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('name'));
 		$query->from($db->quoteName('#__pro_critical_user_agent'));
 		$query->order($db->quoteName('name') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -481,7 +481,7 @@ class Pro_criticalViewUser_agent_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $name)
 			{
-				// [Interpretation 11172] Now add the name and its text to the options array
+				// [Interpretation 16888] Now add the name and its text to the options array
 				$_filter[] = JHtml::_('select.option', $name, $name);
 			}
 			return $_filter;

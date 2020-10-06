@@ -43,17 +43,32 @@ class Pro_criticalModelJs_file_list extends JModelList
 				'a.no_external','no_external'
 			);
 		}
-
-		parent::__construct($config);
+        parent::__construct($config);
 	}
 
 #Custom Buttons PHP List view (model methods) [js_file]
-	
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * @return  void
-	 */
+
+    /**
+     * Соритировка cтолбцов таблицы в Joomla Backend
+     *
+     * Метод автоматического заполнения состояния модели.
+     * Method to auto-populate the model state.
+     *
+     * Этот метод должен вызываться только один раз для каждого экземпляра и предназначен для вызова
+     * при первом вызове метода getState (), если не установлен флаг конфигурации модели для игнорирования запроса.
+     * Заметка. Вызов getState в этом методе приведет к рекурсии.
+     *
+     * @see url : https://docs.joomla.org/Adding_sortable_columns_to_a_table_in_a_component
+     * @return  void
+     * @throws Exception
+     * @since 3.9
+     * @param null $ordering    Необязательное поле для заказа.
+     * @param null $direction   Необязательное направление (asc | desc).
+     *
+     *
+     * @throws Exception
+     * @since version
+     */
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
@@ -137,19 +152,24 @@ class Pro_criticalModelJs_file_list extends JModelList
 		return $items;
 	}
 
-	/**
-	 * Method to convert selection values to translatable string.
-	 *
-	 * @return translatable string
-	 */
+    /**
+     * Method to convert selection values to translatable string.
+     * @param $value
+     * @param $name
+     * @return mixed|string
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 26.08.2020 07:55
+     *
+     */
 	public function selectionTranslation($value,$name)
 	{
 		// [Interpretation 13384] Array of load language strings
 		if ($name === 'load')
 		{
 			$loadArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_FILE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_FILE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($loadArray[$value]) && Pro_criticalHelper::checkString($loadArray[$value]))
@@ -161,8 +181,8 @@ class Pro_criticalModelJs_file_list extends JModelList
 		if ($name === 'override')
 		{
 			$overrideArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_FILE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_FILE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($overrideArray[$value]) && Pro_criticalHelper::checkString($overrideArray[$value]))
@@ -174,8 +194,8 @@ class Pro_criticalModelJs_file_list extends JModelList
 		if ($name === 'minify')
 		{
 			$minifyArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_FILE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_FILE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($minifyArray[$value]) && Pro_criticalHelper::checkString($minifyArray[$value]))
@@ -187,8 +207,8 @@ class Pro_criticalModelJs_file_list extends JModelList
 		if ($name === 'no_external')
 		{
 			$no_externalArray = array(
-				1 => 'COM_PRO_CRITICAL_JS_FILE_YES',
-				0 => 'COM_PRO_CRITICAL_JS_FILE_NO'
+				1 => 'JYES',
+				0 => 'JNO'
 			);
 			// [Interpretation 13415] Now check if value is found in this array
 			if (isset($no_externalArray[$value]) && Pro_criticalHelper::checkString($no_externalArray[$value]))
@@ -271,7 +291,7 @@ class Pro_criticalModelJs_file_list extends JModelList
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
 		{
-			$query->order($db->escape($orderCol . ' ' . $orderDirn));
+			$query->order($db->escape($db->quoteName( $orderCol ) . ' ' . $orderDirn));
 		}
 
 		return $query;

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		css_style_list.php
@@ -44,13 +44,16 @@ class Pro_criticalModelCss_style_list extends JModelList
 		parent::__construct($config);
 	}
 
-#Custom Buttons PHP List view (model methods) [css_style]
-	
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Method to auto-populate the model state.
+     * @param null $ordering
+     * @param null $direction
+     * @throws Exception
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 25.08.2020 17:42
+     *
+     */
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
@@ -89,63 +92,79 @@ class Pro_criticalModelCss_style_list extends JModelList
 	}
 	
 	/**
+     * Метод получения массива элементов данных.
 	 * Method to get an array of data items.
 	 *
 	 * @return  mixed  An array of data items on success, false on failure.
+     * @since 3.9
 	 */
-	public function getItems()
+	public function getItems( $byHash = false )
 	{
-		// [Interpretation 12857] check in items
+		// [Interpretation 19606] check in items
 		$this->checkInNow();
 
 		// load parent items
 		$items = parent::getItems();
+        
 
-		// [Interpretation 13351] set selection value to a translatable value
-		if (Pro_criticalHelper::checkArray($items))
+
+
+		
+		// [Interpretation 20424] set selection value to a translatable value
+		if ( Pro_criticalHelper::checkArray($items) )
 		{
+            $byHashReturn = [] ;
 			foreach ($items as $nr => &$item)
 			{
-				// [Interpretation 13358] convert load
+				// [Interpretation 20438] convert load
 				$item->load = $this->selectionTranslation($item->load, 'load');
-				// [Interpretation 13358] convert minify
+				// [Interpretation 20438] convert minify
 				$item->minify = $this->selectionTranslation($item->minify, 'minify');
+                $byHashReturn[$item->hash] = $item ;
+
 			}
+            // return items
+            if( $byHash )
+            {
+                return $byHashReturn ;
+            }#END IF
 		}
 
         
 		// return items
-		return $items;
+       return $items;
 	}
 
 	/**
+     * Метод преобразования значений выбора в переводимую строку.
 	 * Method to convert selection values to translatable string.
 	 *
-	 * @return translatable string
+	 * @return string translatable
+     * @since 3.9
 	 */
 	public function selectionTranslation($value,$name)
 	{
-		// [Interpretation 13384] Array of load language strings
+		// [Interpretation 20478] Array of load language strings
 		if ($name === 'load')
 		{
 			$loadArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_STYLE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_STYLE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($loadArray[$value]) && Pro_criticalHelper::checkString($loadArray[$value]))
 			{
 				return $loadArray[$value];
 			}
 		}
-		// [Interpretation 13384] Array of minify language strings
+		// [Interpretation 20478] Array of minify language strings
 		if ($name === 'minify')
 		{
 			$minifyArray = array(
 				1 => 'COM_PRO_CRITICAL_CSS_STYLE_YES',
 				0 => 'COM_PRO_CRITICAL_CSS_STYLE_NO'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
+			// [Interpretation 20515] Now check if value is found in this array
 			if (isset($minifyArray[$value]) && Pro_criticalHelper::checkString($minifyArray[$value]))
 			{
 				return $minifyArray[$value];
@@ -153,27 +172,30 @@ class Pro_criticalModelCss_style_list extends JModelList
 		}
 		return $value;
 	}
-	
-	/**
-	 * Method to build an SQL query to load the list data.
-	 *
-	 * @return	string	An SQL query
-	 */
+
+    /**
+     * Method to build an SQL query to load the list data.
+     * @return JDatabaseQuery|string An SQL query
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 25.08.2020 17:49
+     *
+     */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_css_style', 'a'));
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -183,7 +205,7 @@ class Pro_criticalModelCss_style_list extends JModelList
 		{
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
-		// [Interpretation 9708] Filter by search.
+		// [Interpretation 14779] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -198,24 +220,27 @@ class Pro_criticalModelCss_style_list extends JModelList
 			}
 		}
 
-		// [Interpretation 9776] Filter by Load.
+		// [Interpretation 14911] Filter by Load.
 		if ($load = $this->getState('filter.load'))
 		{
 			$query->where('a.load = ' . $db->quote($db->escape($load)));
 		}
-		// [Interpretation 9776] Filter by Minify.
+		// [Interpretation 14911] Filter by Minify.
 		if ($minify = $this->getState('filter.minify'))
 		{
 			$query->where('a.minify = ' . $db->quote($db->escape($minify)));
 		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
+
 		if ($orderCol != '')
 		{
-			$query->order($db->escape($orderCol . ' ' . $orderDirn));
+			$query->order( $db->escape($db->quoteName( $orderCol ) . ' ' . $orderDirn));
 		}
+
+
 
 		return $query;
 	}
@@ -228,7 +253,7 @@ class Pro_criticalModelCss_style_list extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -249,15 +274,15 @@ class Pro_criticalModelCss_style_list extends JModelList
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 12873] Get set check in time
+		// [Interpretation 19624] Get set check in time
 		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 12877] Get a db connection.
+			// [Interpretation 19632] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
+			// [Interpretation 19635] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__pro_critical_css_style'));
@@ -265,24 +290,24 @@ class Pro_criticalModelCss_style_list extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 12887] Get Yesterdays date
+				// [Interpretation 19646] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
+				// [Interpretation 19650] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 12891] Fields to update.
+				// [Interpretation 19654] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 12896] Conditions for which records should be updated.
+				// [Interpretation 19663] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 12901] Check table
+				// [Interpretation 19672] Check table
 				$query->update($db->quoteName('#__pro_critical_css_style'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

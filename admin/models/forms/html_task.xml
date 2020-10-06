@@ -4,15 +4,15 @@
 	addfieldpath="/administrator/components/com_pro_critical/models/fields"
 >
 	<fieldset name="details">
-		<!-- [Fields 492] Default Fields. -->
-		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
+		<!-- [Fields 621] Default Fields. -->
+		<!-- [Fields 623] Id Field. Type: Text (joomla) -->
 		<field
 			name="id"
 			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
 			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
 			readonly="true"
 		/>
-		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
+		<!-- [Fields 642] Date Created Field. Type: Calendar (joomla) -->
 		<field
 			name="created"
 			type="calendar"
@@ -22,14 +22,14 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
+		<!-- [Fields 665] User Created Field. Type: User (joomla) -->
 		<field
 			name="created_by"
 			type="user"
 			label="COM_PRO_CRITICAL_HTML_TASK_CREATED_BY_LABEL"
 			description="COM_PRO_CRITICAL_HTML_TASK_CREATED_BY_DESC"
 		/>
-		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<!-- [Fields 685] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
 			filter="intval" size="1" default="1" >
@@ -42,11 +42,11 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<!-- [Fields 712] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
 			label="COM_PRO_CRITICAL_HTML_TASK_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_HTML_TASK_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
-		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<!-- [Fields 727] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
 			label="COM_PRO_CRITICAL_HTML_TASK_MODIFIED_BY_LABEL"
 			description="COM_PRO_CRITICAL_HTML_TASK_MODIFIED_BY_DESC"
@@ -54,7 +54,7 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
+		<!-- [Fields 768] Ordering Field. Type: Numbers (joomla) -->
 		<field
 			name="ordering"
 			type="number"
@@ -65,7 +65,7 @@
 			size="6"
 			required="false"
 		/>
-		<!-- [Fields 632] Version Field. Type: Text (joomla) -->
+		<!-- [Fields 791] Version Field. Type: Text (joomla) -->
 		<field
 			name="version"
 			type="text"
@@ -76,8 +76,8 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 683] Dynamic Fields. -->
-		<!-- [Fields 1465] Task_id Field. Type: Text. (joomla) -->
+		<!-- [Fields 854] Dynamic Fields. -->
+		<!-- [Fields 1922] Task_id Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="task_id"
@@ -93,7 +93,7 @@
 			message="COM_PRO_CRITICAL_HTML_TASK_TASK_ID_MESSAGE"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1465] Short_description Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Short_description Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="short_description"
@@ -109,42 +109,7 @@
 			message="COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_MESSAGE"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1278] Type_html_task Field. Type: List. (joomla) -->
-		<field
-			type="list"
-			name="type_html_task"
-			label="COM_PRO_CRITICAL_HTML_TASK_TYPE_HTML_TASK_LABEL"
-			description="COM_PRO_CRITICAL_HTML_TASK_TYPE_HTML_TASK_DESCRIPTION"
-			class="list_class onHelp type_html_task"
-			multiple="false"
-			useglobal="false"
-			default="0">
-			<!-- [Fields 1445] Option Set. -->
-			<option value="1">
-				COM_PRO_CRITICAL_HTML_TASK_IMAGES</option>
-			<option value="2">
-				COM_PRO_CRITICAL_HTML_TASK_YOUTUBE</option>
-			<option value="3">
-				COM_PRO_CRITICAL_HTML_TASK_LINK_PRELOADER</option>
-			<option value="0">
-				COM_PRO_CRITICAL_HTML_TASK_CUSTOM</option>
-		</field>
-		<!-- [Fields 1712] Id_component Field. Type: Componentnamecomhtml. (custom) -->
-		<field
-			type="componentnamecomhtml"
-			name="id_component"
-			label="COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_LABEL"
-			description="COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_DESCRIPTION"
-			class="list_class"
-			multiple="false"
-			default="0"
-			required="true"
-			readonly="false"
-			disabled="false"
-			onchange="eventOnChangeComponentNameHTML(event,this);"
-			button="false"
-		/>
-		<!-- [Fields 1712] Component_view_id Field. Type: Componentviewid. (custom) -->
+		<!-- [Fields 2319] Component_view_id Field. Type: Componentviewid. (custom) -->
 		<field
 			type="componentviewid"
 			name="component_view_id"
@@ -159,7 +124,42 @@
 			showon="id_component!:0[AND]id_component!:"
 			button="true"
 		/>
-		<!-- [Fields 1596] Query_params Field. Type: Subform. (joomla) -->
+		<!-- [Fields 1635] Html_processing Field. Type: List. (joomla) -->
+		<field
+			type="list"
+			name="html_processing"
+			label="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL"
+			description="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_DESCRIPTION"
+			class="list_class"
+			multiple="false"
+			required="true"
+			useglobal="false"
+			default="0">
+			<!-- [Fields 1898] Option Set. -->
+			<option value="element_temlating">
+				COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES</option>
+			<option value="fire_action">
+				COM_PRO_CRITICAL_HTML_TASK_FIRE_ELEMENTS</option>
+			<option value="remove_attr">
+				COM_PRO_CRITICAL_HTML_TASK_REMOVE_ATTRIBUTE</option>
+			<option value="tabs_effect">
+				COM_PRO_CRITICAL_HTML_TASK_TABS_EFFECT</option>
+		</field>
+		<!-- [Fields 2319] Type_device_id Field. Type: Typedeviceidhtml. (custom) -->
+		<field
+			type="typedeviceidhtml"
+			name="type_device_id"
+			label="COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL"
+			description="COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_DESCRIPTION"
+			class="list_class"
+			multiple="false"
+			default="0"
+			required="false"
+			readonly="false"
+			disabled="false"
+			button="true"
+		/>
+		<!-- [Fields 2129] Query_params Field. Type: Subform. (joomla) -->
 		<field
 			type="subform"
 			name="query_params"
@@ -173,7 +173,7 @@
 			max="50"
 			min="1">
 			<form hidden="true" name="list_query_params_modal" repeat="true">
-				<!-- [Fields 1465] Query Field. Type: Text. (joomla) -->
+				<!-- [Fields 1922] Query Field. Type: Text. (joomla) -->
 				<field
 					type="text"
 					name="query"
@@ -189,7 +189,7 @@
 					message="COM_PRO_CRITICAL_HTML_TASK_QUERY_MESSAGE"
 					autocomplete="off"
 				/>
-				<!-- [Fields 1465] Value Field. Type: Text. (joomla) -->
+				<!-- [Fields 1922] Value Field. Type: Text. (joomla) -->
 				<field
 					type="text"
 					name="value"
@@ -207,7 +207,7 @@
 				/>
 			</form>
 		</field>
-		<!-- [Fields 1465] Description Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 1922] Description Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="description"
@@ -222,44 +222,7 @@
 			readonly="false"
 			disabled="false"
 		/>
-		<!-- [Fields 1465] Link Field. Type: Text. (joomla) -->
-		<field
-			type="text"
-			name="link"
-			label="COM_PRO_CRITICAL_HTML_TASK_LINK_LABEL"
-			maxlength="255"
-			default=""
-			class="text_area"
-			readonly="false"
-			disabled="false"
-			required="false"
-			filter="RAW"
-			autocomplete="on"
-			showon="type_html_task:3"
-		/>
-		<!-- [Fields 1278] Link_type Field. Type: List. (joomla) -->
-		<field
-			type="list"
-			name="link_type"
-			label="COM_PRO_CRITICAL_HTML_TASK_LINK_TYPE_LABEL"
-			class="list_class help_field-link_type"
-			multiple="false"
-			useglobal="false"
-			default="0"
-			showon="type_html_task:3">
-			<!-- [Fields 1445] Option Set. -->
-			<option value="0">
-				COM_PRO_CRITICAL_HTML_TASK_PRELOAD</option>
-			<option value="1">
-				COM_PRO_CRITICAL_HTML_TASK_PREFETCH</option>
-			<option value="2">
-				COM_PRO_CRITICAL_HTML_TASK_PRECONNECT</option>
-			<option value="3">
-				COM_PRO_CRITICAL_HTML_TASK_DNSPREFETCH</option>
-			<option value="4">
-				COM_PRO_CRITICAL_HTML_TASK_PRERENDER</option>
-		</field>
-		<!-- [Fields 1278] Event_show Field. Type: List. (joomla) -->
+		<!-- [Fields 1635] Event_show Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="event_show"
@@ -268,51 +231,29 @@
 			class="list_class"
 			multiple="false"
 			useglobal="false"
-			default="0"
-			showon="type_html_task:0">
-			<!-- [Fields 1445] Option Set. -->
+			default="0">
+			<!-- [Fields 1898] Option Set. -->
 			<option value="click">
 				COM_PRO_CRITICAL_HTML_TASK_CLICK_TO_ELEMENT</option>
 			<option value="scroll">
 				COM_PRO_CRITICAL_HTML_TASK_SCROLL_WINDOW</option>
 		</field>
-		<!-- [Fields 1278] Html_processing Field. Type: List. (joomla) -->
+		<!-- [Fields 2319] Id_component Field. Type: Componentnamecomhtml. (custom) -->
 		<field
-			type="list"
-			name="html_processing"
-			label="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL"
-			description="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_DESCRIPTION"
-			class="list_class"
-			multiple="false"
-			required="false"
-			useglobal="false"
-			default="0"
-			showon="type_html_task:0">
-			<!-- [Fields 1445] Option Set. -->
-			<option value="element_temlating">
-				COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES</option>
-			<option value="fire_action">
-				COM_PRO_CRITICAL_HTML_TASK_FIRE_ELEMENTS</option>
-			<option value="remove_attr">
-				COM_PRO_CRITICAL_HTML_TASK_REMOVE_ATTRIBUTE</option>
-			<option value="tabs_effect">
-				COM_PRO_CRITICAL_HTML_TASK_TABS_EFFECT</option>
-		</field>
-		<!-- [Fields 1712] Type_device_id Field. Type: Typedeviceidhtml. (custom) -->
-		<field
-			type="typedeviceidhtml"
-			name="type_device_id"
-			label="COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL"
-			description="COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_DESCRIPTION"
+			type="componentnamecomhtml"
+			name="id_component"
+			label="COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_LABEL"
+			description="COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			default="0"
-			required="false"
+			required="true"
 			readonly="false"
-			disabled="true"
-			button="true"
+			disabled="false"
+			onchange="eventOnChangeComponentNameHTML(event,this);"
+			button="false"
 		/>
-		<!-- [Fields 1465] Selector Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Selector Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="selector"
@@ -324,27 +265,10 @@
 			disabled="false"
 			required="false"
 			filter="RAW"
-			hint="COM_PRO_CRITICAL_HTML_TASK_SELECTOR_HINT"
+			message="COM_PRO_CRITICAL_HTML_TASK_SELECTOR_MESSAGE"
 			autocomplete="off"
-			showon="type_html_task:0"
 		/>
-		<!-- [Fields 1465] Skip_items Field. Type: Text. (joomla) -->
-		<field
-			type="text"
-			name="skip_items"
-			label="COM_PRO_CRITICAL_HTML_TASK_SKIP_ITEMS_LABEL"
-			maxlength="255"
-			default=""
-			description="COM_PRO_CRITICAL_HTML_TASK_SKIP_ITEMS_DESCRIPTION"
-			class="text_area"
-			readonly="false"
-			disabled="false"
-			required="false"
-			filter="INT"
-			autocomplete="on"
-			showon="type_html_task:1"
-		/>
-		<!-- [Fields 1465] Selector_element_for_event Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Selector_element_for_event Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="selector_element_for_event"
@@ -360,19 +284,18 @@
 			message="COM_PRO_CRITICAL_HTML_TASK_SELECTOR_ELEMENT_FOR_EVENT_MESSAGE"
 			hint="COM_PRO_CRITICAL_HTML_TASK_SELECTOR_ELEMENT_FOR_EVENT_HINT"
 			autocomplete="off"
-			showon="type_html_task:0"
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 12352] Access Control Fields. -->
+	<!-- [Interpretation 18855] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 18860] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 18868] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

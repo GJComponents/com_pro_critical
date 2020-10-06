@@ -4,15 +4,15 @@
 	addfieldpath="/administrator/components/com_pro_critical/models/fields"
 >
 	<fieldset name="details">
-		<!-- [Fields 492] Default Fields. -->
-		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
+		<!-- [Fields 621] Default Fields. -->
+		<!-- [Fields 623] Id Field. Type: Text (joomla) -->
 		<field
 			name="id"
 			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
 			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
 			readonly="true"
 		/>
-		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
+		<!-- [Fields 642] Date Created Field. Type: Calendar (joomla) -->
 		<field
 			name="created"
 			type="calendar"
@@ -22,14 +22,14 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
+		<!-- [Fields 665] User Created Field. Type: User (joomla) -->
 		<field
 			name="created_by"
 			type="user"
 			label="COM_PRO_CRITICAL_CSS_CREATED_BY_LABEL"
 			description="COM_PRO_CRITICAL_CSS_CREATED_BY_DESC"
 		/>
-		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<!-- [Fields 685] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
 			filter="intval" size="1" default="1" >
@@ -42,11 +42,11 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<!-- [Fields 712] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
 			label="COM_PRO_CRITICAL_CSS_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_CSS_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
-		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<!-- [Fields 727] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
 			label="COM_PRO_CRITICAL_CSS_MODIFIED_BY_LABEL"
 			description="COM_PRO_CRITICAL_CSS_MODIFIED_BY_DESC"
@@ -54,7 +54,7 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
+		<!-- [Fields 768] Ordering Field. Type: Numbers (joomla) -->
 		<field
 			name="ordering"
 			type="number"
@@ -65,7 +65,7 @@
 			size="6"
 			required="false"
 		/>
-		<!-- [Fields 632] Version Field. Type: Text (joomla) -->
+		<!-- [Fields 791] Version Field. Type: Text (joomla) -->
 		<field
 			name="version"
 			type="text"
@@ -76,23 +76,21 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 683] Dynamic Fields. -->
-		<!-- [Fields 1465] Query_string Field. Type: Text. (joomla) -->
+		<!-- [Fields 854] Dynamic Fields. -->
+		<!-- [Fields 2319] Pro_critical_url_id Field. Type: Subjectsprocriticalurlid. (custom) -->
 		<field
-			type="text"
-			name="query_string"
-			label="COM_PRO_CRITICAL_CSS_QUERY_STRING_LABEL"
-			maxlength="255"
+			type="subjectsprocriticalurlid"
+			name="pro_critical_url_id"
+			label="COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_LABEL"
+			description="COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_DESCRIPTION"
+			class="list_class span8"
+			multiple="false"
 			default=""
-			description="COM_PRO_CRITICAL_CSS_QUERY_STRING_DESCRIPTION"
-			class="text_area span8"
-			readonly="true"
-			disabled="false"
 			required="false"
-			filter="RAW"
-			autocomplete="on"
+			readonly="true"
+			button="false"
 		/>
-		<!-- [Fields 1712] Option Field. Type: Criticalcssoption. (custom) -->
+		<!-- [Fields 2319] Option Field. Type: Criticalcssoption. (custom) -->
 		<field
 			type="criticalcssoption"
 			name="option"
@@ -106,7 +104,7 @@
 			disabled="false"
 			button="true"
 		/>
-		<!-- [Fields 1712] View Field. Type: Criticalcssview. (custom) -->
+		<!-- [Fields 2319] View Field. Type: Criticalcssview. (custom) -->
 		<field
 			type="criticalcssview"
 			name="view"
@@ -120,23 +118,21 @@
 			disabled="false"
 			button="true"
 		/>
-		<!-- [Fields 1465] Alias Field. Type: Text. (joomla) -->
+		<!-- [Fields 2319] Type_device_id Field. Type: Typedeviceid. (custom) -->
 		<field
-			type="text"
-			name="alias"
-			label="COM_PRO_CRITICAL_CSS_ALIAS_LABEL"
-			maxlength="255"
-			default=""
-			description="COM_PRO_CRITICAL_CSS_ALIAS_DESCRIPTION"
-			class="text_area time_lock"
-			readonly="true"
+			type="typedeviceid"
+			name="type_device_id"
+			label="COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_LABEL"
+			description="COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_DESCRIPTION"
+			class="list_class"
+			multiple="false"
+			default="0"
+			required="true"
+			readonly="false"
 			disabled="false"
-			required="false"
-			filter="INT"
-			hint="JFIELD_ALIAS_PLACEHOLDER"
-			autocomplete="on"
+			button="true"
 		/>
-		<!-- [Fields 1465] Critical_css_code Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 1922] Critical_css_code Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="critical_css_code"
@@ -151,7 +147,7 @@
 			readonly="true"
 			disabled="false"
 		/>
-		<!-- [Fields 1465] Photo_afte Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Photo_afte Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="photo_afte"
@@ -166,7 +162,7 @@
 			filter="RAW"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1465] Photo_before Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Photo_before Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="photo_before"
@@ -182,21 +178,7 @@
 			message="COM_PRO_CRITICAL_CSS_PHOTO_BEFORE_MESSAGE"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1712] Type_device_id Field. Type: Typedeviceid. (custom) -->
-		<field
-			type="typedeviceid"
-			name="type_device_id"
-			label="COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_LABEL"
-			description="COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_DESCRIPTION"
-			class="list_class"
-			multiple="false"
-			default="0"
-			required="false"
-			readonly="false"
-			disabled="false"
-			button="true"
-		/>
-		<!-- [Fields 1465] User_agent_id Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] User_agent_id Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="user_agent_id"
@@ -213,20 +195,36 @@
 			hint="COM_PRO_CRITICAL_CSS_USER_AGENT_ID_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1712] Pro_critical_url_id Field. Type: Subjectsprocriticalurlid. (custom) -->
+		<!-- [Fields 1922] Virtuemart_product_id Field. Type: Text. (joomla) -->
 		<field
-			type="subjectsprocriticalurlid"
-			name="pro_critical_url_id"
-			label="COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_LABEL"
-			description="COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_DESCRIPTION"
-			class="list_class span8"
-			multiple="false"
+			type="text"
+			name="virtuemart_product_id"
+			label="COM_PRO_CRITICAL_CSS_VIRTUEMART_PRODUCT_ID_LABEL"
+			maxlength="50"
 			default=""
+			description="COM_PRO_CRITICAL_CSS_VIRTUEMART_PRODUCT_ID_DESCRIPTION"
+			class="text_area"
+			readonly="false"
+			disabled="false"
 			required="false"
-			readonly="true"
-			button="false"
+			filter="BOOL"
 		/>
-		<!-- [Fields 1596] Query_params Field. Type: Subform. (joomla) -->
+		<!-- [Fields 1922] Virtuemart_category_id Field. Type: Text. (joomla) -->
+		<field
+			type="text"
+			name="virtuemart_category_id"
+			label="COM_PRO_CRITICAL_CSS_VIRTUEMART_CATEGORY_ID_LABEL"
+			size="10"
+			maxlength="10"
+			default=""
+			description="COM_PRO_CRITICAL_CSS_VIRTUEMART_CATEGORY_ID_DESCRIPTION"
+			class="text_area"
+			readonly="false"
+			disabled="false"
+			required="false"
+			filter="INT"
+		/>
+		<!-- [Fields 2129] Query_params Field. Type: Subform. (joomla) -->
 		<field
 			type="subform"
 			name="query_params"
@@ -240,7 +238,7 @@
 			max="50"
 			min="1">
 			<form hidden="true" name="list_query_params_modal" repeat="true">
-				<!-- [Fields 1465] Query Field. Type: Text. (joomla) -->
+				<!-- [Fields 1922] Query Field. Type: Text. (joomla) -->
 				<field
 					type="text"
 					name="query"
@@ -256,7 +254,7 @@
 					message="COM_PRO_CRITICAL_CSS_QUERY_MESSAGE"
 					autocomplete="off"
 				/>
-				<!-- [Fields 1465] Value Field. Type: Text. (joomla) -->
+				<!-- [Fields 1922] Value Field. Type: Text. (joomla) -->
 				<field
 					type="text"
 					name="value"
@@ -276,15 +274,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 12352] Access Control Fields. -->
+	<!-- [Interpretation 18855] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 18860] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 18868] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

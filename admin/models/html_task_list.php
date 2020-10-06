@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		html_task_list.php
@@ -39,18 +39,22 @@ class Pro_criticalModelHtml_task_list extends JModelList
 				'a.task_id','task_id',
 				'a.short_description','short_description',
 				'a.component_view_id','component_view_id',
-				'a.id_component','id_component'
+				'a.html_processing','html_processing',
+				'a.type_device_id','type_device_id'
 			);
 		}
 
 		parent::__construct($config);
 	}
-	
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * @return  void
-	 */
+
+    /**
+     * Метод автоматического заполнения состояния модели.
+     * Method to auto-populate the model state.
+     *
+     * @return  void
+     * @throws Exception
+     * @since 3.9
+     */
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
@@ -69,8 +73,11 @@ class Pro_criticalModelHtml_task_list extends JModelList
 		$component_view_id = $this->getUserStateFromRequest($this->context . '.filter.component_view_id', 'filter_component_view_id');
 		$this->setState('filter.component_view_id', $component_view_id);
 
-		$id_component = $this->getUserStateFromRequest($this->context . '.filter.id_component', 'filter_id_component');
-		$this->setState('filter.id_component', $id_component);
+		$html_processing = $this->getUserStateFromRequest($this->context . '.filter.html_processing', 'filter_html_processing');
+		$this->setState('filter.html_processing', $html_processing);
+
+		$type_device_id = $this->getUserStateFromRequest($this->context . '.filter.type_device_id', 'filter_type_device_id');
+		$this->setState('filter.type_device_id', $type_device_id);
         
 		$sorting = $this->getUserStateFromRequest($this->context . '.filter.sorting', 'filter_sorting', 0, 'int');
 		$this->setState('filter.sorting', $sorting);
@@ -95,25 +102,27 @@ class Pro_criticalModelHtml_task_list extends JModelList
 	}
 	
 	/**
+     * Метод получения массива элементов данных.
 	 * Method to get an array of data items.
 	 *
 	 * @return  mixed  An array of data items on success, false on failure.
+     * @since 3.9
 	 */
 	public function getItems()
 	{
-		// [Interpretation 12857] check in items
+		// [Interpretation 19606] check in items
 		$this->checkInNow();
 
 		// load parent items
 		$items = parent::getItems();
 
-		// [Interpretation 13351] set selection value to a translatable value
+		// [Interpretation 20424] set selection value to a translatable value
 		if (Pro_criticalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
-				// [Interpretation 13358] convert type_html_task
-				$item->type_html_task = $this->selectionTranslation($item->type_html_task, 'type_html_task');
+				// [Interpretation 20438] convert html_processing
+				$item->html_processing = $this->selectionTranslation($item->html_processing, 'html_processing');
 			}
 		}
 
@@ -123,54 +132,62 @@ class Pro_criticalModelHtml_task_list extends JModelList
 	}
 
 	/**
+     * Метод преобразования значений выбора в переводимую строку.
 	 * Method to convert selection values to translatable string.
 	 *
-	 * @return translatable string
+	 * @return string translatable
+     * @since 3.9
 	 */
 	public function selectionTranslation($value,$name)
 	{
-		// [Interpretation 13384] Array of type_html_task language strings
-		if ($name === 'type_html_task')
+		// [Interpretation 20478] Array of html_processing language strings
+		if ($name === 'html_processing')
 		{
-			$type_html_taskArray = array(
-				1 => 'COM_PRO_CRITICAL_HTML_TASK_IMAGES',
-				2 => 'COM_PRO_CRITICAL_HTML_TASK_YOUTUBE',
-				3 => 'COM_PRO_CRITICAL_HTML_TASK_LINK_PRELOADER',
-				0 => 'COM_PRO_CRITICAL_HTML_TASK_CUSTOM'
+			$html_processingArray = array(
+				'element_temlating' => 'COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES',
+				'fire_action' => 'COM_PRO_CRITICAL_HTML_TASK_FIRE_ELEMENTS',
+				'remove_attr' => 'COM_PRO_CRITICAL_HTML_TASK_REMOVE_ATTRIBUTE',
+				'tabs_effect' => 'COM_PRO_CRITICAL_HTML_TASK_TABS_EFFECT'
 			);
-			// [Interpretation 13415] Now check if value is found in this array
-			if (isset($type_html_taskArray[$value]) && Pro_criticalHelper::checkString($type_html_taskArray[$value]))
+			// [Interpretation 20515] Now check if value is found in this array
+			if (isset($html_processingArray[$value]) && Pro_criticalHelper::checkString($html_processingArray[$value]))
 			{
-				return $type_html_taskArray[$value];
+				return $html_processingArray[$value];
 			}
 		}
 		return $value;
 	}
 	
 	/**
+     * Метод построения SQL-запроса для загрузки данных списка.
 	 * Method to build an SQL query to load the list data.
 	 *
 	 * @return	string	An SQL query
+     * @since 3.9
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_html_task', 'a'));
 
-		// [Interpretation 9740] From the pro_critical_directory_components table.
-		$query->select($db->quoteName('g.copmonent_name','id_component_copmonent_name'));
-		$query->join('LEFT', $db->quoteName('#__pro_critical_directory_components', 'g') . ' ON (' . $db->quoteName('a.id_component') . ' = ' . $db->quoteName('g.id') . ')');
+		// [Interpretation 14839] From the yeightflq_pro_critical_directory_views table.
+		$query->select($db->quoteName('g.view_component','component_view_id_view_component'));
+		$query->join('LEFT', $db->quoteName('#__pro_critical_directory_views', 'g') . ' ON (' . $db->quoteName('a.component_view_id') . ' = ' . $db->quoteName('g.id') . ')');
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14839] From the yeightflq_pro_critical_type_device table.
+		$query->select($db->quoteName('h.type_device','type_device_id_type_device'));
+		$query->join('LEFT', $db->quoteName('#__pro_critical_type_device', 'h') . ' ON (' . $db->quoteName('a.type_device_id') . ' = ' . $db->quoteName('h.id') . ')');
+
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -180,7 +197,7 @@ class Pro_criticalModelHtml_task_list extends JModelList
 		{
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
-		// [Interpretation 9708] Filter by search.
+		// [Interpretation 14779] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -195,28 +212,33 @@ class Pro_criticalModelHtml_task_list extends JModelList
 			}
 		}
 
-		// [Interpretation 9776] Filter by Task_id.
+		// [Interpretation 14911] Filter by Task_id.
 		if ($task_id = $this->getState('filter.task_id'))
 		{
 			$query->where('a.task_id = ' . $db->quote($db->escape($task_id)));
 		}
-		// [Interpretation 9776] Filter by Short_description.
+		// [Interpretation 14911] Filter by Short_description.
 		if ($short_description = $this->getState('filter.short_description'))
 		{
 			$query->where('a.short_description = ' . $db->quote($db->escape($short_description)));
 		}
-		// [Interpretation 9768] Filter by id_component.
-		if ($id_component = $this->getState('filter.id_component'))
-		{
-			$query->where('a.id_component = ' . $db->quote($db->escape($id_component)));
-		}
-		// [Interpretation 9768] Filter by component_view_id.
+		// [Interpretation 14896] Filter by component_view_id.
 		if ($component_view_id = $this->getState('filter.component_view_id'))
 		{
 			$query->where('a.component_view_id = ' . $db->quote($db->escape($component_view_id)));
 		}
+		// [Interpretation 14911] Filter by Html_processing.
+		if ($html_processing = $this->getState('filter.html_processing'))
+		{
+			$query->where('a.html_processing = ' . $db->quote($db->escape($html_processing)));
+		}
+		// [Interpretation 14896] Filter by type_device_id.
+		if ($type_device_id = $this->getState('filter.type_device_id'))
+		{
+			$query->where('a.type_device_id = ' . $db->quote($db->escape($type_device_id)));
+		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
@@ -228,14 +250,15 @@ class Pro_criticalModelHtml_task_list extends JModelList
 	}
 	
 	/**
+     * Метод получения идентификатора магазина на основе состояния конфигурации модели.
 	 * Method to get a store id based on model configuration state.
 	 *
 	 * @return  string  A store id.
-	 *
+	 * @since 3.9
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -245,28 +268,30 @@ class Pro_criticalModelHtml_task_list extends JModelList
 		$id .= ':' . $this->getState('filter.task_id');
 		$id .= ':' . $this->getState('filter.short_description');
 		$id .= ':' . $this->getState('filter.component_view_id');
-		$id .= ':' . $this->getState('filter.id_component');
+		$id .= ':' . $this->getState('filter.html_processing');
+		$id .= ':' . $this->getState('filter.type_device_id');
 
 		return parent::getStoreId($id);
 	}
 
 	/**
+     * Создайте SQL-запрос, чтобы проверять все элементы, оставленные извлеченными дольше установленного времени.
 	 * Build an SQL query to checkin all items left checked out longer then a set time.
 	 *
-	 * @return  a bool
-	 *
+	 * @return bool
+	 * @since 3.9
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 12873] Get set check in time
+		// [Interpretation 19624] Get set check in time
 		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 12877] Get a db connection.
+			// [Interpretation 19632] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
+			// [Interpretation 19635] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__pro_critical_html_task'));
@@ -274,24 +299,24 @@ class Pro_criticalModelHtml_task_list extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 12887] Get Yesterdays date
+				// [Interpretation 19646] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
+				// [Interpretation 19650] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 12891] Fields to update.
+				// [Interpretation 19654] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 12896] Conditions for which records should be updated.
+				// [Interpretation 19663] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 12901] Check table
+				// [Interpretation 19672] Check table
 				$query->update($db->quoteName('#__pro_critical_html_task'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

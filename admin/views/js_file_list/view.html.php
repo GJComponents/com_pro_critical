@@ -23,6 +23,7 @@ defined('_JEXEC') or die('Restricted access');
 
 /**
  * Pro_critical View class for the Js_file_list
+ * @since 3.9
  */
 class Pro_criticalViewJs_file_list extends JViewLegacy
 {
@@ -32,20 +33,33 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
+
+
 		if ($this->getLayout() !== 'modal')
 		{
 			// Include helper submenu
 			Pro_criticalHelper::addSubmenu('js_file_list');
 		}
 
+
 		// Assign data to the view
-		$this->items = $this->get('Items');
-		$this->pagination = $this->get('Pagination');
-		$this->state = $this->get('State');
-		$this->user = JFactory::getUser();
-		$this->listOrder = $this->escape($this->state->get('list.ordering'));
-		$this->listDirn = $this->escape($this->state->get('list.direction'));
-		$this->saveOrder = $this->listOrder == 'ordering';
+ 	    $this->items = $this->get('Items');
+        $this->pagination = $this->get('Pagination');
+        $this->state = $this->get('State');
+        $this->user = JFactory::getUser();
+
+        
+
+        $this->listOrder = $this->escape($this->state->get('list.ordering'));
+        $this->listDirn = $this->escape($this->state->get('list.direction'));
+        $this->saveOrder = $this->listOrder == 'ordering';
+
+
+
+
+
+
+
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
 		// get global action permissions
@@ -55,6 +69,8 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 		$this->canCreate = $this->canDo->get('core.create');
 		$this->canDelete = $this->canDo->get('core.delete');
 		$this->canBatch = $this->canDo->get('core.batch');
+
+
 
 		// We don't need toolbar in the modal window.
 		if ($this->getLayout() !== 'modal')
@@ -67,7 +83,10 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 				$this->batchDisplay = JHtmlBatch_::render();
 			}
 		}
-		
+
+//      	echo'<pre>';print_r( $this->getLayout() );echo'</pre>'.__FILE__.' '.__LINE__;
+//        die(__FILE__ .' '. __LINE__ );
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -86,7 +105,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_PRO_CRITICAL_JS_FILE_LIST'), 'joomla');
+		JToolBarHelper::title(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_FILE_LIST'), 'joomla');
 		JHtmlSidebar::setAction('index.php?option=com_pro_critical&view=js_file_list');
 		JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 
@@ -294,7 +313,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 		{
 			// [Interpretation 11284] No External Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_LABEL').' -',
+				'- Select '.JText::_('JNO_EXTERNAL_LABEL').' -',
 				'filter_no_external',
 				JHtml::_('select.options', $this->no_externalOptions, 'value', 'text', $this->state->get('filter.no_external'))
 			);
@@ -303,7 +322,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 			{
 				// [Interpretation 11293] No External Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_LABEL').' -',
+					'- Keep Original '.JText::_('JNO_EXTERNAL_LABEL').' -',
 					'batch[no_external]',
 					JHtml::_('select.options', $this->no_externalOptions, 'value', 'text')
 				);
@@ -322,7 +341,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_('COM_PRO_CRITICAL_JS_FILE_LIST'));
+		$this->document->setTitle(JText::_('COM_PRO_CRITICAL_SUBMENU_JS_FILE_LIST'));
 		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_pro_critical/assets/css/js_file_list.css", (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
 	}
 
@@ -358,7 +377,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 			'a.load' => JText::_('COM_PRO_CRITICAL_JS_FILE_LOAD_LABEL'),
 			'a.override' => JText::_('COM_PRO_CRITICAL_JS_FILE_OVERRIDE_LABEL'),
 			'a.minify' => JText::_('COM_PRO_CRITICAL_JS_FILE_MINIFY_LABEL'),
-			'a.no_external' => JText::_('COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_LABEL'),
+			'a.no_external' => JText::_('JNO_EXTERNAL_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}

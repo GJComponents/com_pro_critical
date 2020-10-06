@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default_body.php
@@ -69,23 +69,17 @@ $edit = "index.php?option=com_pro_critical&view=css_list&task=css.edit";
 			&#9633;
 		<?php endif; ?>
 		</td>
-		<td class="nowrap">
-			<div class="name">
-				<?php if ($canDo->get('core.edit')): ?>
-					<a href="<?php echo $edit; ?>&id=<?php echo $item->id; ?>"><?php echo $this->escape($item->query_string); ?></a>
-					<?php if ($item->checked_out): ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $userChkOut->name, $item->checked_out_time, 'css_list.', $canCheckin); ?>
-					<?php endif; ?>
-				<?php else: ?>
-					<?php echo $this->escape($item->query_string); ?>
-				<?php endif; ?>
-			</div>
+		<td class="hidden-phone">
+			<?php echo $this->escape($item->pro_critical_url_id_url_page); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo $this->escape($item->option_copmonent_name); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo $this->escape($item->view_view_component); ?>
+		</td>
+		<td class="hidden-phone">
+			<?php echo $this->escape($item->type_device_id_type_device); ?>
 		</td>
 		<td class="center">
 		<?php if ($canDo->get('core.edit.state')) : ?>

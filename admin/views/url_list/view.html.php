@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -137,11 +137,6 @@ class Pro_criticalViewUrl_list extends JViewLegacy
 			{
 				JToolbarHelper::trash('url_list.trash');
 			}
-		}
-		if ($this->user->authorise('url.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('url_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
 		}
 
 		// set help url for this view if found

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2" method="upgrade">
 	<name>COM_PRO_CRITICAL</name>
-	<creationDate>23rd декабря, 2019</creationDate>
+	<creationDate>23rd августа, 2020</creationDate>
 	<author>Nikolaychuk Oleg</author>
 	<authorEmail>sad.net79@gmail.com</authorEmail>
 	<authorUrl>https://nobd.ml</authorUrl>
 	<copyright>Copyright (C) 2019. All Rights Reserved</copyright>
 	<license>GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>1.5.19</version>
+	<version>1.4.75</version>
 	<description><![CDATA[
-		<h1>proCritical (v.1.5.19)</h1>
+		<h1>proCritical (v.1.4.75)</h1>
 		<div style="clear: both;"></div>
 		<p></p>
 		<p>Created by <a href="https://nobd.ml" target="_blank">Nikolaychuk Oleg</a><br /><small>Development started 5th мая, 2019</small></p>
@@ -54,8 +54,8 @@
 		<menu>COM_PRO_CRITICAL_MENU</menu>
 		<submenu>
 			<!-- Instead of link you can specify individual link attributes -->
+			<menu option="com_pro_critical" view="url_list">COM_PRO_CRITICAL_MENU_URL_LIST</menu>
 			<menu option="com_pro_critical" view="css_list">COM_PRO_CRITICAL_MENU_CSS_LIST</menu>
-			<menu option="com_pro_critical" view="cache_list">COM_PRO_CRITICAL_MENU_CACHE_LIST</menu>
 			<menu option="com_pro_critical" view="user_agent_list">COM_PRO_CRITICAL_MENU_USER_AGENT_LIST</menu>
 			<menu option="com_pro_critical" view="user_agent_os_list">COM_PRO_CRITICAL_MENU_USER_AGENT_OS_LIST</menu>
 			<menu option="com_pro_critical" view="user_agent_browser_list">COM_PRO_CRITICAL_MENU_USER_AGENT_BROWSER_LIST</menu>
@@ -66,10 +66,6 @@
 			<menu option="com_pro_critical" view="type_browser_list">COM_PRO_CRITICAL_MENU_TYPE_BROWSER_LIST</menu>
 			<menu option="com_pro_critical" view="css_file_list">COM_PRO_CRITICAL_MENU_CSS_FILE_LIST</menu>
 			<menu option="com_pro_critical" view="css_style_list">COM_PRO_CRITICAL_MENU_CSS_STYLE_LIST</menu>
-			<menu option="com_pro_critical" view="js_file_list">COM_PRO_CRITICAL_MENU_JS_FILE_LIST</menu>
-			<menu option="com_pro_critical" view="js_style_list">COM_PRO_CRITICAL_MENU_JS_STYLE_LIST</menu>
-			<menu option="com_pro_critical" view="url_list">COM_PRO_CRITICAL_MENU_URL_LIST</menu>
-			<menu option="com_pro_critical" view="help_document_data_list">COM_PRO_CRITICAL_MENU_HELP_DOCUMENT_DATA_LIST</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>access.xml</filename>

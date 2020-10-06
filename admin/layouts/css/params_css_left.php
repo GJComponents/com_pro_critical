@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		params_css_left.php
@@ -38,6 +38,8 @@ $fields = $displayData->get($fields_tab_layout) ?: array(
 	'option',
 	'view',
 	'query_params',
+	'virtuemart_category_id',
+	'virtuemart_product_id',
 	'pro_critical_url_id'
 );
 

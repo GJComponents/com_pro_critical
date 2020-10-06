@@ -124,7 +124,26 @@ class com_pro_criticalInstallerScript
 			// [Interpretation 4997] Field to update.
 			$fields = array(
 				$db->quoteName('params') . ' = ' .
-                $db->quote('{"autorName":"Nikolaychuk Oleg","autorEmail":"sad.net79@gmail.com","shorten_setting":{"shorten_setting0":{"view_component":"css_file_list","length":255},"shorten_setting1":{"view_component":"css_list","length":255},"shorten_setting2":{"view_component":"user_agent_list","length":255},"shorten_setting3":{"view_component":"url_list","length":255},"shorten_setting4":{"view_component":"css_style_list","length":100}},"external_cache_directory":"/media/com_pro_critical/cashe_access","gnzlib_path_file_corejs":"/libraries/GNZ11/assets/js/gnz11.js","gnzlib_debug_off":"1","gnzlib_path_file_corejs_min":"/libraries/GNZ11/assets/js/gnz11.min.js","gnzlib_path_modules":"/libraries/GNZ11/assets/js/modules","gnzlib_path_plugins":"/libraries/GNZ11/assets/js/plugins","check_in":"-1 day"}'),
+                $db->quote('{
+                  "autorName": "Nikolaychuk Oleg",
+                  "autorEmail": "sad.net79@gmail.com",
+                  "shorten_setting": {
+                    "shorten_setting0":{"view_component":"css_file_list","length":255},
+                    "shorten_setting1":{"view_component":"css_list","length":255},
+                    "shorten_setting2":{"view_component":"user_agent_list","length":255},
+                    "shorten_setting3":{"view_component":"url_list","length":255},
+                    "shorten_setting4":{"view_component":"css_style_list","length":100}
+                  },
+                  "external_cache_directory": "/media/com_pro_critical/cashe_access",
+                  "gnzlib_path_file_corejs": "/libraries/GNZ11/assets/js/gnz11.js",
+                  "gnzlib_debug_off": "1",
+                  "gnzlib_path_file_corejs_min": "/libraries/GNZ11/assets/js/gnz11.min.js",
+                  "gnzlib_path_modules": "/libraries/GNZ11/assets/js/modules",
+                  "gnzlib_path_plugins": "/libraries/GNZ11/assets/js/plugins",
+                  "css_style_load_method": "1",
+                  "check_in": "-1 day"
+                  }'
+                ),
 			);
 			// [Interpretation 5001] Condition.
 			$conditions = array(

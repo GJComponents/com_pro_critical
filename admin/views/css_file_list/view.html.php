@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -138,11 +138,6 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 				JToolbarHelper::trash('css_file_list.trash');
 			}
 		}
-		if ($this->user->authorise('css_file.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('css_file_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
-		}
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('css_file_list');
@@ -190,19 +185,19 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Load Selection
+		// [Interpretation 17054] Set Load Selection
 		$this->loadOptions = $this->getTheLoadSelections();
-		// [Interpretation 11274] We do some sanitation for Load filter
+		// [Interpretation 17059] We do some sanitation for Load filter
 		if (Pro_criticalHelper::checkArray($this->loadOptions) &&
 			isset($this->loadOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->loadOptions[0]->value))
 		{
 			unset($this->loadOptions[0]);
 		}
-		// [Interpretation 11281] Only load Load filter if it has values
+		// [Interpretation 17075] Only load Load filter if it has values
 		if (Pro_criticalHelper::checkArray($this->loadOptions))
 		{
-			// [Interpretation 11284] Load Filter
+			// [Interpretation 17083] Load Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_FILE_LOAD_LABEL').' -',
 				'filter_load',
@@ -211,7 +206,7 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Load Batch Selection
+				// [Interpretation 17101] Load Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_FILE_LOAD_LABEL').' -',
 					'batch[load]',
@@ -220,19 +215,19 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Override Selection
+		// [Interpretation 17054] Set Override Selection
 		$this->overrideOptions = $this->getTheOverrideSelections();
-		// [Interpretation 11274] We do some sanitation for Override filter
+		// [Interpretation 17059] We do some sanitation for Override filter
 		if (Pro_criticalHelper::checkArray($this->overrideOptions) &&
 			isset($this->overrideOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->overrideOptions[0]->value))
 		{
 			unset($this->overrideOptions[0]);
 		}
-		// [Interpretation 11281] Only load Override filter if it has values
+		// [Interpretation 17075] Only load Override filter if it has values
 		if (Pro_criticalHelper::checkArray($this->overrideOptions))
 		{
-			// [Interpretation 11284] Override Filter
+			// [Interpretation 17083] Override Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_FILE_OVERRIDE_LABEL').' -',
 				'filter_override',
@@ -241,7 +236,7 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Override Batch Selection
+				// [Interpretation 17101] Override Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_FILE_OVERRIDE_LABEL').' -',
 					'batch[override]',
@@ -250,19 +245,19 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Minify Selection
+		// [Interpretation 17054] Set Minify Selection
 		$this->minifyOptions = $this->getTheMinifySelections();
-		// [Interpretation 11274] We do some sanitation for Minify filter
+		// [Interpretation 17059] We do some sanitation for Minify filter
 		if (Pro_criticalHelper::checkArray($this->minifyOptions) &&
 			isset($this->minifyOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->minifyOptions[0]->value))
 		{
 			unset($this->minifyOptions[0]);
 		}
-		// [Interpretation 11281] Only load Minify filter if it has values
+		// [Interpretation 17075] Only load Minify filter if it has values
 		if (Pro_criticalHelper::checkArray($this->minifyOptions))
 		{
-			// [Interpretation 11284] Minify Filter
+			// [Interpretation 17083] Minify Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_FILE_MINIFY_LABEL').' -',
 				'filter_minify',
@@ -271,7 +266,7 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Minify Batch Selection
+				// [Interpretation 17101] Minify Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_FILE_MINIFY_LABEL').' -',
 					'batch[minify]',
@@ -280,19 +275,19 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set No External Selection
+		// [Interpretation 17054] Set No External Selection
 		$this->no_externalOptions = $this->getTheNo_externalSelections();
-		// [Interpretation 11274] We do some sanitation for No External filter
+		// [Interpretation 17059] We do some sanitation for No External filter
 		if (Pro_criticalHelper::checkArray($this->no_externalOptions) &&
 			isset($this->no_externalOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->no_externalOptions[0]->value))
 		{
 			unset($this->no_externalOptions[0]);
 		}
-		// [Interpretation 11281] Only load No External filter if it has values
+		// [Interpretation 17075] Only load No External filter if it has values
 		if (Pro_criticalHelper::checkArray($this->no_externalOptions))
 		{
-			// [Interpretation 11284] No External Filter
+			// [Interpretation 17083] No External Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_FILE_NO_EXTERNAL_LABEL').' -',
 				'filter_no_external',
@@ -301,41 +296,11 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] No External Batch Selection
+				// [Interpretation 17101] No External Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_FILE_NO_EXTERNAL_LABEL').' -',
 					'batch[no_external]',
 					JHtml::_('select.options', $this->no_externalOptions, 'value', 'text')
-				);
-			}
-		}
-
-		// [Interpretation 11272] Set Load If Criticalis Set Selection
-		$this->load_if_criticalis_setOptions = $this->getTheLoad_if_criticalis_setSelections();
-		// [Interpretation 11274] We do some sanitation for Load If Criticalis Set filter
-		if (Pro_criticalHelper::checkArray($this->load_if_criticalis_setOptions) &&
-			isset($this->load_if_criticalis_setOptions[0]->value) &&
-			!Pro_criticalHelper::checkString($this->load_if_criticalis_setOptions[0]->value))
-		{
-			unset($this->load_if_criticalis_setOptions[0]);
-		}
-		// [Interpretation 11281] Only load Load If Criticalis Set filter if it has values
-		if (Pro_criticalHelper::checkArray($this->load_if_criticalis_setOptions))
-		{
-			// [Interpretation 11284] Load If Criticalis Set Filter
-			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_FILE_LOAD_IF_CRITICALIS_SET_LABEL').' -',
-				'filter_load_if_criticalis_set',
-				JHtml::_('select.options', $this->load_if_criticalis_setOptions, 'value', 'text', $this->state->get('filter.load_if_criticalis_set'))
-			);
-
-			if ($this->canBatch && $this->canCreate && $this->canEdit)
-			{
-				// [Interpretation 11293] Load If Criticalis Set Batch Selection
-				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_FILE_LOAD_IF_CRITICALIS_SET_LABEL').' -',
-					'batch[load_if_criticalis_set]',
-					JHtml::_('select.options', $this->load_if_criticalis_setOptions, 'value', 'text')
 				);
 			}
 		}
@@ -389,40 +354,39 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 			'a.override' => JText::_('COM_PRO_CRITICAL_CSS_FILE_OVERRIDE_LABEL'),
 			'a.minify' => JText::_('COM_PRO_CRITICAL_CSS_FILE_MINIFY_LABEL'),
 			'a.no_external' => JText::_('COM_PRO_CRITICAL_CSS_FILE_NO_EXTERNAL_LABEL'),
-			'a.load_if_criticalis_set' => JText::_('COM_PRO_CRITICAL_CSS_FILE_LOAD_IF_CRITICALIS_SET_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
 
 	protected function getTheLoadSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('load'));
 		$query->from($db->quoteName('#__pro_critical_css_file'));
 		$query->order($db->quoteName('load') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $load)
 			{
-				// [Interpretation 11155] Translate the load selection
+				// [Interpretation 16847] Translate the load selection
 				$text = $model->selectionTranslation($load,'load');
-				// [Interpretation 11157] Now add the load and its text to the options array
+				// [Interpretation 16854] Now add the load and its text to the options array
 				$_filter[] = JHtml::_('select.option', $load, JText::_($text));
 			}
 			return $_filter;
@@ -432,33 +396,33 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 	protected function getTheOverrideSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('override'));
 		$query->from($db->quoteName('#__pro_critical_css_file'));
 		$query->order($db->quoteName('override') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $override)
 			{
-				// [Interpretation 11155] Translate the override selection
+				// [Interpretation 16847] Translate the override selection
 				$text = $model->selectionTranslation($override,'override');
-				// [Interpretation 11157] Now add the override and its text to the options array
+				// [Interpretation 16854] Now add the override and its text to the options array
 				$_filter[] = JHtml::_('select.option', $override, JText::_($text));
 			}
 			return $_filter;
@@ -468,33 +432,33 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 	protected function getTheMinifySelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('minify'));
 		$query->from($db->quoteName('#__pro_critical_css_file'));
 		$query->order($db->quoteName('minify') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $minify)
 			{
-				// [Interpretation 11155] Translate the minify selection
+				// [Interpretation 16847] Translate the minify selection
 				$text = $model->selectionTranslation($minify,'minify');
-				// [Interpretation 11157] Now add the minify and its text to the options array
+				// [Interpretation 16854] Now add the minify and its text to the options array
 				$_filter[] = JHtml::_('select.option', $minify, JText::_($text));
 			}
 			return $_filter;
@@ -504,70 +468,34 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 
 	protected function getTheNo_externalSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('no_external'));
 		$query->from($db->quoteName('#__pro_critical_css_file'));
 		$query->order($db->quoteName('no_external') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
 
 		if ($results)
 		{
-			// [Interpretation 11139] get model
+			// [Interpretation 16826] get model
 			$model = $this->getModel();
 			$results = array_unique($results);
 			$_filter = array();
 			foreach ($results as $no_external)
 			{
-				// [Interpretation 11155] Translate the no_external selection
+				// [Interpretation 16847] Translate the no_external selection
 				$text = $model->selectionTranslation($no_external,'no_external');
-				// [Interpretation 11157] Now add the no_external and its text to the options array
+				// [Interpretation 16854] Now add the no_external and its text to the options array
 				$_filter[] = JHtml::_('select.option', $no_external, JText::_($text));
-			}
-			return $_filter;
-		}
-		return false;
-	}
-
-	protected function getTheLoad_if_criticalis_setSelections()
-	{
-		// [Interpretation 11103] Get a db connection.
-		$db = JFactory::getDbo();
-
-		// [Interpretation 11105] Create a new query object.
-		$query = $db->getQuery(true);
-
-		// [Interpretation 11124] Select the text.
-		$query->select($db->quoteName('load_if_criticalis_set'));
-		$query->from($db->quoteName('#__pro_critical_css_file'));
-		$query->order($db->quoteName('load_if_criticalis_set') . ' ASC');
-
-		// [Interpretation 11128] Reset the query using our newly populated query object.
-		$db->setQuery($query);
-
-		$results = $db->loadColumn();
-
-		if ($results)
-		{
-			// [Interpretation 11139] get model
-			$model = $this->getModel();
-			$results = array_unique($results);
-			$_filter = array();
-			foreach ($results as $load_if_criticalis_set)
-			{
-				// [Interpretation 11155] Translate the load_if_criticalis_set selection
-				$text = $model->selectionTranslation($load_if_criticalis_set,'load_if_criticalis_set');
-				// [Interpretation 11157] Now add the load_if_criticalis_set and its text to the options array
-				$_filter[] = JHtml::_('select.option', $load_if_criticalis_set, JText::_($text));
 			}
 			return $_filter;
 		}

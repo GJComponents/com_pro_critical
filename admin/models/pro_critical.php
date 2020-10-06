@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		pro_critical.php
@@ -34,13 +34,14 @@ class Pro_criticalModelPro_critical extends JModelList
 		$icons  = array();
 		// view groups array
 		$viewGroups = array(
-			'main' => array('png.css_list', 'png.cache_list', 'png.user_agent_list', 'png.user_agent_os_list', 'png.user_agent_browser_list', 'png.device_client_list', 'png.admins_list', 'png.html_task_list', 'png.css_file_list', 'png.css_style_list', 'png.js_file_list', 'png.js_style_list', 'jpg.url_list', 'png.help_document_data_list')
+			'main' => array('jpg.url_list', 'png.css_list', 'png.user_agent_list', 'png.user_agent_os_list', 'png.user_agent_browser_list', 'png.device_client_list', 'png.admins_list', 'png.html_task_list', 'png.css_file_list', 'png.css_style_list')
 		);
-		// [Interpretation 13466] view access array
+		// [Interpretation 20583] view access array
 		$viewAccess = array(
+			'url_list.submenu' => 'url.submenu',
+			'url_list.dashboard_list' => 'url.dashboard_list',
 			'css_list.submenu' => 'css.submenu',
 			'css_list.dashboard_list' => 'css.dashboard_list',
-			'cache_list.dashboard_list' => 'cache.dashboard_list',
 			'user_agent_list.submenu' => 'user_agent.submenu',
 			'user_agent_list.dashboard_list' => 'user_agent.dashboard_list',
 			'user_agent_os_list.submenu' => 'user_agent_os.submenu',
@@ -60,15 +61,7 @@ class Pro_criticalModelPro_critical extends JModelList
 			'css_file_list.submenu' => 'css_file.submenu',
 			'css_file_list.dashboard_list' => 'css_file.dashboard_list',
 			'css_style_list.submenu' => 'css_style.submenu',
-			'css_style_list.dashboard_list' => 'css_style.dashboard_list',
-			'js_file_list.submenu' => 'js_file.submenu',
-			'js_file_list.dashboard_list' => 'js_file.dashboard_list',
-			'js_style_list.submenu' => 'js_style.submenu',
-			'js_style_list.dashboard_list' => 'js_style.dashboard_list',
-			'url_list.submenu' => 'url.submenu',
-			'url_list.dashboard_list' => 'url.dashboard_list',
-			'help_document_data_list.submenu' => 'help_document_data.submenu',
-			'help_document_data_list.dashboard_list' => 'help_document_data.dashboard_list');
+			'css_style_list.dashboard_list' => 'css_style.dashboard_list');
 		// loop over the $views
 		foreach($viewGroups as $group => $views)
 		{

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		componentnamecom.php
@@ -46,62 +46,62 @@ class JFormFieldComponentnamecom extends JFormFieldList
 	 */
 	protected function getInput()
 	{
-		// [Fields 3397] see if we should add buttons
+		// [Fields 4762] see if we should add buttons
 		$set_button = $this->getAttribute('button');
-		// [Fields 3399] get html
+		// [Fields 4766] get html
 		$html = parent::getInput();
-		// [Fields 3401] if true set button
+		// [Fields 4769] if true set button
 		if ($set_button === 'true')
 		{
 			$button = array();
 			$script = array();
 			$button_code_name = $this->getAttribute('name');
-			// [Fields 3407] get the input from url
+			// [Fields 4777] get the input from url
 			$app = JFactory::getApplication();
 			$jinput = $app->input;
-			// [Fields 3410] get the view name & id
+			// [Fields 4781] get the view name & id
 			$values = $jinput->getArray(array(
 				'id' => 'int',
 				'view' => 'word'
 			));
-			// [Fields 3415] check if new item
+			// [Fields 4788] check if new item
 			$ref = '';
 			$refJ = '';
 			if (!is_null($values['id']) && strlen($values['view']))
 			{
-				// [Fields 3422] only load referral if not new item.
+				// [Fields 4797] only load referral if not new item.
 				$ref = '&amp;ref=' . $values['view'] . '&amp;refid=' . $values['id'];
 				$refJ = '&ref=' . $values['view'] . '&refid=' . $values['id'];
-				// [Fields 3425] get the return value.
+				// [Fields 4803] get the return value.
 				$_uri = (string) JUri::getInstance();
 				$_return = urlencode(base64_encode($_uri));
-				// [Fields 3428] load return value.
+				// [Fields 4809] load return value.
 				$ref .= '&amp;return=' . $_return;
 				$refJ .= '&return=' . $_return;
 			}
-			// [Fields 3448] get button label
+			// [Fields 4842] get button label
 			$button_label = trim($button_code_name);
 			$button_label = preg_replace('/_+/', ' ', $button_label);
 			$button_label = preg_replace('/\s+/', ' ', $button_label);
 			$button_label = preg_replace("/[^A-Za-z ]/", '', $button_label);
 			$button_label = ucfirst(strtolower($button_label));
-			// [Fields 3454] get user object
+			// [Fields 4854] get user object
 			$user = JFactory::getUser();
-			// [Fields 3456] only add if user allowed to create directory_components
+			// [Fields 4857] only add if user allowed to create directory_components
 			if ($user->authorise('core.create', 'com_pro_critical') && $app->isAdmin()) // TODO for now only in admin area.
 			{
-				// [Fields 3467] build Create button
+				// [Fields 4881] build Create button
 				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'.JText::sprintf('COM_PRO_CRITICAL_CREATE_NEW_S', $button_label).'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
 					href="index.php?option=com_pro_critical&amp;view=directory_components&amp;layout=edit'.$ref.'" >
 					<span class="icon-new icon-white"></span></a>';
 			}
-			// [Fields 3472] only add if user allowed to edit directory_components
+			// [Fields 4893] only add if user allowed to edit directory_components
 			if ($user->authorise('core.edit', 'com_pro_critical') && $app->isAdmin()) // TODO for now only in admin area.
 			{
-				// [Fields 3483] build edit button
+				// [Fields 4917] build edit button
 				$button[] = '<a id="'.$button_code_name.'Edit" class="btn btn-small hasTooltip" title="'.JText::sprintf('COM_PRO_CRITICAL_EDIT_S', $button_label).'" style="display: none; padding: 4px 4px 4px 7px;" href="#" >
 					<span class="icon-edit"></span></a>';
-				// [Fields 3486] build script
+				// [Fields 4925] build script
 				$script[] = "
 					jQuery(document).ready(function() {
 						jQuery('#adminForm').on('change', '#jform_".$button_code_name."',function (e) {
@@ -128,13 +128,13 @@ class JFormFieldComponentnamecom extends JFormFieldList
 						}
 					}";
 			}
-			// [Fields 3513] check if button was created for directory_components field.
+			// [Fields 4968] check if button was created for directory_components field.
 			if (is_array($button) && count($button) > 0)
 			{
-				// [Fields 3516] Load the needed script.
+				// [Fields 4974] Load the needed script.
 				$document = JFactory::getDocument();
 				$document->addScriptDeclaration(implode(' ',$script));
-				// [Fields 3519] return the button attached to input field.
+				// [Fields 4980] return the button attached to input field.
 				return '<div class="input-append">' .$html . implode('',$button).'</div>';
 			}
 		}

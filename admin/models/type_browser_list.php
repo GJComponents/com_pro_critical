@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		type_browser_list.php
@@ -87,9 +87,6 @@ class Pro_criticalModelType_browser_list extends JModelList
 	 */
 	public function getItems()
 	{
-		// [Interpretation 12857] check in items
-		$this->checkInNow();
-
 		// load parent items
 		$items = parent::getItems();
         
@@ -104,19 +101,19 @@ class Pro_criticalModelType_browser_list extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_type_browser', 'a'));
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -127,7 +124,7 @@ class Pro_criticalModelType_browser_list extends JModelList
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
@@ -146,7 +143,7 @@ class Pro_criticalModelType_browser_list extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -155,58 +152,5 @@ class Pro_criticalModelType_browser_list extends JModelList
 		$id .= ':' . $this->getState('filter.modified_by');
 
 		return parent::getStoreId($id);
-	}
-
-	/**
-	 * Build an SQL query to checkin all items left checked out longer then a set time.
-	 *
-	 * @return  a bool
-	 *
-	 */
-	protected function checkInNow()
-	{
-		// [Interpretation 12873] Get set check in time
-		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
-
-		if ($time)
-		{
-
-			// [Interpretation 12877] Get a db connection.
-			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
-			$query = $db->getQuery(true);
-			$query->select('*');
-			$query->from($db->quoteName('#__pro_critical_type_browser'));
-			$db->setQuery($query);
-			$db->execute();
-			if ($db->getNumRows())
-			{
-				// [Interpretation 12887] Get Yesterdays date
-				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
-				$query = $db->getQuery(true);
-
-				// [Interpretation 12891] Fields to update.
-				$fields = array(
-					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
-					$db->quoteName('checked_out') . '=0'
-				);
-
-				// [Interpretation 12896] Conditions for which records should be updated.
-				$conditions = array(
-					$db->quoteName('checked_out') . '!=0', 
-					$db->quoteName('checked_out_time') . '<\''.$date.'\''
-				);
-
-				// [Interpretation 12901] Check table
-				$query->update($db->quoteName('#__pro_critical_type_browser'))->set($fields)->where($conditions); 
-
-				$db->setQuery($query);
-
-				$db->execute();
-			}
-		}
-
-		return false;
 	}
 }

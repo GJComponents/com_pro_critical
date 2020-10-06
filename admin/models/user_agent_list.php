@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		user_agent_list.php
@@ -107,7 +107,7 @@ class Pro_criticalModelUser_agent_list extends JModelList
 	 */
 	public function getItems()
 	{
-		// [Interpretation 12857] check in items
+		// [Interpretation 19606] check in items
 		$this->checkInNow();
 
 		// load parent items
@@ -124,27 +124,27 @@ class Pro_criticalModelUser_agent_list extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 9588] Get the user object.
+		// [Interpretation 14604] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 9590] Create a new query object.
+		// [Interpretation 14606] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 9593] Select some fields
+		// [Interpretation 14611] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 9600] From the pro_critical_item table
+		// [Interpretation 14621] From the pro_critical_item table
 		$query->from($db->quoteName('#__pro_critical_user_agent', 'a'));
 
-		// [Interpretation 9740] From the pro_critical_type_device table.
+		// [Interpretation 14839] From the yeightflq_pro_critical_type_device table.
 		$query->select($db->quoteName('g.type_device','type_device_id_type_device'));
 		$query->join('LEFT', $db->quoteName('#__pro_critical_type_device', 'g') . ' ON (' . $db->quoteName('a.type_device_id') . ' = ' . $db->quoteName('g.id') . ')');
 
-		// [Interpretation 9740] From the pro_critical_type_browser table.
+		// [Interpretation 14839] From the yeightflq_pro_critical_type_browser table.
 		$query->select($db->quoteName('h.type','type_browser_id_type'));
 		$query->join('LEFT', $db->quoteName('#__pro_critical_type_browser', 'h') . ' ON (' . $db->quoteName('a.type_browser_id') . ' = ' . $db->quoteName('h.id') . ')');
 
-		// [Interpretation 9611] Filter by published state
+		// [Interpretation 14640] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -154,7 +154,7 @@ class Pro_criticalModelUser_agent_list extends JModelList
 		{
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
-		// [Interpretation 9708] Filter by search.
+		// [Interpretation 14779] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -169,33 +169,33 @@ class Pro_criticalModelUser_agent_list extends JModelList
 			}
 		}
 
-		// [Interpretation 9776] Filter by Ua.
+		// [Interpretation 14911] Filter by Ua.
 		if ($ua = $this->getState('filter.ua'))
 		{
 			$query->where('a.ua = ' . $db->quote($db->escape($ua)));
 		}
-		// [Interpretation 9768] Filter by type_device_id.
+		// [Interpretation 14896] Filter by type_device_id.
 		if ($type_device_id = $this->getState('filter.type_device_id'))
 		{
 			$query->where('a.type_device_id = ' . $db->quote($db->escape($type_device_id)));
 		}
-		// [Interpretation 9768] Filter by type_browser_id.
+		// [Interpretation 14896] Filter by type_browser_id.
 		if ($type_browser_id = $this->getState('filter.type_browser_id'))
 		{
 			$query->where('a.type_browser_id = ' . $db->quote($db->escape($type_browser_id)));
 		}
-		// [Interpretation 9776] Filter by Brand.
+		// [Interpretation 14911] Filter by Brand.
 		if ($brand = $this->getState('filter.brand'))
 		{
 			$query->where('a.brand = ' . $db->quote($db->escape($brand)));
 		}
-		// [Interpretation 9776] Filter by Name.
+		// [Interpretation 14911] Filter by Name.
 		if ($name = $this->getState('filter.name'))
 		{
 			$query->where('a.name = ' . $db->quote($db->escape($name)));
 		}
 
-		// [Interpretation 9667] Add the list ordering clause.
+		// [Interpretation 14727] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
 		$orderDirn = $this->state->get('list.direction', 'asc');	
 		if ($orderCol != '')
@@ -214,7 +214,7 @@ class Pro_criticalModelUser_agent_list extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 12459] Compile the store id.
+		// [Interpretation 18987] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
@@ -238,15 +238,15 @@ class Pro_criticalModelUser_agent_list extends JModelList
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 12873] Get set check in time
+		// [Interpretation 19624] Get set check in time
 		$time = JComponentHelper::getParams('com_pro_critical')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 12877] Get a db connection.
+			// [Interpretation 19632] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 12879] reset query
+			// [Interpretation 19635] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__pro_critical_user_agent'));
@@ -254,24 +254,24 @@ class Pro_criticalModelUser_agent_list extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 12887] Get Yesterdays date
+				// [Interpretation 19646] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 12889] reset query
+				// [Interpretation 19650] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 12891] Fields to update.
+				// [Interpretation 19654] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 12896] Conditions for which records should be updated.
+				// [Interpretation 19663] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 12901] Check table
+				// [Interpretation 19672] Check table
 				$query->update($db->quoteName('#__pro_critical_user_agent'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

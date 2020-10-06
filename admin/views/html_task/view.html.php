@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -93,27 +93,27 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 		$isNew = $this->item->id == 0;
 
 		JToolbarHelper::title( JText::_($isNew ? 'COM_PRO_CRITICAL_HTML_TASK_NEW' : 'COM_PRO_CRITICAL_HTML_TASK_EDIT'), 'pencil-2 article-add');
-		// [Interpretation 12569] Built the actions for new and existing records.
+		// [Interpretation 19149] Built the actions for new and existing records.
 		if (Pro_criticalHelper::checkString($this->referral))
 		{
 			if ($this->canDo->get('core.create') && $isNew)
 			{
-				// [Interpretation 12581] We can create the record.
+				// [Interpretation 19174] We can create the record.
 				JToolBarHelper::save('html_task.save', 'JTOOLBAR_SAVE');
 			}
 			elseif ($this->canDo->get('core.edit'))
 			{
-				// [Interpretation 12593] We can save the record.
+				// [Interpretation 19199] We can save the record.
 				JToolBarHelper::save('html_task.save', 'JTOOLBAR_SAVE');
 			}
 			if ($isNew)
 			{
-				// [Interpretation 12598] Do not creat but cancel.
+				// [Interpretation 19206] Do not creat but cancel.
 				JToolBarHelper::cancel('html_task.cancel', 'JTOOLBAR_CANCEL');
 			}
 			else
 			{
-				// [Interpretation 12603] We can close it.
+				// [Interpretation 19213] We can close it.
 				JToolBarHelper::cancel('html_task.cancel', 'JTOOLBAR_CLOSE');
 			}
 		}
@@ -121,7 +121,7 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 		{
 			if ($isNew)
 			{
-				// [Interpretation 12611] For new records, check the create permission.
+				// [Interpretation 19223] For new records, check the create permission.
 				if ($this->canDo->get('core.create'))
 				{
 					JToolBarHelper::apply('html_task.apply', 'JTOOLBAR_APPLY');
@@ -134,11 +134,11 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 			{
 				if ($this->canDo->get('core.edit'))
 				{
-					// [Interpretation 12638] We can save the new record
+					// [Interpretation 19276] We can save the new record
 					JToolBarHelper::apply('html_task.apply', 'JTOOLBAR_APPLY');
 					JToolBarHelper::save('html_task.save', 'JTOOLBAR_SAVE');
-					// [Interpretation 12641] We can save this record, but check the create permission to see
-					// [Interpretation 12642] if we can return to make a new one.
+					// [Interpretation 19282] We can save this record, but check the create permission to see
+					// [Interpretation 19284] if we can return to make a new one.
 					if ($this->canDo->get('core.create'))
 					{
 						JToolBarHelper::custom('html_task.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
@@ -152,7 +152,7 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 			}
 		}
 		JToolbarHelper::divider();
-		// [Interpretation 12694] set help url for this view if found
+		// [Interpretation 19389] set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('html_task');
 		if (Pro_criticalHelper::checkString($help_url))
 		{
@@ -192,7 +192,7 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 		}
 		$this->document->setTitle(JText::_($isNew ? 'COM_PRO_CRITICAL_HTML_TASK_NEW' : 'COM_PRO_CRITICAL_HTML_TASK_EDIT'));
 		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_pro_critical/assets/css/html_task.css", (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
-		// [Interpretation 10867] Add Ajax Token
+		// [Interpretation 16433] Add Ajax Token
 		$this->document->addScriptDeclaration("var token = '".JSession::getFormToken()."';");
 		$this->document->addScript(JURI::root() . $this->script, (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript');
 		$this->document->addScript(JURI::root() . "administrator/components/com_pro_critical/views/html_task/submitbutton.js", (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript'); 

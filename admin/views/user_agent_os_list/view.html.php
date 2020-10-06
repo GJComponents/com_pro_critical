@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -185,19 +185,19 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Name Selection
+		// [Interpretation 17054] Set Name Selection
 		$this->nameOptions = $this->getTheNameSelections();
-		// [Interpretation 11274] We do some sanitation for Name filter
+		// [Interpretation 17059] We do some sanitation for Name filter
 		if (Pro_criticalHelper::checkArray($this->nameOptions) &&
 			isset($this->nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->nameOptions[0]->value))
 		{
 			unset($this->nameOptions[0]);
 		}
-		// [Interpretation 11281] Only load Name filter if it has values
+		// [Interpretation 17075] Only load Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->nameOptions))
 		{
-			// [Interpretation 11284] Name Filter
+			// [Interpretation 17083] Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_OS_NAME_LABEL').' -',
 				'filter_name',
@@ -206,7 +206,7 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Name Batch Selection
+				// [Interpretation 17101] Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_OS_NAME_LABEL').' -',
 					'batch[name]',
@@ -215,19 +215,19 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Code Selection
+		// [Interpretation 17054] Set Code Selection
 		$this->codeOptions = $this->getTheCodeSelections();
-		// [Interpretation 11274] We do some sanitation for Code filter
+		// [Interpretation 17059] We do some sanitation for Code filter
 		if (Pro_criticalHelper::checkArray($this->codeOptions) &&
 			isset($this->codeOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->codeOptions[0]->value))
 		{
 			unset($this->codeOptions[0]);
 		}
-		// [Interpretation 11281] Only load Code filter if it has values
+		// [Interpretation 17075] Only load Code filter if it has values
 		if (Pro_criticalHelper::checkArray($this->codeOptions))
 		{
-			// [Interpretation 11284] Code Filter
+			// [Interpretation 17083] Code Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_OS_CODE_LABEL').' -',
 				'filter_code',
@@ -236,7 +236,7 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Code Batch Selection
+				// [Interpretation 17101] Code Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_OS_CODE_LABEL').' -',
 					'batch[code]',
@@ -297,18 +297,18 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 
 	protected function getTheNameSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('name'));
 		$query->from($db->quoteName('#__pro_critical_user_agent_os'));
 		$query->order($db->quoteName('name') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -319,7 +319,7 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $name)
 			{
-				// [Interpretation 11172] Now add the name and its text to the options array
+				// [Interpretation 16888] Now add the name and its text to the options array
 				$_filter[] = JHtml::_('select.option', $name, $name);
 			}
 			return $_filter;
@@ -329,18 +329,18 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 
 	protected function getTheCodeSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('code'));
 		$query->from($db->quoteName('#__pro_critical_user_agent_os'));
 		$query->order($db->quoteName('code') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -351,7 +351,7 @@ class Pro_criticalViewUser_agent_os_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $code)
 			{
-				// [Interpretation 11172] Now add the code and its text to the options array
+				// [Interpretation 16888] Now add the code and its text to the options array
 				$_filter[] = JHtml::_('select.option', $code, $code);
 			}
 			return $_filter;

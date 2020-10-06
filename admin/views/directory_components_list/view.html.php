@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -138,11 +138,6 @@ class Pro_criticalViewDirectory_components_list extends JViewLegacy
 				JToolbarHelper::trash('directory_components_list.trash');
 			}
 		}
-		if ($this->user->authorise('directory_components.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('directory_components_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
-		}
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('directory_components_list');
@@ -190,19 +185,19 @@ class Pro_criticalViewDirectory_components_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Copmonent Name Selection
+		// [Interpretation 17054] Set Copmonent Name Selection
 		$this->copmonent_nameOptions = $this->getTheCopmonent_nameSelections();
-		// [Interpretation 11274] We do some sanitation for Copmonent Name filter
+		// [Interpretation 17059] We do some sanitation for Copmonent Name filter
 		if (Pro_criticalHelper::checkArray($this->copmonent_nameOptions) &&
 			isset($this->copmonent_nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->copmonent_nameOptions[0]->value))
 		{
 			unset($this->copmonent_nameOptions[0]);
 		}
-		// [Interpretation 11281] Only load Copmonent Name filter if it has values
+		// [Interpretation 17075] Only load Copmonent Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->copmonent_nameOptions))
 		{
-			// [Interpretation 11284] Copmonent Name Filter
+			// [Interpretation 17083] Copmonent Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_COPMONENT_NAME_LABEL').' -',
 				'filter_copmonent_name',
@@ -211,7 +206,7 @@ class Pro_criticalViewDirectory_components_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Copmonent Name Batch Selection
+				// [Interpretation 17101] Copmonent Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_COPMONENT_NAME_LABEL').' -',
 					'batch[copmonent_name]',
@@ -271,18 +266,18 @@ class Pro_criticalViewDirectory_components_list extends JViewLegacy
 
 	protected function getTheCopmonent_nameSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('copmonent_name'));
 		$query->from($db->quoteName('#__pro_critical_directory_components'));
 		$query->order($db->quoteName('copmonent_name') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -293,7 +288,7 @@ class Pro_criticalViewDirectory_components_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $copmonent_name)
 			{
-				// [Interpretation 11172] Now add the copmonent_name and its text to the options array
+				// [Interpretation 16888] Now add the copmonent_name and its text to the options array
 				$_filter[] = JHtml::_('select.option', $copmonent_name, $copmonent_name);
 			}
 			return $_filter;

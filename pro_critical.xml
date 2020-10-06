@@ -84,7 +84,7 @@
 			<folder>sub_form</folder>
 			<folder>com_pro_critical</folder>
 		</files>
-
+			
 		<languages folder="admin">
 			<language tag="en-GB">language/en-GB/en-GB.com_pro_critical.ini</language>
 			<language tag="en-GB">language/en-GB/en-GB.com_pro_critical.sys.ini</language>

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		batch_.php
@@ -22,6 +22,7 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
+ * Служебный класс для отображения параметров выбора пакета представления списка
  * Utility class to render a list view batch selection options
  *
  * @since  3.0
@@ -37,6 +38,7 @@ abstract class JHtmlBatch_
 	protected static $ListSelection = array();
 
 	/**
+     * Отобразите параметры пакетного выбора.
 	 * Render the batch selection options.
 	 *
 	 * @return  string  The necessary HTML to display the batch selection options
@@ -57,6 +59,7 @@ abstract class JHtmlBatch_
 	}
 
 	/**
+     * Метод добавления выбора списка в пакетное модальное окно
 	 * Method to add a list selection to the batch modal
 	 *
 	 * @param   string  $label      Label for the menu item.
@@ -74,6 +77,7 @@ abstract class JHtmlBatch_
 	}
 
 	/**
+     * Возвращает массив всех ListSelection
 	 * Returns an array of all ListSelection
 	 *
 	 * @return  array

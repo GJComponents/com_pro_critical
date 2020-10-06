@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default.php
@@ -33,7 +33,18 @@ if ($this->saveOrder)
 	JHtml::_('sortablelist.sortable', 'css_styleList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
 }
 
+
+
 ?>
+
+<?php
+
+//echo'<pre>';print_r( $this->sidebar );echo'</pre>'.__FILE__.' '.__LINE__;
+//die(__FILE__ .' '. __LINE__ );
+
+
+?>
+
 <script type="text/javascript">
 	Joomla.orderTable = function()
 	{
@@ -69,7 +80,7 @@ if ($this->saveOrder)
 		<?php echo $this->loadTemplate('toolbar');?>
 		<table class="table table-striped" id="css_styleList">
 			<thead><?php echo $this->loadTemplate('head');?></thead>
-			<tinetglobalt><?php echo $this->loadTemplate('inetglobalt');?></tinetglobalt>
+			<tfoot><?php echo $this->loadTemplate('foot');?></tfoot>
 			<tbody><?php echo $this->loadTemplate('body');?></tbody>
 		</table>
 		<?php //Load the batch processing form. ?>
@@ -79,13 +90,13 @@ if ($this->saveOrder)
                 'collapseModal',
                 array(
                     'title' => JText::_('COM_PRO_CRITICAL_CSS_STYLE_LIST_BATCH_OPTIONS'),
-                    'inetglobalter' => $this->loadTemplate('batch_inetglobalter')
+                    'footer' => $this->loadTemplate('batch_footer')
                 ),
                 $this->loadTemplate('batch_body')
             ); ?>
         <?php endif; ?>
-		<input type="hidden" name="filter_order" value="" />
-		<input type="hidden" name="filter_order_Dir" value="" />
+		<input type="hidden" name="filter_order" value="<?php echo $this->listOrder; ?>" />
+		<input type="hidden" name="filter_order_Dir" value="<?php echo $this->listDirn; ?>" />
 		<input type="hidden" name="boxchecked" value="0" />
 	</div>
 <?php endif; ?>

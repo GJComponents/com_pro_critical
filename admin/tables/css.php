@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		css.php
@@ -315,26 +315,13 @@ class Pro_criticalTableCss extends JTable
 	}
 
 	/**
-	 * Generate a valid alias from title / date.
-	 * Remains public to be able to check for duplicated alias before saving
+	 * This view does not actually have an alias
 	 *
-	 * @return  string
+	 * @return  bool
 	 */
 	public function generateAlias()
 	{
-		if (empty($this->alias))
-		{
-			$this->alias = $this->query_string;
-		}
-
-		$this->alias = JApplication::stringURLSafe($this->alias);
-
-		if (trim(str_replace('-', '', $this->alias)) == '')
-		{
-			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
-		}
-
-		return $this->alias;
+		return false;
 	}
 
 }

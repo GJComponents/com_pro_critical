@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default_head.php
@@ -45,13 +45,13 @@ defined('_JEXEC') or die('Restricted access');
 			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_LABEL', 'short_description', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_PRO_CRITICAL_HTML_TASK_TYPE_HTML_TASK_LABEL'); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL', 'component_view_id_view_component', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_LABEL'); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL', 'html_processing', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL', 'component_view_id_', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL', 'type_device_id_type_device', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		controller.php
@@ -43,11 +43,16 @@ class Pro_criticalController extends JControllerLegacy
 		parent::__construct($config);
 	}
 
-	/**
-	 * display task
-	 *
-	 * @return void
-	 */
+    /**
+     * Display task
+     * @param false $cachable
+     * @param false $urlparams
+     * @return false|JControllerLegacy|Pro_criticalController
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 25.08.2020 17:21
+     *
+     */
 	function display($cachable = false, $urlparams = false)
 	{
 		// set default view if not set
@@ -55,6 +60,10 @@ class Pro_criticalController extends JControllerLegacy
 		$data	= $this->getViewRelation($view);
 		$layout	= $this->input->get('layout', null, 'WORD');
 		$id    	= $this->input->getInt('id');
+
+
+
+
 
 		// Check for edit form.
 		if(Pro_criticalHelper::checkArray($data))
@@ -99,8 +108,8 @@ class Pro_criticalController extends JControllerLegacy
 		{
 			// the view relationships
 			$views = array(
+				'url' => 'url_list',
 				'css' => 'css_list',
-				'cache' => 'cache_list',
 				'user_agent' => 'user_agent_list',
 				'user_agent_os' => 'user_agent_os_list',
 				'user_agent_browser' => 'user_agent_browser_list',
@@ -112,11 +121,7 @@ class Pro_criticalController extends JControllerLegacy
 				'directory_components' => 'directory_components_list',
 				'directory_views' => 'directory_views_list',
 				'css_file' => 'css_file_list',
-				'css_style' => 'css_style_list',
-				'js_file' => 'js_file_list',
-				'js_style' => 'js_style_list',
-				'url' => 'url_list',
-				'help_document_data' => 'help_document_data_list'
+				'css_style' => 'css_style_list'
 					);
 			// check if this is a list view
 			if (in_array($view, $views))

@@ -105,9 +105,9 @@
 			disabled="false">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Override Field. Type: Radio. (joomla) -->
 		<field
@@ -122,9 +122,9 @@
 			showon="load:1[AND]cash_external:0">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Minify Field. Type: Radio. (joomla) -->
 		<field
@@ -140,25 +140,25 @@
 			onchange="Minify.Fire()">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] No_external Field. Type: Radio. (joomla) -->
 		<field
 			type="radio"
 			name="no_external"
-			label="COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_LABEL"
-			description="COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_DESCRIPTION"
+			label="JNO_EXTERNAL_LABEL"
+			description="JNO_EXTERNAL_DESCRIPTION"
 			class="btn-group btn-group-yesno"
 			default="0"
 			readonly="false"
 			disabled="false">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] File_debug Field. Type: Radio. (joomla) -->
 		<field
@@ -173,9 +173,9 @@
 			showon="load:1">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1465] Media Field. Type: Text. (joomla) -->
 		<field
@@ -276,9 +276,9 @@
 			showon="no_external:0">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1465] Cash_time_custom Field. Type: Text. (joomla) -->
 		<field
@@ -309,9 +309,9 @@
 			showon="load:1">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Defer Field. Type: Radio. (joomla) -->
 		<field
@@ -326,9 +326,9 @@
 			showon="load:1">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Delayed_loading Field. Type: Radio. (joomla) -->
 		<field
@@ -343,9 +343,9 @@
 			showon="load:1[AND]preload:0">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Preload Field. Type: Radio. (joomla) -->
 		<field
@@ -360,9 +360,9 @@
 			showon="load:1[AND]delayed_loading:0">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_FILE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_FILE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Ver_type Field. Type: Radio. (joomla) -->
 		<field
@@ -471,9 +471,9 @@
 					disabled="false">
 					<!-- [Fields 1445] Option Set. -->
 					<option value="1">
-						COM_PRO_CRITICAL_JS_FILE_YES</option>
+						JYES</option>
 					<option value="0">
-						COM_PRO_CRITICAL_JS_FILE_NO</option>
+						JNO</option>
 				</field>
 			</form>
 		</field>

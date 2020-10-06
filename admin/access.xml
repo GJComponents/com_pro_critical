@@ -4,8 +4,6 @@
 		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
 		<action name="core.options" title="JACTION_OPTIONS" description="JACTION_OPTIONS_COMPONENT_DESC" />
 		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
-		<action name="core.export" title="COM_PRO_CRITICAL_EXPORT_DATA" description="COM_PRO_CRITICAL_EXPORT_DATA_DESC" />
-		<action name="core.import" title="COM_PRO_CRITICAL_IMPORT_DATA" description="COM_PRO_CRITICAL_IMPORT_DATA_DESC" />
 		<action name="core.batch" title="COM_PRO_CRITICAL_USE_BATCH" description="COM_PRO_CRITICAL_USE_BATCH_DESC" />
 		<action name="core.version" title="COM_PRO_CRITICAL_EDIT_VERSIONS" description="COM_PRO_CRITICAL_EDIT_VERSIONS_DESC" />
 		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
@@ -18,51 +16,29 @@
 		<action name="admins.batch" title="COM_PRO_CRITICAL_ADMINS_LIST_BATCH_USE" description="COM_PRO_CRITICAL_ADMINS_LIST_BATCH_USE_DESC" />
 		<action name="admins.dashboard_list" title="COM_PRO_CRITICAL_ADMINS_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_ADMINS_LIST_DASHBOARD_LIST_DESC" />
 		<action name="admins.submenu" title="COM_PRO_CRITICAL_ADMINS_LIST_SUBMENU" description="COM_PRO_CRITICAL_ADMINS_LIST_SUBMENU_DESC" />
-		<action name="cache.delete_all_records" title="COM_PRO_CRITICAL_CACHE_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_CACHE_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
-		<action name="cache.batch" title="COM_PRO_CRITICAL_CACHE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_CACHE_LIST_BATCH_USE_DESC" />
-		<action name="cache.dashboard_list" title="COM_PRO_CRITICAL_CACHE_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_CACHE_LIST_DASHBOARD_LIST_DESC" />
-		<action name="css.delete_all_records" title="COM_PRO_CRITICAL_CSS_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_CSS_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
-		<action name="css_file.delete_all_records" title="COM_PRO_CRITICAL_CSS_FILE_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_CSS_FILE_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
 		<action name="css_file.batch" title="COM_PRO_CRITICAL_CSS_FILE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_CSS_FILE_LIST_BATCH_USE_DESC" />
 		<action name="css_file.dashboard_list" title="COM_PRO_CRITICAL_CSS_FILE_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_CSS_FILE_LIST_DASHBOARD_LIST_DESC" />
 		<action name="css_file.submenu" title="COM_PRO_CRITICAL_CSS_FILE_LIST_SUBMENU" description="COM_PRO_CRITICAL_CSS_FILE_LIST_SUBMENU_DESC" />
 		<action name="css.batch" title="COM_PRO_CRITICAL_CSS_LIST_BATCH_USE" description="COM_PRO_CRITICAL_CSS_LIST_BATCH_USE_DESC" />
 		<action name="css.dashboard_list" title="COM_PRO_CRITICAL_CSS_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_CSS_LIST_DASHBOARD_LIST_DESC" />
 		<action name="css.submenu" title="COM_PRO_CRITICAL_CSS_LIST_SUBMENU" description="COM_PRO_CRITICAL_CSS_LIST_SUBMENU_DESC" />
-		<action name="css_style.delete_all_records" title="COM_PRO_CRITICAL_CSS_STYLE_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_CSS_STYLE_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
 		<action name="css_style.batch" title="COM_PRO_CRITICAL_CSS_STYLE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_CSS_STYLE_LIST_BATCH_USE_DESC" />
 		<action name="css_style.dashboard_list" title="COM_PRO_CRITICAL_CSS_STYLE_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_CSS_STYLE_LIST_DASHBOARD_LIST_DESC" />
 		<action name="css_style.submenu" title="COM_PRO_CRITICAL_CSS_STYLE_LIST_SUBMENU" description="COM_PRO_CRITICAL_CSS_STYLE_LIST_SUBMENU_DESC" />
 		<action name="device_client.batch" title="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_BATCH_USE" description="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_BATCH_USE_DESC" />
 		<action name="device_client.dashboard_list" title="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_DASHBOARD_LIST_DESC" />
 		<action name="device_client.submenu" title="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_SUBMENU" description="COM_PRO_CRITICAL_DEVICE_CLIENT_LIST_SUBMENU_DESC" />
-		<action name="directory_components.delete_all_records" title="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
 		<action name="directory_components.batch" title="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_LIST_BATCH_USE" description="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_LIST_BATCH_USE_DESC" />
 		<action name="directory_components.submenu" title="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_LIST_SUBMENU" description="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_LIST_SUBMENU_DESC" />
-		<action name="directory_views.delete_all_records" title="COM_PRO_CRITICAL_DIRECTORY_VIEWS_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_DIRECTORY_VIEWS_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
 		<action name="directory_views.batch" title="COM_PRO_CRITICAL_DIRECTORY_VIEWS_LIST_BATCH_USE" description="COM_PRO_CRITICAL_DIRECTORY_VIEWS_LIST_BATCH_USE_DESC" />
 		<action name="directory_views.submenu" title="COM_PRO_CRITICAL_DIRECTORY_VIEWS_LIST_SUBMENU" description="COM_PRO_CRITICAL_DIRECTORY_VIEWS_LIST_SUBMENU_DESC" />
-		<action name="help_document_data.batch" title="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_BATCH_USE" description="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_BATCH_USE_DESC" />
-		<action name="help_document_data.dashboard_list" title="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_DASHBOARD_LIST_DESC" />
-		<action name="help_document_data.export" title="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_EXPORT" description="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_EXPORT_DESC" />
-		<action name="help_document_data.import" title="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_IMPORT" description="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_IMPORT_DESC" />
-		<action name="help_document_data.submenu" title="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_SUBMENU" description="COM_PRO_CRITICAL_HELP_DOCUMENT_DATA_LIST_SUBMENU_DESC" />
 		<action name="html_task.batch" title="COM_PRO_CRITICAL_HTML_TASK_LIST_BATCH_USE" description="COM_PRO_CRITICAL_HTML_TASK_LIST_BATCH_USE_DESC" />
 		<action name="html_task.dashboard_list" title="COM_PRO_CRITICAL_HTML_TASK_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_HTML_TASK_LIST_DASHBOARD_LIST_DESC" />
 		<action name="html_task.submenu" title="COM_PRO_CRITICAL_HTML_TASK_LIST_SUBMENU" description="COM_PRO_CRITICAL_HTML_TASK_LIST_SUBMENU_DESC" />
-		<action name="js_file.delete_all_records" title="COM_PRO_CRITICAL_JS_FILE_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_JS_FILE_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
-		<action name="js_file.batch" title="COM_PRO_CRITICAL_JS_FILE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_JS_FILE_LIST_BATCH_USE_DESC" />
-		<action name="js_file.dashboard_list" title="COM_PRO_CRITICAL_JS_FILE_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_JS_FILE_LIST_DASHBOARD_LIST_DESC" />
-		<action name="js_file.submenu" title="COM_PRO_CRITICAL_JS_FILE_LIST_SUBMENU" description="COM_PRO_CRITICAL_JS_FILE_LIST_SUBMENU_DESC" />
-		<action name="js_style.delete_all_records" title="COM_PRO_CRITICAL_JS_STYLE_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_JS_STYLE_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
-		<action name="js_style.batch" title="COM_PRO_CRITICAL_JS_STYLE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_JS_STYLE_LIST_BATCH_USE_DESC" />
-		<action name="js_style.dashboard_list" title="COM_PRO_CRITICAL_JS_STYLE_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_JS_STYLE_LIST_DASHBOARD_LIST_DESC" />
-		<action name="js_style.submenu" title="COM_PRO_CRITICAL_JS_STYLE_LIST_SUBMENU" description="COM_PRO_CRITICAL_JS_STYLE_LIST_SUBMENU_DESC" />
 		<action name="type_browser.batch" title="COM_PRO_CRITICAL_TYPE_BROWSER_LIST_BATCH_USE" description="COM_PRO_CRITICAL_TYPE_BROWSER_LIST_BATCH_USE_DESC" />
 		<action name="type_browser.submenu" title="COM_PRO_CRITICAL_TYPE_BROWSER_LIST_SUBMENU" description="COM_PRO_CRITICAL_TYPE_BROWSER_LIST_SUBMENU_DESC" />
 		<action name="type_device.batch" title="COM_PRO_CRITICAL_TYPE_DEVICE_LIST_BATCH_USE" description="COM_PRO_CRITICAL_TYPE_DEVICE_LIST_BATCH_USE_DESC" />
 		<action name="type_device.submenu" title="COM_PRO_CRITICAL_TYPE_DEVICE_LIST_SUBMENU" description="COM_PRO_CRITICAL_TYPE_DEVICE_LIST_SUBMENU_DESC" />
-		<action name="url.delete_all_records" title="COM_PRO_CRITICAL_URL_DELETE_ALL_RECORDS_BUTTON_ACCESS" description="COM_PRO_CRITICAL_URL_DELETE_ALL_RECORDS_BUTTON_ACCESS_DESC" />
 		<action name="url.batch" title="COM_PRO_CRITICAL_URL_LIST_BATCH_USE" description="COM_PRO_CRITICAL_URL_LIST_BATCH_USE_DESC" />
 		<action name="url.dashboard_list" title="COM_PRO_CRITICAL_URL_LIST_DASHBOARD_LIST" description="COM_PRO_CRITICAL_URL_LIST_DASHBOARD_LIST_DESC" />
 		<action name="url.submenu" title="COM_PRO_CRITICAL_URL_LIST_SUBMENU" description="COM_PRO_CRITICAL_URL_LIST_SUBMENU_DESC" />

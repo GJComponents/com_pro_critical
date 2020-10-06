@@ -33,6 +33,7 @@ if ($this->saveOrder)
 	JHtml::_('sortablelist.sortable', 'js_styleList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
 }
 
+
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
@@ -69,7 +70,7 @@ if ($this->saveOrder)
 		<?php echo $this->loadTemplate('toolbar');?>
 		<table class="table table-striped" id="js_styleList">
 			<thead><?php echo $this->loadTemplate('head');?></thead>
-			<tinetglobalt><?php echo $this->loadTemplate('inetglobalt');?></tinetglobalt>
+<!--			<tinetglobalt>--><?php //echo $this->loadTemplate('inetglobalt');?><!--</tinetglobalt>-->
 			<tbody><?php echo $this->loadTemplate('body');?></tbody>
 		</table>
 		<?php //Load the batch processing form. ?>
@@ -79,7 +80,7 @@ if ($this->saveOrder)
                 'collapseModal',
                 array(
                     'title' => JText::_('COM_PRO_CRITICAL_JS_STYLE_LIST_BATCH_OPTIONS'),
-                    'inetglobalter' => $this->loadTemplate('batch_inetglobalter')
+//                    'inetglobalter' => $this->loadTemplate('batch_inetglobalter')
                 ),
                 $this->loadTemplate('batch_body')
             ); ?>

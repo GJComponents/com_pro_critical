@@ -104,9 +104,9 @@
 			disabled="false">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_STYLE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_STYLE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1278] Minify Field. Type: Radio. (joomla) -->
 		<field
@@ -122,9 +122,9 @@
 			onchange="Minify.Fire()">
 			<!-- [Fields 1445] Option Set. -->
 			<option value="1">
-				COM_PRO_CRITICAL_JS_STYLE_YES</option>
+				JYES</option>
 			<option value="0">
-				COM_PRO_CRITICAL_JS_STYLE_NO</option>
+				JNO</option>
 		</field>
 		<!-- [Fields 1596] Params_query Field. Type: Subform. (joomla) -->
 		<field
@@ -179,9 +179,9 @@
 					disabled="false">
 					<!-- [Fields 1445] Option Set. -->
 					<option value="1">
-						COM_PRO_CRITICAL_JS_STYLE_YES</option>
+						JYES</option>
 					<option value="0">
-						COM_PRO_CRITICAL_JS_STYLE_NO</option>
+						JNO</option>
 				</field>
 			</form>
 		</field>

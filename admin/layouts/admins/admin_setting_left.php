@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		admin_setting_left.php
@@ -38,8 +38,7 @@ $fields = $displayData->get($fields_tab_layout) ?: array(
 	'admin_name',
 	'user_as_admin_id',
 	'ip_user_admin',
-	'admin_panel_on',
-	'admin_password'
+	'admin_panel_on'
 );
 
 $hiddenFields = $displayData->get('hidden_fields') ?: array();

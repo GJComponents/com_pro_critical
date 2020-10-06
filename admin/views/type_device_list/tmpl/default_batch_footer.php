@@ -3,11 +3,11 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
-	@subpackage		default_batch_inetglobalter.php
+	@subpackage		default_batch_footer.php
 	@author			Nikolaychuk Oleg <https://nobd.ml>	
 	@copyright		Copyright (C) 2019. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html

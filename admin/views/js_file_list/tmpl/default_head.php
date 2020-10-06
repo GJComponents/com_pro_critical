@@ -51,7 +51,7 @@ defined('_JEXEC') or die('Restricted access');
 			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_JS_FILE_MINIFY_LABEL', 'minify', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_PRO_CRITICAL_JS_FILE_NO_EXTERNAL_LABEL', 'no_external', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'JNO_EXTERNAL_LABEL', 'no_external', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >

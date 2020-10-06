@@ -4,15 +4,15 @@
 	addfieldpath="/administrator/components/com_pro_critical/models/fields"
 >
 	<fieldset name="details">
-		<!-- [Fields 492] Default Fields. -->
-		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
+		<!-- [Fields 621] Default Fields. -->
+		<!-- [Fields 623] Id Field. Type: Text (joomla) -->
 		<field
 			name="id"
 			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
 			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
 			readonly="true"
 		/>
-		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
+		<!-- [Fields 642] Date Created Field. Type: Calendar (joomla) -->
 		<field
 			name="created"
 			type="calendar"
@@ -22,14 +22,14 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
+		<!-- [Fields 665] User Created Field. Type: User (joomla) -->
 		<field
 			name="created_by"
 			type="user"
 			label="COM_PRO_CRITICAL_USER_AGENT_BROWSER_CREATED_BY_LABEL"
 			description="COM_PRO_CRITICAL_USER_AGENT_BROWSER_CREATED_BY_DESC"
 		/>
-		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<!-- [Fields 685] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
 			filter="intval" size="1" default="1" >
@@ -42,11 +42,11 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<!-- [Fields 712] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
 			label="COM_PRO_CRITICAL_USER_AGENT_BROWSER_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_USER_AGENT_BROWSER_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
-		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<!-- [Fields 727] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
 			label="COM_PRO_CRITICAL_USER_AGENT_BROWSER_MODIFIED_BY_LABEL"
 			description="COM_PRO_CRITICAL_USER_AGENT_BROWSER_MODIFIED_BY_DESC"
@@ -54,7 +54,7 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
+		<!-- [Fields 768] Ordering Field. Type: Numbers (joomla) -->
 		<field
 			name="ordering"
 			type="number"
@@ -65,8 +65,8 @@
 			size="6"
 			required="false"
 		/>
-		<!-- [Fields 683] Dynamic Fields. -->
-		<!-- [Fields 1465] Name Field. Type: Text. (joomla) -->
+		<!-- [Fields 854] Dynamic Fields. -->
+		<!-- [Fields 1922] Name Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="name"
@@ -83,7 +83,7 @@
 			hint="COM_PRO_CRITICAL_USER_AGENT_BROWSER_NAME_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1465] Version Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Version Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="version"
@@ -100,7 +100,7 @@
 			hint="COM_PRO_CRITICAL_USER_AGENT_BROWSER_VERSION_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1465] Hache Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Hache Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="hache"
@@ -116,7 +116,7 @@
 			message="COM_PRO_CRITICAL_USER_AGENT_BROWSER_HACHE_MESSAGE"
 			hint="COM_PRO_CRITICAL_USER_AGENT_BROWSER_HACHE_HINT"
 		/>
-		<!-- [Fields 1465] Engine Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Engine Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="engine"
@@ -133,7 +133,7 @@
 			hint="COM_PRO_CRITICAL_USER_AGENT_BROWSER_ENGINE_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1465] Version_major Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Version_major Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="version_major"
@@ -152,15 +152,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 12352] Access Control Fields. -->
+	<!-- [Interpretation 18855] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 18860] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 18868] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

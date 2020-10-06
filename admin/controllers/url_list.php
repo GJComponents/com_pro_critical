@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		url_list.php
@@ -48,32 +48,5 @@ class Pro_criticalControllerUrl_list extends JControllerAdmin
 	public function getModel($name = 'Url', $prefix = 'Pro_criticalModel', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, $config);
-	}
-
-#Custom Buttons PHP List view (controller methods) [url]
-	/**
-	 * Задача Очистить все записи Справочник URL страниц
-	 * 
-	 * @return bool
-	 * @throws Exception
-	 * @since 3.9 
-	 */
-	public function OnBtnCleanTable( )
-	{
-		#  Delete all records
-		$view = 'url';
-		
-		JLoader::registerNamespace( 'Plg\Pro_critical' , JPATH_PLUGINS . '/system/pro_critical/Helpers' , $reset = false , $prepend = false , $type = 'psr4' );
-		# Очистить хранилище файлов AllCSS
-		## \Plg\Pro_critical\Helpers\Assets\CriticalCss\Files::clearCacheFiles();
-		
-		$prefix = 'pro_critical';
-		$app    = \JFactory::getApplication();
-		$db     = JFactory::getDbo();
-		$db->truncateTable( '#__' . $prefix . '_' . $view );
-		$app->enqueueMessage( 'Записи удалены!' );
-		$app->redirect( JRoute::_( 'index.php?' . 'option=com_' . $prefix . '&view=' . $app->input->get( 'view' , false , 'RAW' ) , false ) );
-		
-		return true;
 	}
 }

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -185,19 +185,19 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Task Id Selection
+		// [Interpretation 17054] Set Task Id Selection
 		$this->task_idOptions = $this->getTheTask_idSelections();
-		// [Interpretation 11274] We do some sanitation for Task Id filter
+		// [Interpretation 17059] We do some sanitation for Task Id filter
 		if (Pro_criticalHelper::checkArray($this->task_idOptions) &&
 			isset($this->task_idOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->task_idOptions[0]->value))
 		{
 			unset($this->task_idOptions[0]);
 		}
-		// [Interpretation 11281] Only load Task Id filter if it has values
+		// [Interpretation 17075] Only load Task Id filter if it has values
 		if (Pro_criticalHelper::checkArray($this->task_idOptions))
 		{
-			// [Interpretation 11284] Task Id Filter
+			// [Interpretation 17083] Task Id Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_TASK_ID_LABEL').' -',
 				'filter_task_id',
@@ -206,7 +206,7 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Task Id Batch Selection
+				// [Interpretation 17101] Task Id Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_TASK_ID_LABEL').' -',
 					'batch[task_id]',
@@ -215,19 +215,19 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Short Description Selection
+		// [Interpretation 17054] Set Short Description Selection
 		$this->short_descriptionOptions = $this->getTheShort_descriptionSelections();
-		// [Interpretation 11274] We do some sanitation for Short Description filter
+		// [Interpretation 17059] We do some sanitation for Short Description filter
 		if (Pro_criticalHelper::checkArray($this->short_descriptionOptions) &&
 			isset($this->short_descriptionOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->short_descriptionOptions[0]->value))
 		{
 			unset($this->short_descriptionOptions[0]);
 		}
-		// [Interpretation 11281] Only load Short Description filter if it has values
+		// [Interpretation 17075] Only load Short Description filter if it has values
 		if (Pro_criticalHelper::checkArray($this->short_descriptionOptions))
 		{
-			// [Interpretation 11284] Short Description Filter
+			// [Interpretation 17083] Short Description Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_LABEL').' -',
 				'filter_short_description',
@@ -236,7 +236,7 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Short Description Batch Selection
+				// [Interpretation 17101] Short Description Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_LABEL').' -',
 					'batch[short_description]',
@@ -245,62 +245,92 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11230] Set Id Component Copmonent Name Selection
-		$this->id_componentCopmonent_nameOptions = JFormHelper::loadFieldType('Componentnamecomhtml')->options;
-		// [Interpretation 11232] We do some sanitation for Id Component Copmonent Name filter
-		if (Pro_criticalHelper::checkArray($this->id_componentCopmonent_nameOptions) &&
-			isset($this->id_componentCopmonent_nameOptions[0]->value) &&
-			!Pro_criticalHelper::checkString($this->id_componentCopmonent_nameOptions[0]->value))
+		// [Interpretation 16971] Set Component View Id View Component Selection
+		$this->component_view_idView_componentOptions = JFormHelper::loadFieldType('Componentviewid')->options;
+		// [Interpretation 16977] We do some sanitation for Component View Id View Component filter
+		if (Pro_criticalHelper::checkArray($this->component_view_idView_componentOptions) &&
+			isset($this->component_view_idView_componentOptions[0]->value) &&
+			!Pro_criticalHelper::checkString($this->component_view_idView_componentOptions[0]->value))
 		{
-			unset($this->id_componentCopmonent_nameOptions[0]);
+			unset($this->component_view_idView_componentOptions[0]);
 		}
-		// [Interpretation 11239] Only load Id Component Copmonent Name filter if it has values
-		if (Pro_criticalHelper::checkArray($this->id_componentCopmonent_nameOptions))
+		// [Interpretation 16993] Only load Component View Id View Component filter if it has values
+		if (Pro_criticalHelper::checkArray($this->component_view_idView_componentOptions))
 		{
-			// [Interpretation 11242] Id Component Copmonent Name Filter
+			// [Interpretation 17001] Component View Id View Component Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_LABEL').' -',
-				'filter_id_component',
-				JHtml::_('select.options', $this->id_componentCopmonent_nameOptions, 'value', 'text', $this->state->get('filter.id_component'))
+				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL').' -',
+				'filter_component_view_id',
+				JHtml::_('select.options', $this->component_view_idView_componentOptions, 'value', 'text', $this->state->get('filter.component_view_id'))
 			);
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Id Component Copmonent Name Batch Selection
+				// [Interpretation 17018] Component View Id View Component Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_ID_COMPONENT_LABEL').' -',
-					'batch[id_component]',
-					JHtml::_('select.options', $this->id_componentCopmonent_nameOptions, 'value', 'text')
+					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL').' -',
+					'batch[component_view_id]',
+					JHtml::_('select.options', $this->component_view_idView_componentOptions, 'value', 'text')
 				);
 			}
 		}
 
-		// [Interpretation 11230] Set Component View Id Selection
-		$this->component_view_idOptions = JFormHelper::loadFieldType('Componentviewid')->options;
-		// [Interpretation 11232] We do some sanitation for Component View Id filter
-		if (Pro_criticalHelper::checkArray($this->component_view_idOptions) &&
-			isset($this->component_view_idOptions[0]->value) &&
-			!Pro_criticalHelper::checkString($this->component_view_idOptions[0]->value))
+		// [Interpretation 17054] Set Html Processing Selection
+		$this->html_processingOptions = $this->getTheHtml_processingSelections();
+		// [Interpretation 17059] We do some sanitation for Html Processing filter
+		if (Pro_criticalHelper::checkArray($this->html_processingOptions) &&
+			isset($this->html_processingOptions[0]->value) &&
+			!Pro_criticalHelper::checkString($this->html_processingOptions[0]->value))
 		{
-			unset($this->component_view_idOptions[0]);
+			unset($this->html_processingOptions[0]);
 		}
-		// [Interpretation 11239] Only load Component View Id filter if it has values
-		if (Pro_criticalHelper::checkArray($this->component_view_idOptions))
+		// [Interpretation 17075] Only load Html Processing filter if it has values
+		if (Pro_criticalHelper::checkArray($this->html_processingOptions))
 		{
-			// [Interpretation 11242] Component View Id Filter
+			// [Interpretation 17083] Html Processing Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL').' -',
-				'filter_component_view_id',
-				JHtml::_('select.options', $this->component_view_idOptions, 'value', 'text', $this->state->get('filter.component_view_id'))
+				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL').' -',
+				'filter_html_processing',
+				JHtml::_('select.options', $this->html_processingOptions, 'value', 'text', $this->state->get('filter.html_processing'))
 			);
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Component View Id Batch Selection
+				// [Interpretation 17101] Html Processing Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL').' -',
-					'batch[component_view_id]',
-					JHtml::_('select.options', $this->component_view_idOptions, 'value', 'text')
+					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL').' -',
+					'batch[html_processing]',
+					JHtml::_('select.options', $this->html_processingOptions, 'value', 'text')
+				);
+			}
+		}
+
+		// [Interpretation 16971] Set Type Device Id Type Device Selection
+		$this->type_device_idType_deviceOptions = JFormHelper::loadFieldType('Typedeviceidhtml')->options;
+		// [Interpretation 16977] We do some sanitation for Type Device Id Type Device filter
+		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions) &&
+			isset($this->type_device_idType_deviceOptions[0]->value) &&
+			!Pro_criticalHelper::checkString($this->type_device_idType_deviceOptions[0]->value))
+		{
+			unset($this->type_device_idType_deviceOptions[0]);
+		}
+		// [Interpretation 16993] Only load Type Device Id Type Device filter if it has values
+		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions))
+		{
+			// [Interpretation 17001] Type Device Id Type Device Filter
+			JHtmlSidebar::addFilter(
+				'- Select '.JText::_('COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL').' -',
+				'filter_type_device_id',
+				JHtml::_('select.options', $this->type_device_idType_deviceOptions, 'value', 'text', $this->state->get('filter.type_device_id'))
+			);
+
+			if ($this->canBatch && $this->canCreate && $this->canEdit)
+			{
+				// [Interpretation 17018] Type Device Id Type Device Batch Selection
+				JHtmlBatch_::addListSelection(
+					'- Keep Original '.JText::_('COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL').' -',
+					'batch[type_device_id]',
+					JHtml::_('select.options', $this->type_device_idType_deviceOptions, 'value', 'text')
 				);
 			}
 		}
@@ -351,25 +381,27 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			'a.published' => JText::_('JSTATUS'),
 			'a.task_id' => JText::_('COM_PRO_CRITICAL_HTML_TASK_TASK_ID_LABEL'),
 			'a.short_description' => JText::_('COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_LABEL'),
-			'h.' => JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL'),
+			'g.view_component' => JText::_('COM_PRO_CRITICAL_HTML_TASK_COMPONENT_VIEW_ID_LABEL'),
+			'a.html_processing' => JText::_('COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL'),
+			'h.type_device' => JText::_('COM_PRO_CRITICAL_HTML_TASK_TYPE_DEVICE_ID_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
 
 	protected function getTheTask_idSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('task_id'));
 		$query->from($db->quoteName('#__pro_critical_html_task'));
 		$query->order($db->quoteName('task_id') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -380,7 +412,7 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $task_id)
 			{
-				// [Interpretation 11172] Now add the task_id and its text to the options array
+				// [Interpretation 16888] Now add the task_id and its text to the options array
 				$_filter[] = JHtml::_('select.option', $task_id, $task_id);
 			}
 			return $_filter;
@@ -390,18 +422,18 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 
 	protected function getTheShort_descriptionSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('short_description'));
 		$query->from($db->quoteName('#__pro_critical_html_task'));
 		$query->order($db->quoteName('short_description') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -412,8 +444,44 @@ class Pro_criticalViewHtml_task_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $short_description)
 			{
-				// [Interpretation 11172] Now add the short_description and its text to the options array
+				// [Interpretation 16888] Now add the short_description and its text to the options array
 				$_filter[] = JHtml::_('select.option', $short_description, $short_description);
+			}
+			return $_filter;
+		}
+		return false;
+	}
+
+	protected function getTheHtml_processingSelections()
+	{
+		// [Interpretation 16761] Get a db connection.
+		$db = JFactory::getDbo();
+
+		// [Interpretation 16765] Create a new query object.
+		$query = $db->getQuery(true);
+
+		// [Interpretation 16801] Select the text.
+		$query->select($db->quoteName('html_processing'));
+		$query->from($db->quoteName('#__pro_critical_html_task'));
+		$query->order($db->quoteName('html_processing') . ' ASC');
+
+		// [Interpretation 16812] Reset the query using our newly populated query object.
+		$db->setQuery($query);
+
+		$results = $db->loadColumn();
+
+		if ($results)
+		{
+			// [Interpretation 16826] get model
+			$model = $this->getModel();
+			$results = array_unique($results);
+			$_filter = array();
+			foreach ($results as $html_processing)
+			{
+				// [Interpretation 16847] Translate the html_processing selection
+				$text = $model->selectionTranslation($html_processing,'html_processing');
+				// [Interpretation 16854] Now add the html_processing and its text to the options array
+				$_filter[] = JHtml::_('select.option', $html_processing, JText::_($text));
 			}
 			return $_filter;
 		}

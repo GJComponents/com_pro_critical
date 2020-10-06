@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default_body.php
@@ -92,9 +92,6 @@ $edit = "index.php?option=com_pro_critical&view=css_file_list&task=css_file.edit
 		</td>
 		<td class="hidden-phone">
 			<?php echo JText::_($item->no_external); ?>
-		</td>
-		<td class="hidden-phone">
-			<?php echo JText::_($item->load_if_criticalis_set); ?>
 		</td>
 		<td class="center">
 		<?php if ($canDo->get('core.edit.state')) : ?>

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		edit.php
@@ -39,11 +39,8 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 
 	<?php echo JHtml::_('bootstrap.addTab', 'html_taskTab', 'manager_html_task_seting', JText::_('COM_PRO_CRITICAL_HTML_TASK_MANAGER_HTML_TASK_SETING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
-			<div class="span6">
+			<div class="span12">
 				<?php echo JLayoutHelper::render('html_task.manager_html_task_seting_left', $this); ?>
-			</div>
-			<div class="span6">
-				<?php echo JLayoutHelper::render('html_task.manager_html_task_seting_right', $this); ?>
 			</div>
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
@@ -71,11 +68,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 				                    </tr>
 				                    <tr>
 				                        <td><code>//body//div//li/a[contains(@class, 'XXXXXX')]</code></td>
-				                        <td>Найдет все ссылки в списках с классом XXXXXX</td>
-				                    </tr>
-				                    <tr>
-				                        <td><code>//body//iframe[contains(@src, "https://www.youtube.com/embed") ]</code></td>
-				                        <td>Найдет все видео с youtube</td>
+				                        <td>Найдет в ссылки в списках с классом XXXXXX</td>
 				                    </tr>
 				
 				</table>
@@ -136,11 +129,6 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 
 
 
-///////////////////////////////////////////////////
-/// Add JavaScript (view-inetglobalter)
-/// Javascript (edit view inetglobalter)
-/// Fields -> Тип Html Задачи JS 
-////////////////////////////////////////////////////
 <?php  ### /administrator/components/com_pro_critical/views/html_task/tmpl/edit.php ?>
 function eventOnChangeComponentNameHTML( event  , element ){
     var $ = jQuery ;
@@ -166,7 +154,7 @@ function eventOnChangeComponentNameHTML( event  , element ){
             $viewElement.empty();
             var newOpt  = '<option value="0" selected="selected" >All View</option>' ;
             $.each(data , function (i, obj ) {
-                newOpt  = newOpt + '<option value="'+obj.view_component+'">'+obj.view_component+'</option>';
+                newOpt  = newOpt + '<option value="'+obj.id+'">'+obj.view_component+'</option>';
             });
             $viewElement.append( newOpt ).trigger("liszt:updated");
         }

@@ -29,9 +29,11 @@ use Joomla\Registry\Registry;
 class Pro_criticalModelJs_file extends JModelAdmin
 {
 	/**
+     * Массив полей макета вкладки.
 	 * The tab layout fields array.
 	 *
 	 * @var      array
+     * @since 3.9
 	 */
 	protected $tabLayoutFields = array(
 		'setting_tab' => array(
@@ -88,15 +90,13 @@ class Pro_criticalModelJs_file extends JModelAdmin
 	);
 
 	/**
-	 * @var        string    The prefix to use with controller messages.
+	 * @var        string    Префикс для использования с сообщениями контроллера. / The prefix to use with controller messages.
 	 * @since   1.6
 	 */
 	protected $text_prefix = 'COM_PRO_CRITICAL';
 
 	/**
-	 * The type alias for this content type.
-	 *
-	 * @var      string
+	 * @var      string Псевдоним типа для этого типа контента. / The type alias for this content type.
 	 * @since    3.2
 	 */
 	public $typeAlias = 'com_pro_critical.js_file';
@@ -123,9 +123,10 @@ class Pro_criticalModelJs_file extends JModelAdmin
 #Custom Buttons PHP (model methods) [js_file]
     
 	/**
+     * Метод получения единственной записи.
 	 * Method to get a single record.
 	 *
-	 * @param   integer  $pk  The id of the primary key.
+	 * @param   integer  $pk  Идентификатор первичного ключа. / The id of the primary key.
 	 *
 	 * @return  mixed  Object on success, false on failure.
 	 *
@@ -160,13 +161,13 @@ class Pro_criticalModelJs_file extends JModelAdmin
 			}
 
 # PHP getItem Method Справочник JS файлов
-JLoader::registerNamespace( 'Plg\Pro_critical' , JPATH_PLUGINS . '/system/pro_critical/Helpers' , $reset = false , $prepend = false , $type = 'psr4' );
-$HelpDocs = new Plg\Pro_critical\Helpers\Assets\Helpdocs();
-$helpRes = $HelpDocs->getHelpFile( $item->file );
-if( isset( $helpRes->content ) )
-{
-	$item->help = $helpRes->content ;
-}#END IF
+           /* JLoader::registerNamespace( 'Plg\Pro_critical' , JPATH_PLUGINS . '/system/pro_critical/Helpers' , $reset = false , $prepend = false , $type = 'psr4' );
+            $HelpDocs = new Plg\Pro_critical\Helpers\Assets\Helpdocs();
+            $helpRes = $HelpDocs->getHelpFile( $item->file );
+            if( isset( $helpRes->content ) )
+            {
+                $item->help = $helpRes->content ;
+            }#END IF*/
 # End ####################################
 			
 			if (!empty($item->id))
@@ -179,17 +180,19 @@ if( isset( $helpRes->content ) )
 		return $item;
 	}
 
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param   array    $data      Data for the form.
-	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
-	 * @param   array    $options   Optional array of options for the form creation.
-	 *
-	 * @return  mixed  A JForm object on success, false on failure
-	 *
-	 * @since   1.6
-	 */
+    /**
+     * Способ получения формы записи.
+     * Method to get the record form.
+     *
+     * @param array $data Data for the form.
+     * @param boolean $loadData True if the form is to load its own data (default case), false if not.
+     * @param array $options Optional array of options for the form creation.
+     *
+     * @return  mixed  A JForm object on success, false on failure
+     *
+     * @throws Exception
+     * @since   1.6
+     */
 	public function getForm($data = array(), $loadData = true, $options = array('control' => 'jform'))
 	{
 		// set load data option
@@ -290,9 +293,11 @@ if( isset( $helpRes->content ) )
 	}
 
 	/**
+     * Метод получения скрипта, который необходимо включить в форму
 	 * Method to get the script that have to be included on the form
 	 *
 	 * @return string	script files
+     * @since 3.9
 	 */
 	public function getScript()
 	{

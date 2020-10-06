@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		details_rightside.php
@@ -24,6 +24,10 @@ defined('_JEXEC') or die('Restricted access');
 // get the form
 $form = $displayData->getForm();
 
+
+
+
+
 // get the layout fields override method name (from layout path/ID)
 $layout_path_array = explode('.', $this->getLayoutId());
 // Since we cannot pass the layout and tab names as parameters to the model method
@@ -33,9 +37,13 @@ $layout_path_array = explode('.', $this->getLayoutId());
 // example of method name: getFields_details_left()
 $fields_tab_layout = 'fields_' . $layout_path_array[1];
 
+
+
 // get the fields
 $fields = $displayData->get($fields_tab_layout) ?: array(
-	'hash'
+	'hash' ,
+	'type' ,
+	'media' ,
 );
 
 $hiddenFields = $displayData->get('hidden_fields') ?: array();

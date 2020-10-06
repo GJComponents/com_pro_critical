@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -138,11 +138,6 @@ class Pro_criticalViewCss_list extends JViewLegacy
 				JToolbarHelper::trash('css_list.trash');
 			}
 		}
-		if ($this->user->authorise('css.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('css_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
-		}
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('css_list');
@@ -190,49 +185,49 @@ class Pro_criticalViewCss_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Query String Selection
-		$this->query_stringOptions = $this->getTheQuery_stringSelections();
-		// [Interpretation 11274] We do some sanitation for Query String filter
-		if (Pro_criticalHelper::checkArray($this->query_stringOptions) &&
-			isset($this->query_stringOptions[0]->value) &&
-			!Pro_criticalHelper::checkString($this->query_stringOptions[0]->value))
+		// [Interpretation 16971] Set Pro Critical Url Id Url Page Selection
+		$this->pro_critical_url_idUrl_pageOptions = JFormHelper::loadFieldType('Subjectsprocriticalurlid')->options;
+		// [Interpretation 16977] We do some sanitation for Pro Critical Url Id Url Page filter
+		if (Pro_criticalHelper::checkArray($this->pro_critical_url_idUrl_pageOptions) &&
+			isset($this->pro_critical_url_idUrl_pageOptions[0]->value) &&
+			!Pro_criticalHelper::checkString($this->pro_critical_url_idUrl_pageOptions[0]->value))
 		{
-			unset($this->query_stringOptions[0]);
+			unset($this->pro_critical_url_idUrl_pageOptions[0]);
 		}
-		// [Interpretation 11281] Only load Query String filter if it has values
-		if (Pro_criticalHelper::checkArray($this->query_stringOptions))
+		// [Interpretation 16993] Only load Pro Critical Url Id Url Page filter if it has values
+		if (Pro_criticalHelper::checkArray($this->pro_critical_url_idUrl_pageOptions))
 		{
-			// [Interpretation 11284] Query String Filter
+			// [Interpretation 17001] Pro Critical Url Id Url Page Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_QUERY_STRING_LABEL').' -',
-				'filter_query_string',
-				JHtml::_('select.options', $this->query_stringOptions, 'value', 'text', $this->state->get('filter.query_string'))
+				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_LABEL').' -',
+				'filter_pro_critical_url_id',
+				JHtml::_('select.options', $this->pro_critical_url_idUrl_pageOptions, 'value', 'text', $this->state->get('filter.pro_critical_url_id'))
 			);
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Query String Batch Selection
+				// [Interpretation 17018] Pro Critical Url Id Url Page Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_QUERY_STRING_LABEL').' -',
-					'batch[query_string]',
-					JHtml::_('select.options', $this->query_stringOptions, 'value', 'text')
+					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_PRO_CRITICAL_URL_ID_LABEL').' -',
+					'batch[pro_critical_url_id]',
+					JHtml::_('select.options', $this->pro_critical_url_idUrl_pageOptions, 'value', 'text')
 				);
 			}
 		}
 
-		// [Interpretation 11230] Set Option Copmonent Name Selection
+		// [Interpretation 16971] Set Option Copmonent Name Selection
 		$this->optionCopmonent_nameOptions = JFormHelper::loadFieldType('Criticalcssoption')->options;
-		// [Interpretation 11232] We do some sanitation for Option Copmonent Name filter
+		// [Interpretation 16977] We do some sanitation for Option Copmonent Name filter
 		if (Pro_criticalHelper::checkArray($this->optionCopmonent_nameOptions) &&
 			isset($this->optionCopmonent_nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->optionCopmonent_nameOptions[0]->value))
 		{
 			unset($this->optionCopmonent_nameOptions[0]);
 		}
-		// [Interpretation 11239] Only load Option Copmonent Name filter if it has values
+		// [Interpretation 16993] Only load Option Copmonent Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->optionCopmonent_nameOptions))
 		{
-			// [Interpretation 11242] Option Copmonent Name Filter
+			// [Interpretation 17001] Option Copmonent Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_OPTION_LABEL').' -',
 				'filter_option',
@@ -241,7 +236,7 @@ class Pro_criticalViewCss_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Option Copmonent Name Batch Selection
+				// [Interpretation 17018] Option Copmonent Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_OPTION_LABEL').' -',
 					'batch[option]',
@@ -250,19 +245,19 @@ class Pro_criticalViewCss_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11230] Set View View Component Selection
+		// [Interpretation 16971] Set View View Component Selection
 		$this->viewView_componentOptions = JFormHelper::loadFieldType('Criticalcssview')->options;
-		// [Interpretation 11232] We do some sanitation for View View Component filter
+		// [Interpretation 16977] We do some sanitation for View View Component filter
 		if (Pro_criticalHelper::checkArray($this->viewView_componentOptions) &&
 			isset($this->viewView_componentOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->viewView_componentOptions[0]->value))
 		{
 			unset($this->viewView_componentOptions[0]);
 		}
-		// [Interpretation 11239] Only load View View Component filter if it has values
+		// [Interpretation 16993] Only load View View Component filter if it has values
 		if (Pro_criticalHelper::checkArray($this->viewView_componentOptions))
 		{
-			// [Interpretation 11242] View View Component Filter
+			// [Interpretation 17001] View View Component Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_VIEW_LABEL').' -',
 				'filter_view',
@@ -271,11 +266,41 @@ class Pro_criticalViewCss_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] View View Component Batch Selection
+				// [Interpretation 17018] View View Component Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_VIEW_LABEL').' -',
 					'batch[view]',
 					JHtml::_('select.options', $this->viewView_componentOptions, 'value', 'text')
+				);
+			}
+		}
+
+		// [Interpretation 16971] Set Type Device Id Type Device Selection
+		$this->type_device_idType_deviceOptions = JFormHelper::loadFieldType('Typedeviceid')->options;
+		// [Interpretation 16977] We do some sanitation for Type Device Id Type Device filter
+		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions) &&
+			isset($this->type_device_idType_deviceOptions[0]->value) &&
+			!Pro_criticalHelper::checkString($this->type_device_idType_deviceOptions[0]->value))
+		{
+			unset($this->type_device_idType_deviceOptions[0]);
+		}
+		// [Interpretation 16993] Only load Type Device Id Type Device filter if it has values
+		if (Pro_criticalHelper::checkArray($this->type_device_idType_deviceOptions))
+		{
+			// [Interpretation 17001] Type Device Id Type Device Filter
+			JHtmlSidebar::addFilter(
+				'- Select '.JText::_('COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_LABEL').' -',
+				'filter_type_device_id',
+				JHtml::_('select.options', $this->type_device_idType_deviceOptions, 'value', 'text', $this->state->get('filter.type_device_id'))
+			);
+
+			if ($this->canBatch && $this->canCreate && $this->canEdit)
+			{
+				// [Interpretation 17018] Type Device Id Type Device Batch Selection
+				JHtmlBatch_::addListSelection(
+					'- Keep Original '.JText::_('COM_PRO_CRITICAL_CSS_TYPE_DEVICE_ID_LABEL').' -',
+					'batch[type_device_id]',
+					JHtml::_('select.options', $this->type_device_idType_deviceOptions, 'value', 'text')
 				);
 			}
 		}
@@ -324,40 +349,7 @@ class Pro_criticalViewCss_list extends JViewLegacy
 		return array(
 			'a.sorting' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.published' => JText::_('JSTATUS'),
-			'a.query_string' => JText::_('COM_PRO_CRITICAL_CSS_QUERY_STRING_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
-	}
-
-	protected function getTheQuery_stringSelections()
-	{
-		// [Interpretation 11103] Get a db connection.
-		$db = JFactory::getDbo();
-
-		// [Interpretation 11105] Create a new query object.
-		$query = $db->getQuery(true);
-
-		// [Interpretation 11124] Select the text.
-		$query->select($db->quoteName('query_string'));
-		$query->from($db->quoteName('#__pro_critical_css'));
-		$query->order($db->quoteName('query_string') . ' ASC');
-
-		// [Interpretation 11128] Reset the query using our newly populated query object.
-		$db->setQuery($query);
-
-		$results = $db->loadColumn();
-
-		if ($results)
-		{
-			$results = array_unique($results);
-			$_filter = array();
-			foreach ($results as $query_string)
-			{
-				// [Interpretation 11172] Now add the query_string and its text to the options array
-				$_filter[] = JHtml::_('select.option', $query_string, $query_string);
-			}
-			return $_filter;
-		}
-		return false;
 	}
 }

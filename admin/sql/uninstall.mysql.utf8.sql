@@ -1,5 +1,5 @@
+DROP TABLE IF EXISTS `#__pro_critical_url`;
 DROP TABLE IF EXISTS `#__pro_critical_css`;
-DROP TABLE IF EXISTS `#__pro_critical_cache`;
 DROP TABLE IF EXISTS `#__pro_critical_user_agent`;
 DROP TABLE IF EXISTS `#__pro_critical_user_agent_os`;
 DROP TABLE IF EXISTS `#__pro_critical_user_agent_browser`;
@@ -12,8 +12,4 @@ DROP TABLE IF EXISTS `#__pro_critical_directory_components`;
 DROP TABLE IF EXISTS `#__pro_critical_directory_views`;
 DROP TABLE IF EXISTS `#__pro_critical_css_file`;
 DROP TABLE IF EXISTS `#__pro_critical_css_style`;
-DROP TABLE IF EXISTS `#__pro_critical_js_file`;
-DROP TABLE IF EXISTS `#__pro_critical_js_style`;
-DROP TABLE IF EXISTS `#__pro_critical_url`;
-DROP TABLE IF EXISTS `#__pro_critical_help_document_data`;
 DELETE FROM `#__pro_critical_html_setting_type_device_map`;

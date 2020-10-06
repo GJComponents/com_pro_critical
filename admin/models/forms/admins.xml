@@ -4,15 +4,15 @@
 	addfieldpath="/administrator/components/com_pro_critical/models/fields"
 >
 	<fieldset name="details">
-		<!-- [Fields 492] Default Fields. -->
-		<!-- [Fields 493] Id Field. Type: Text (joomla) -->
+		<!-- [Fields 621] Default Fields. -->
+		<!-- [Fields 623] Id Field. Type: Text (joomla) -->
 		<field
 			name="id"
 			type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
 			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0"
 			readonly="true"
 		/>
-		<!-- [Fields 509] Date Created Field. Type: Calendar (joomla) -->
+		<!-- [Fields 642] Date Created Field. Type: Calendar (joomla) -->
 		<field
 			name="created"
 			type="calendar"
@@ -22,14 +22,14 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-		<!-- [Fields 529] User Created Field. Type: User (joomla) -->
+		<!-- [Fields 665] User Created Field. Type: User (joomla) -->
 		<field
 			name="created_by"
 			type="user"
 			label="COM_PRO_CRITICAL_ADMINS_CREATED_BY_LABEL"
 			description="COM_PRO_CRITICAL_ADMINS_CREATED_BY_DESC"
 		/>
-		<!-- [Fields 546] Published Field. Type: List (joomla) -->
+		<!-- [Fields 685] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="chzn-color-state"
 			filter="intval" size="1" default="1" >
@@ -42,11 +42,11 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-		<!-- [Fields 569] Date Modified Field. Type: Calendar (joomla) -->
+		<!-- [Fields 712] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
 			label="COM_PRO_CRITICAL_ADMINS_MODIFIED_DATE_LABEL" description="COM_PRO_CRITICAL_ADMINS_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
-		<!-- [Fields 579] User Modified Field. Type: User (joomla) -->
+		<!-- [Fields 727] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
 			label="COM_PRO_CRITICAL_ADMINS_MODIFIED_BY_LABEL"
 			description="COM_PRO_CRITICAL_ADMINS_MODIFIED_BY_DESC"
@@ -54,7 +54,7 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 611] Ordering Field. Type: Numbers (joomla) -->
+		<!-- [Fields 768] Ordering Field. Type: Numbers (joomla) -->
 		<field
 			name="ordering"
 			type="number"
@@ -65,7 +65,7 @@
 			size="6"
 			required="false"
 		/>
-		<!-- [Fields 632] Version Field. Type: Text (joomla) -->
+		<!-- [Fields 791] Version Field. Type: Text (joomla) -->
 		<field
 			name="version"
 			type="text"
@@ -76,8 +76,8 @@
 			readonly="true"
 			filter="unset"
 		/>
-		<!-- [Fields 683] Dynamic Fields. -->
-		<!-- [Fields 1465] Admin_name Field. Type: Text. (joomla) -->
+		<!-- [Fields 854] Dynamic Fields. -->
+		<!-- [Fields 1922] Admin_name Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="admin_name"
@@ -93,22 +93,7 @@
 			message="COM_PRO_CRITICAL_ADMINS_ADMIN_NAME_MESSAGE"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1465] Admin_password Field. Type: Text. (joomla) -->
-		<field
-			type="text"
-			name="admin_password"
-			label="COM_PRO_CRITICAL_ADMINS_ADMIN_PASSWORD_LABEL"
-			maxlength="64"
-			default=""
-			class="text_area"
-			readonly="false"
-			disabled="false"
-			required="false"
-			filter="STRING"
-			autocomplete="on"
-			showon="admin_panel_on:1"
-		/>
-		<!-- [Fields 1278] Admin_panel_on Field. Type: Radio. (joomla) -->
+		<!-- [Fields 1635] Admin_panel_on Field. Type: Radio. (joomla) -->
 		<field
 			type="radio"
 			name="admin_panel_on"
@@ -118,13 +103,13 @@
 			default="0"
 			readonly="false"
 			disabled="false">
-			<!-- [Fields 1445] Option Set. -->
+			<!-- [Fields 1898] Option Set. -->
 			<option value="1">
 				COM_PRO_CRITICAL_ADMINS_ON</option>
 			<option value="0">
 				COM_PRO_CRITICAL_ADMINS_OFF</option>
 		</field>
-		<!-- [Fields 1465] Ip_user_admin Field. Type: Text. (joomla) -->
+		<!-- [Fields 1922] Ip_user_admin Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="ip_user_admin"
@@ -137,9 +122,10 @@
 			disabled="false"
 			required="false"
 			filter="STRING"
+			message="COM_PRO_CRITICAL_ADMINS_IP_USER_ADMIN_MESSAGE"
 			autocomplete="off"
 		/>
-		<!-- [Fields 1465] User_as_admin_id Field. Type: User. (joomla) -->
+		<!-- [Fields 1922] User_as_admin_id Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="user_as_admin_id"
@@ -148,15 +134,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 12352] Access Control Fields. -->
+	<!-- [Interpretation 18855] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 12354] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 18860] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 12360] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 18868] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

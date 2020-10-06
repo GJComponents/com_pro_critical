@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		default_body.php
@@ -85,13 +85,13 @@ $edit = "index.php?option=com_pro_critical&view=html_task_list&task=html_task.ed
 			<?php echo $this->escape($item->short_description); ?>
 		</td>
 		<td class="hidden-phone">
-			<?php echo JText::_($item->type_html_task); ?>
+			<?php echo $this->escape($item->component_view_id_view_component); ?>
 		</td>
 		<td class="hidden-phone">
-			<?php echo $this->escape($item->id_component_copmonent_name); ?>
+			<?php echo JText::_($item->html_processing); ?>
 		</td>
 		<td class="hidden-phone">
-			<?php echo $this->escape($item->component_view_id); ?>
+			<?php echo $this->escape($item->type_device_id_type_device); ?>
 		</td>
 		<td class="center">
 		<?php if ($canDo->get('core.edit.state')) : ?>

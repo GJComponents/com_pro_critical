@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -185,19 +185,19 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Orientation Selection
+		// [Interpretation 17054] Set Orientation Selection
 		$this->orientationOptions = $this->getTheOrientationSelections();
-		// [Interpretation 11274] We do some sanitation for Orientation filter
+		// [Interpretation 17059] We do some sanitation for Orientation filter
 		if (Pro_criticalHelper::checkArray($this->orientationOptions) &&
 			isset($this->orientationOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->orientationOptions[0]->value))
 		{
 			unset($this->orientationOptions[0]);
 		}
-		// [Interpretation 11281] Only load Orientation filter if it has values
+		// [Interpretation 17075] Only load Orientation filter if it has values
 		if (Pro_criticalHelper::checkArray($this->orientationOptions))
 		{
-			// [Interpretation 11284] Orientation Filter
+			// [Interpretation 17083] Orientation Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_ORIENTATION_LABEL').' -',
 				'filter_orientation',
@@ -206,7 +206,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Orientation Batch Selection
+				// [Interpretation 17101] Orientation Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_ORIENTATION_LABEL').' -',
 					'batch[orientation]',
@@ -215,19 +215,19 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Width Selection
+		// [Interpretation 17054] Set Width Selection
 		$this->widthOptions = $this->getTheWidthSelections();
-		// [Interpretation 11274] We do some sanitation for Width filter
+		// [Interpretation 17059] We do some sanitation for Width filter
 		if (Pro_criticalHelper::checkArray($this->widthOptions) &&
 			isset($this->widthOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->widthOptions[0]->value))
 		{
 			unset($this->widthOptions[0]);
 		}
-		// [Interpretation 11281] Only load Width filter if it has values
+		// [Interpretation 17075] Only load Width filter if it has values
 		if (Pro_criticalHelper::checkArray($this->widthOptions))
 		{
-			// [Interpretation 11284] Width Filter
+			// [Interpretation 17083] Width Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_WIDTH_LABEL').' -',
 				'filter_width',
@@ -236,7 +236,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Width Batch Selection
+				// [Interpretation 17101] Width Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_WIDTH_LABEL').' -',
 					'batch[width]',
@@ -245,19 +245,19 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Height Selection
+		// [Interpretation 17054] Set Height Selection
 		$this->heightOptions = $this->getTheHeightSelections();
-		// [Interpretation 11274] We do some sanitation for Height filter
+		// [Interpretation 17059] We do some sanitation for Height filter
 		if (Pro_criticalHelper::checkArray($this->heightOptions) &&
 			isset($this->heightOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->heightOptions[0]->value))
 		{
 			unset($this->heightOptions[0]);
 		}
-		// [Interpretation 11281] Only load Height filter if it has values
+		// [Interpretation 17075] Only load Height filter if it has values
 		if (Pro_criticalHelper::checkArray($this->heightOptions))
 		{
-			// [Interpretation 11284] Height Filter
+			// [Interpretation 17083] Height Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_HEIGHT_LABEL').' -',
 				'filter_height',
@@ -266,7 +266,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Height Batch Selection
+				// [Interpretation 17101] Height Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DEVICE_CLIENT_HEIGHT_LABEL').' -',
 					'batch[height]',
@@ -328,18 +328,18 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 	protected function getTheOrientationSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('orientation'));
 		$query->from($db->quoteName('#__pro_critical_device_client'));
 		$query->order($db->quoteName('orientation') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -350,7 +350,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $orientation)
 			{
-				// [Interpretation 11172] Now add the orientation and its text to the options array
+				// [Interpretation 16888] Now add the orientation and its text to the options array
 				$_filter[] = JHtml::_('select.option', $orientation, $orientation);
 			}
 			return $_filter;
@@ -360,18 +360,18 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 	protected function getTheWidthSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('width'));
 		$query->from($db->quoteName('#__pro_critical_device_client'));
 		$query->order($db->quoteName('width') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -382,7 +382,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $width)
 			{
-				// [Interpretation 11172] Now add the width and its text to the options array
+				// [Interpretation 16888] Now add the width and its text to the options array
 				$_filter[] = JHtml::_('select.option', $width, $width);
 			}
 			return $_filter;
@@ -392,18 +392,18 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 
 	protected function getTheHeightSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('height'));
 		$query->from($db->quoteName('#__pro_critical_device_client'));
 		$query->order($db->quoteName('height') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -414,7 +414,7 @@ class Pro_criticalViewDevice_client_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $height)
 			{
-				// [Interpretation 11172] Now add the height and its text to the options array
+				// [Interpretation 16888] Now add the height and its text to the options array
 				$_filter[] = JHtml::_('select.option', $height, $height);
 			}
 			return $_filter;

@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		device_client.php
@@ -59,10 +59,10 @@ class Pro_criticalControllerDevice_client extends JControllerForm
 	 */
 	protected function allowAdd($data = array())
 	{
-		// [Interpretation 11483] Get user object.
+		// [Interpretation 17381] Get user object.
 		$user = JFactory::getUser();
 
-		// [Interpretation 11507] In the absense of better information, revert to the component permissions.
+		// [Interpretation 17426] In the absense of better information, revert to the component permissions.
 		return parent::allowAdd($data);
 	}
 
@@ -78,25 +78,25 @@ class Pro_criticalControllerDevice_client extends JControllerForm
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
-		// [Interpretation 11638] get user object.
+		// [Interpretation 17635] get user object.
 		$user = JFactory::getUser();
-		// [Interpretation 11640] get record id.
+		// [Interpretation 17638] get record id.
 		$recordId = (int) isset($data[$key]) ? $data[$key] : 0;
 
 
 		if ($recordId)
 		{
-			// [Interpretation 11656] The record has been set. Check the record permissions.
+			// [Interpretation 17670] The record has been set. Check the record permissions.
 			$permission = $user->authorise('core.edit', 'com_pro_critical.device_client.' . (int) $recordId);
 			if (!$permission)
 			{
 				if ($user->authorise('core.edit.own', 'com_pro_critical.device_client.' . $recordId))
 				{
-					// [Interpretation 11678] Now test the owner is the user.
+					// [Interpretation 17718] Now test the owner is the user.
 					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
 					if (empty($ownerId))
 					{
-						// [Interpretation 11682] Need to do a lookup from the model.
+						// [Interpretation 17724] Need to do a lookup from the model.
 						$record = $this->getModel()->getItem($recordId);
 
 						if (empty($record))
@@ -106,7 +106,7 @@ class Pro_criticalControllerDevice_client extends JControllerForm
 						$ownerId = $record->created_by;
 					}
 
-					// [Interpretation 11690] If the owner matches 'me' then allow.
+					// [Interpretation 17734] If the owner matches 'me' then allow.
 					if ($ownerId == $user->id)
 					{
 						if ($user->authorise('core.edit.own', 'com_pro_critical'))
@@ -118,7 +118,7 @@ class Pro_criticalControllerDevice_client extends JControllerForm
 				return false;
 			}
 		}
-		// [Interpretation 11717] Since there is no permission, revert to the component permissions.
+		// [Interpretation 17783] Since there is no permission, revert to the component permissions.
 		return parent::allowEdit($data, $key);
 	}
 

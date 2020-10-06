@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		css_style.php
@@ -28,11 +28,12 @@ use Joomla\Registry\Registry;
  */
 class Pro_criticalModelCss_style extends JModelAdmin
 {
-	/**
-	 * The tab layout fields array.
-	 *
-	 * @var      array
-	 */
+    /**
+     * Массив полей макета вкладки.
+     * The tab layout fields array.
+     * @var string[][][]
+     * @since 3.9
+     */
 	protected $tabLayoutFields = array(
 		'details' => array(
 			'left' => array(
@@ -44,7 +45,8 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				'content_min'
 			),
 			'rightside' => array(
-				'hash'
+				'hash',
+				'type',
 			)
 		)
 	);
@@ -81,10 +83,9 @@ class Pro_criticalModelCss_style extends JModelAdmin
 		// get instance of the table
 		return JTable::getInstance($type, $prefix, $config);
 	}
-
-#Custom Buttons PHP (model methods) [css_style]
     
 	/**
+     * Метод получения единственной записи.
 	 * Method to get a single record.
 	 *
 	 * @param   integer  $pk  The id of the primary key.
@@ -123,29 +124,31 @@ class Pro_criticalModelCss_style extends JModelAdmin
 		return $item;
 	}
 
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param   array    $data      Data for the form.
-	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
-	 * @param   array    $options   Optional array of options for the form creation.
-	 *
-	 * @return  mixed  A JForm object on success, false on failure
-	 *
-	 * @since   1.6
-	 */
+    /**
+     * Способ получения формы записи.
+     * Method to get the record form.
+     *
+     * @param array $data Data for the form.
+     * @param boolean $loadData True if the form is to load its own data (default case), false if not.
+     * @param array $options Optional array of options for the form creation.
+     *
+     * @return  mixed  A JForm object on success, false on failure
+     *
+     * @throws Exception
+     * @since   1.6
+     */
 	public function getForm($data = array(), $loadData = true, $options = array('control' => 'jform'))
 	{
 		// set load data option
 		$options['load_data'] = $loadData;
-		// [Interpretation 11731] // check if xpath was set in options
+		// [Interpretation 17799] check if xpath was set in options
 		$xpath = false;
 		if (isset($options['xpath']))
 		{
 			$xpath = $options['xpath'];
 			unset($options['xpath']);
 		}
-		// [Interpretation 11738] // check if clear form was set in options
+		// [Interpretation 17807] check if clear form was set in options
 		$clear = false;
 		if (isset($options['clear']))
 		{
@@ -153,8 +156,11 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			unset($options['clear']);
 		}
 
-		// [Interpretation 11745] Get the form.
+		// [Interpretation 17815] Get the form.
 		$form = $this->loadForm('com_pro_critical.css_style', 'css_style', $options, $clear, $xpath);
+
+
+
 
 		if (empty($form))
 		{
@@ -163,12 +169,12 @@ class Pro_criticalModelCss_style extends JModelAdmin
 
 		$jinput = JFactory::getApplication()->input;
 
-		// [Interpretation 11836] The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
+		// [Interpretation 17978] The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
 		if ($jinput->get('a_id'))
 		{
 			$id = $jinput->get('a_id', 0, 'INT');
 		}
-		// [Interpretation 11841] The back end uses id so we use that the rest of the time and set it to 0 by default.
+		// [Interpretation 17986] The back end uses id so we use that the rest of the time and set it to 0 by default.
 		else
 		{
 			$id = $jinput->get('id', 0, 'INT');
@@ -176,56 +182,56 @@ class Pro_criticalModelCss_style extends JModelAdmin
 
 		$user = JFactory::getUser();
 
-		// [Interpretation 11847] Check for existing item.
-		// [Interpretation 11848] Modify the form based on Edit State access controls.
+		// [Interpretation 17995] Check for existing item.
+		// [Interpretation 17997] Modify the form based on Edit State access controls.
 		if ($id != 0 && (!$user->authorise('core.edit.state', 'com_pro_critical.css_style.' . (int) $id))
 			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_pro_critical')))
 		{
-			// [Interpretation 11861] Disable fields for display.
+			// [Interpretation 18029] Disable fields for display.
 			$form->setFieldAttribute('ordering', 'disabled', 'true');
 			$form->setFieldAttribute('published', 'disabled', 'true');
-			// [Interpretation 11864] Disable fields while saving.
+			// [Interpretation 18035] Disable fields while saving.
 			$form->setFieldAttribute('ordering', 'filter', 'unset');
 			$form->setFieldAttribute('published', 'filter', 'unset');
 		}
-		// [Interpretation 11869] If this is a new item insure the greated by is set.
+		// [Interpretation 18043] If this is a new item insure the greated by is set.
 		if (0 == $id)
 		{
-			// [Interpretation 11872] Set the created_by to this user
+			// [Interpretation 18047] Set the created_by to this user
 			$form->setValue('created_by', null, $user->id);
 		}
-		// [Interpretation 11875] Modify the form based on Edit Creaded By access controls.
+		// [Interpretation 18052] Modify the form based on Edit Creaded By access controls.
 		if (!$user->authorise('core.edit.created_by', 'com_pro_critical'))
 		{
-			// [Interpretation 11887] Disable fields for display.
+			// [Interpretation 18079] Disable fields for display.
 			$form->setFieldAttribute('created_by', 'disabled', 'true');
-			// [Interpretation 11889] Disable fields for display.
+			// [Interpretation 18083] Disable fields for display.
 			$form->setFieldAttribute('created_by', 'readonly', 'true');
-			// [Interpretation 11891] Disable fields while saving.
+			// [Interpretation 18087] Disable fields while saving.
 			$form->setFieldAttribute('created_by', 'filter', 'unset');
 		}
-		// [Interpretation 11894] Modify the form based on Edit Creaded Date access controls.
+		// [Interpretation 18092] Modify the form based on Edit Creaded Date access controls.
 		if (!$user->authorise('core.edit.created', 'com_pro_critical'))
 		{
-			// [Interpretation 11906] Disable fields for display.
+			// [Interpretation 18118] Disable fields for display.
 			$form->setFieldAttribute('created', 'disabled', 'true');
-			// [Interpretation 11908] Disable fields while saving.
+			// [Interpretation 18122] Disable fields while saving.
 			$form->setFieldAttribute('created', 'filter', 'unset');
 		}
-		// [Interpretation 11951] Only load these values if no id is found
+		// [Interpretation 18200] Only load these values if no id is found
 		if (0 == $id)
 		{
-			// [Interpretation 11954] Set redirected view name
+			// [Interpretation 18204] Set redirected view name
 			$redirectedView = $jinput->get('ref', null, 'STRING');
-			// [Interpretation 11956] Set field name (or fall back to view name)
+			// [Interpretation 18208] Set field name (or fall back to view name)
 			$redirectedField = $jinput->get('field', $redirectedView, 'STRING');
-			// [Interpretation 11958] Set redirected view id
+			// [Interpretation 18212] Set redirected view id
 			$redirectedId = $jinput->get('refid', 0, 'INT');
-			// [Interpretation 11960] Set field id (or fall back to redirected view id)
+			// [Interpretation 18216] Set field id (or fall back to redirected view id)
 			$redirectedValue = $jinput->get('field_id', $redirectedId, 'INT');
 			if (0 != $redirectedValue && $redirectedField)
 			{
-				// [Interpretation 11964] Now set the local-redirected field default value
+				// [Interpretation 18223] Now set the local-redirected field default value
 				$form->setValue($redirectedField, null, $redirectedValue);
 			}
 		}
@@ -261,7 +267,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			}
 
 			$user = JFactory::getUser();
-			// [Interpretation 12170] The record has been set. Check the record permissions.
+			// [Interpretation 18550] The record has been set. Check the record permissions.
 			return $user->authorise('core.delete', 'com_pro_critical.css_style.' . (int) $record->id);
 		}
 		return false;
@@ -283,14 +289,14 @@ class Pro_criticalModelCss_style extends JModelAdmin
 
 		if ($recordId)
 		{
-			// [Interpretation 12252] The record has been set. Check the record permissions.
+			// [Interpretation 18674] The record has been set. Check the record permissions.
 			$permission = $user->authorise('core.edit.state', 'com_pro_critical.css_style.' . (int) $recordId);
 			if (!$permission && !is_null($permission))
 			{
 				return false;
 			}
 		}
-		// [Interpretation 12274] In the absense of better information, revert to the component permissions.
+		// [Interpretation 18722] In the absense of better information, revert to the component permissions.
 		return parent::canEditState($record);
 	}
     
@@ -305,7 +311,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
-		// [Interpretation 12083] Check specific edit permission then general edit permission.
+		// [Interpretation 18425] Check specific edit permission then general edit permission.
 
 		return JFactory::getUser()->authorise('core.edit', 'com_pro_critical.css_style.'. ((int) isset($data[$key]) ? $data[$key] : 0)) or parent::allowEdit($data, $key);
 	}
@@ -552,7 +558,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 	{
 		if (empty($this->batchSet))
 		{
-			// [Interpretation 5891] Set some needed variables.
+			// [Interpretation 9035] Set some needed variables.
 			$this->user 		= JFactory::getUser();
 			$this->table 		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
@@ -564,12 +570,12 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			return false;
 		}
 
-		// [Interpretation 5909] get list of uniqe fields
+		// [Interpretation 9069] get list of uniqe fields
 		$uniqeFields = $this->getUniqeFields();
-		// [Interpretation 5911] remove move_copy from array
+		// [Interpretation 9073] remove move_copy from array
 		unset($values['move_copy']);
 
-		// [Interpretation 5914] make sure published is set
+		// [Interpretation 9077] make sure published is set
 		if (!isset($values['published']))
 		{
 			$values['published'] = 0;
@@ -580,40 +586,40 @@ class Pro_criticalModelCss_style extends JModelAdmin
 		}
 
 		$newIds = array();
-		// [Interpretation 5951] Parent exists so let's proceed
+		// [Interpretation 9131] Parent exists so let's proceed
 		while (!empty($pks))
 		{
-			// [Interpretation 5954] Pop the first ID off the stack
+			// [Interpretation 9135] Pop the first ID off the stack
 			$pk = array_shift($pks);
 
 			$this->table->reset();
 
-			// [Interpretation 5959] only allow copy if user may edit this item.
+			// [Interpretation 9141] only allow copy if user may edit this item.
 			if (!$this->user->authorise('core.edit', $contexts[$pk]))
 			{
-				// [Interpretation 5969] Not fatal error
+				// [Interpretation 9161] Not fatal error
 				$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 				continue;
 			}
 
-			// [Interpretation 5974] Check that the row actually exists
+			// [Interpretation 9168] Check that the row actually exists
 			if (!$this->table->load($pk))
 			{
 				if ($error = $this->table->getError())
 				{
-					// [Interpretation 5979] Fatal error
+					// [Interpretation 9175] Fatal error
 					$this->setError($error);
 					return false;
 				}
 				else
 				{
-					// [Interpretation 5986] Not fatal error
+					// [Interpretation 9183] Not fatal error
 					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 					continue;
 				}
 			}
 
-			// [Interpretation 6030] insert all set values
+			// [Interpretation 9268] insert all set values
 			if (Pro_criticalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
@@ -625,7 +631,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				}
 			}
 
-			// [Interpretation 6042] update all uniqe fields
+			// [Interpretation 9283] update all uniqe fields
 			if (Pro_criticalHelper::checkArray($uniqeFields))
 			{
 				foreach ($uniqeFields as $uniqeField)
@@ -634,13 +640,13 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				}
 			}
 
-			// [Interpretation 6051] Reset the ID because we are making a copy
+			// [Interpretation 9295] Reset the ID because we are making a copy
 			$this->table->id = 0;
 
-			// [Interpretation 6054] TODO: Deal with ordering?
-			// [Interpretation 6055] $this->table->ordering = 1;
+			// [Interpretation 9299] TODO: Deal with ordering?
+			// [Interpretation 9301] $this->table->ordering = 1;
 
-			// [Interpretation 6057] Check the row.
+			// [Interpretation 9304] Check the row.
 			if (!$this->table->check())
 			{
 				$this->setError($this->table->getError());
@@ -653,7 +659,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				$this->createTagsHelper($this->tagsObserver, $this->type, $pk, $this->typeAlias, $this->table);
 			}
 
-			// [Interpretation 6070] Store the row.
+			// [Interpretation 9320] Store the row.
 			if (!$this->table->store())
 			{
 				$this->setError($this->table->getError());
@@ -661,14 +667,14 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				return false;
 			}
 
-			// [Interpretation 6078] Get the new item ID
+			// [Interpretation 9330] Get the new item ID
 			$newId = $this->table->get('id');
 
-			// [Interpretation 6081] Add the new ID to the array
+			// [Interpretation 9334] Add the new ID to the array
 			$newIds[$pk] = $newId;
 		}
 
-		// [Interpretation 6085] Clean the cache
+		// [Interpretation 9339] Clean the cache
 		$this->cleanCache();
 
 		return $newIds;
@@ -689,7 +695,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 	{
 		if (empty($this->batchSet))
 		{
-			// [Interpretation 5684] Set some needed variables.
+			// [Interpretation 8757] Set some needed variables.
 			$this->user		= JFactory::getUser();
 			$this->table		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
@@ -702,15 +708,15 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			return false;
 		}
 
-		// [Interpretation 5704] make sure published only updates if user has the permission.
+		// [Interpretation 8794] make sure published only updates if user has the permission.
 		if (isset($values['published']) && !$this->canDo->get('core.edit.state'))
 		{
 			unset($values['published']);
 		}
-		// [Interpretation 5717] remove move_copy from array
+		// [Interpretation 8819] remove move_copy from array
 		unset($values['move_copy']);
 
-		// [Interpretation 5738] Parent exists so we proceed
+		// [Interpretation 8846] Parent exists so we proceed
 		foreach ($pks as $pk)
 		{
 			if (!$this->user->authorise('core.edit', $contexts[$pk]))
@@ -719,29 +725,29 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				return false;
 			}
 
-			// [Interpretation 5755] Check that the row actually exists
+			// [Interpretation 8874] Check that the row actually exists
 			if (!$this->table->load($pk))
 			{
 				if ($error = $this->table->getError())
 				{
-					// [Interpretation 5760] Fatal error
+					// [Interpretation 8881] Fatal error
 					$this->setError($error);
 					return false;
 				}
 				else
 				{
-					// [Interpretation 5767] Not fatal error
+					// [Interpretation 8889] Not fatal error
 					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 					continue;
 				}
 			}
 
-			// [Interpretation 5773] insert all set values.
+			// [Interpretation 8897] insert all set values.
 			if (Pro_criticalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
 				{
-					// [Interpretation 5778] Do special action for access.
+					// [Interpretation 8904] Do special action for access.
 					if ('access' === $key && strlen($value) > 0)
 					{
 						$this->table->$key = $value;
@@ -754,7 +760,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			}
 
 
-			// [Interpretation 5790] Check the row.
+			// [Interpretation 8919] Check the row.
 			if (!$this->table->check())
 			{
 				$this->setError($this->table->getError());
@@ -767,7 +773,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 				$this->createTagsHelper($this->tagsObserver, $this->type, $pk, $this->typeAlias, $this->table);
 			}
 
-			// [Interpretation 5803] Store the row.
+			// [Interpretation 8935] Store the row.
 			if (!$this->table->store())
 			{
 				$this->setError($this->table->getError());
@@ -776,7 +782,7 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			}
 		}
 
-		// [Interpretation 5812] Clean the cache
+		// [Interpretation 8946] Clean the cache
 		$this->cleanCache();
 
 		return true;
@@ -814,10 +820,10 @@ class Pro_criticalModelCss_style extends JModelAdmin
 			$data['params'] = (string) $params;
 		}
 
-		// [Interpretation 6220] Alter the uniqe field for save as copy
+		// [Interpretation 9532] Alter the uniqe field for save as copy
 		if ($input->get('task') === 'save2copy')
 		{
-			// [Interpretation 6223] Automatic handling of other uniqe fields
+			// [Interpretation 9537] Automatic handling of other uniqe fields
 			$uniqeFields = $this->getUniqeFields();
 			if (Pro_criticalHelper::checkArray($uniqeFields))
 			{

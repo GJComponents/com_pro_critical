@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -185,19 +185,19 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set Name Selection
+		// [Interpretation 17054] Set Name Selection
 		$this->nameOptions = $this->getTheNameSelections();
-		// [Interpretation 11274] We do some sanitation for Name filter
+		// [Interpretation 17059] We do some sanitation for Name filter
 		if (Pro_criticalHelper::checkArray($this->nameOptions) &&
 			isset($this->nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->nameOptions[0]->value))
 		{
 			unset($this->nameOptions[0]);
 		}
-		// [Interpretation 11281] Only load Name filter if it has values
+		// [Interpretation 17075] Only load Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->nameOptions))
 		{
-			// [Interpretation 11284] Name Filter
+			// [Interpretation 17083] Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BROWSER_NAME_LABEL').' -',
 				'filter_name',
@@ -206,7 +206,7 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Name Batch Selection
+				// [Interpretation 17101] Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BROWSER_NAME_LABEL').' -',
 					'batch[name]',
@@ -215,19 +215,19 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Version Selection
+		// [Interpretation 17054] Set Version Selection
 		$this->versionOptions = $this->getTheVersionSelections();
-		// [Interpretation 11274] We do some sanitation for Version filter
+		// [Interpretation 17059] We do some sanitation for Version filter
 		if (Pro_criticalHelper::checkArray($this->versionOptions) &&
 			isset($this->versionOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->versionOptions[0]->value))
 		{
 			unset($this->versionOptions[0]);
 		}
-		// [Interpretation 11281] Only load Version filter if it has values
+		// [Interpretation 17075] Only load Version filter if it has values
 		if (Pro_criticalHelper::checkArray($this->versionOptions))
 		{
-			// [Interpretation 11284] Version Filter
+			// [Interpretation 17083] Version Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BROWSER_VERSION_LABEL').' -',
 				'filter_version',
@@ -236,7 +236,7 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Version Batch Selection
+				// [Interpretation 17101] Version Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_USER_AGENT_BROWSER_VERSION_LABEL').' -',
 					'batch[version]',
@@ -297,18 +297,18 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 
 	protected function getTheNameSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('name'));
 		$query->from($db->quoteName('#__pro_critical_user_agent_browser'));
 		$query->order($db->quoteName('name') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -319,7 +319,7 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $name)
 			{
-				// [Interpretation 11172] Now add the name and its text to the options array
+				// [Interpretation 16888] Now add the name and its text to the options array
 				$_filter[] = JHtml::_('select.option', $name, $name);
 			}
 			return $_filter;
@@ -329,18 +329,18 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 
 	protected function getTheVersionSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('version'));
 		$query->from($db->quoteName('#__pro_critical_user_agent_browser'));
 		$query->order($db->quoteName('version') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -351,7 +351,7 @@ class Pro_criticalViewUser_agent_browser_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $version)
 			{
-				// [Interpretation 11172] Now add the version and its text to the options array
+				// [Interpretation 16888] Now add the version and its text to the options array
 				$_filter[] = JHtml::_('select.option', $version, $version);
 			}
 			return $_filter;

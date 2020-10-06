@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		ajax.php
@@ -36,52 +36,36 @@ class Pro_criticalModelAjax extends JModelList
 		
 	}
 
-	// [Interpretation 11004] Used in html_task
-		// [Interpretation 10959] Used in html_task
-		####################################
-		### PHP Ajax Methods - Manager html task
-		###
-		### /administrator/components/com_pro_critical/models/ajax.php
-		####################################
-		/**
-		 * @param $ajax_component_idValue
-		 *
-		 * @return bool|mixed
-		 * @throws Exception
-		 * @since 3.9 
-		 */
-		public function getListViewsForComponent ( $ajax_component_idValue )
-		{
-			$app  = \JFactory::getApplication();
-			$data = $app->input->get( 'taskData' , false , 'ARRAY' );
-			
-			switch( $data[ 'taskElement' ] )
-			{
-				# Получение списка представлений после выбора компонента
-				case 'getListView' :
-					$component_id = $data[ 'component_id' ];
-					#getVars - Получить ID записи по значению
-					$model_Name = 'directory_views';
-					$views_id   = Pro_criticalHelper::getVars( '' . $model_Name , [ $component_id ] , 'id_component' , $what = "id" );
-					$db    = JFactory::getDbo();
-					$query = $db->getQuery( true );
-					
-					$query->select( $db->quoteName( 'id' ) )
-						->select( $db->quoteName( 'view_component' ) )
-						->from( $db->quoteName( '#__pro_critical_directory_views' ) )
-						->where( $db->quoteName( 'id').'IN'.'('.implode( ',',$views_id).')');
-					
-					$query->group( $db->quoteName( 'view_component' ) );
-					
-					# echo 'Query Dump :' . __FILE__ . ' Line:' . __LINE__ . $query->dump();
-					$db->setQuery( $query );
-					$result = $db->loadAssocList();
-					break;
-					
-				default :
-					$result = false;
-			}
-			
-			return $result;
-		}#END FN
+	// [Interpretation 16616] Used in html_task
+####################################
+### PHP Ajax Methods - Manager html task
+###
+### /administrator/components/com_pro_critical/models/ajax.php
+####################################
+	public function getListViewsForComponent ($ajax_component_idValue){
+		$app = \JFactory::getApplication() ;
+		$data = $app->input->get('taskData' , false , 'ARRAY');
+		
+		switch( $data['taskElement']){
+			case 'getListView' :
+				$id = $data['component_id'];
+				#getVars - Получить ID записи по значению
+				$model_Name = 'directory_views';
+				$views_id = Pro_criticalHelper::getVars( ''.$model_Name ,   [$id] , 'id_component' , $what =  "id"   );
+				
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true ) ;
+				$query->select( $db->quoteName('id'))
+					->select( $db->quoteName('view_component'))
+					->from( $db->quoteName('#__pro_critical_directory_views'))
+					->where( $db->quoteName('id') . 'IN' . ' (' . implode(',',$views_id) . ')' );
+				
+				$db->setQuery($query);
+				$result = $db->loadAssocList() ;
+				break ;
+			default :
+				$result = false ;
+		}
+		return  $result ;
+	}#END FN
 }

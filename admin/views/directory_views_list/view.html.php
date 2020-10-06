@@ -3,8 +3,8 @@
 				Gartes 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
+	@version		1.x.x
+	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
 	@subpackage		view.html.php
@@ -138,11 +138,6 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 				JToolbarHelper::trash('directory_views_list.trash');
 			}
 		}
-		if ($this->user->authorise('directory_views.delete_all_records', 'com_pro_critical'))
-		{
-			// [Interpretation 3712] add Delete all records button.
-			JToolBarHelper::custom('directory_views_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
-		}
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('directory_views_list');
@@ -190,19 +185,19 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 			);
 		}
 
-		// [Interpretation 11272] Set View Component Selection
+		// [Interpretation 17054] Set View Component Selection
 		$this->view_componentOptions = $this->getTheView_componentSelections();
-		// [Interpretation 11274] We do some sanitation for View Component filter
+		// [Interpretation 17059] We do some sanitation for View Component filter
 		if (Pro_criticalHelper::checkArray($this->view_componentOptions) &&
 			isset($this->view_componentOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->view_componentOptions[0]->value))
 		{
 			unset($this->view_componentOptions[0]);
 		}
-		// [Interpretation 11281] Only load View Component filter if it has values
+		// [Interpretation 17075] Only load View Component filter if it has values
 		if (Pro_criticalHelper::checkArray($this->view_componentOptions))
 		{
-			// [Interpretation 11284] View Component Filter
+			// [Interpretation 17083] View Component Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_VIEW_COMPONENT_LABEL').' -',
 				'filter_view_component',
@@ -211,7 +206,7 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] View Component Batch Selection
+				// [Interpretation 17101] View Component Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_VIEW_COMPONENT_LABEL').' -',
 					'batch[view_component]',
@@ -220,19 +215,19 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11230] Set Id Component Copmonent Name Selection
+		// [Interpretation 16971] Set Id Component Copmonent Name Selection
 		$this->id_componentCopmonent_nameOptions = JFormHelper::loadFieldType('Componentnamecom')->options;
-		// [Interpretation 11232] We do some sanitation for Id Component Copmonent Name filter
+		// [Interpretation 16977] We do some sanitation for Id Component Copmonent Name filter
 		if (Pro_criticalHelper::checkArray($this->id_componentCopmonent_nameOptions) &&
 			isset($this->id_componentCopmonent_nameOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->id_componentCopmonent_nameOptions[0]->value))
 		{
 			unset($this->id_componentCopmonent_nameOptions[0]);
 		}
-		// [Interpretation 11239] Only load Id Component Copmonent Name filter if it has values
+		// [Interpretation 16993] Only load Id Component Copmonent Name filter if it has values
 		if (Pro_criticalHelper::checkArray($this->id_componentCopmonent_nameOptions))
 		{
-			// [Interpretation 11242] Id Component Copmonent Name Filter
+			// [Interpretation 17001] Id Component Copmonent Name Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_ID_COMPONENT_LABEL').' -',
 				'filter_id_component',
@@ -241,7 +236,7 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11251] Id Component Copmonent Name Batch Selection
+				// [Interpretation 17018] Id Component Copmonent Name Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_ID_COMPONENT_LABEL').' -',
 					'batch[id_component]',
@@ -250,19 +245,19 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 			}
 		}
 
-		// [Interpretation 11272] Set Value View Selection
+		// [Interpretation 17054] Set Value View Selection
 		$this->value_viewOptions = $this->getTheValue_viewSelections();
-		// [Interpretation 11274] We do some sanitation for Value View filter
+		// [Interpretation 17059] We do some sanitation for Value View filter
 		if (Pro_criticalHelper::checkArray($this->value_viewOptions) &&
 			isset($this->value_viewOptions[0]->value) &&
 			!Pro_criticalHelper::checkString($this->value_viewOptions[0]->value))
 		{
 			unset($this->value_viewOptions[0]);
 		}
-		// [Interpretation 11281] Only load Value View filter if it has values
+		// [Interpretation 17075] Only load Value View filter if it has values
 		if (Pro_criticalHelper::checkArray($this->value_viewOptions))
 		{
-			// [Interpretation 11284] Value View Filter
+			// [Interpretation 17083] Value View Filter
 			JHtmlSidebar::addFilter(
 				'- Select '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_VALUE_VIEW_LABEL').' -',
 				'filter_value_view',
@@ -271,7 +266,7 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 
 			if ($this->canBatch && $this->canCreate && $this->canEdit)
 			{
-				// [Interpretation 11293] Value View Batch Selection
+				// [Interpretation 17101] Value View Batch Selection
 				JHtmlBatch_::addListSelection(
 					'- Keep Original '.JText::_('COM_PRO_CRITICAL_DIRECTORY_VIEWS_VALUE_VIEW_LABEL').' -',
 					'batch[value_view]',
@@ -333,18 +328,18 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 
 	protected function getTheView_componentSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('view_component'));
 		$query->from($db->quoteName('#__pro_critical_directory_views'));
 		$query->order($db->quoteName('view_component') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -355,7 +350,7 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $view_component)
 			{
-				// [Interpretation 11172] Now add the view_component and its text to the options array
+				// [Interpretation 16888] Now add the view_component and its text to the options array
 				$_filter[] = JHtml::_('select.option', $view_component, $view_component);
 			}
 			return $_filter;
@@ -365,18 +360,18 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 
 	protected function getTheValue_viewSelections()
 	{
-		// [Interpretation 11103] Get a db connection.
+		// [Interpretation 16761] Get a db connection.
 		$db = JFactory::getDbo();
 
-		// [Interpretation 11105] Create a new query object.
+		// [Interpretation 16765] Create a new query object.
 		$query = $db->getQuery(true);
 
-		// [Interpretation 11124] Select the text.
+		// [Interpretation 16801] Select the text.
 		$query->select($db->quoteName('value_view'));
 		$query->from($db->quoteName('#__pro_critical_directory_views'));
 		$query->order($db->quoteName('value_view') . ' ASC');
 
-		// [Interpretation 11128] Reset the query using our newly populated query object.
+		// [Interpretation 16812] Reset the query using our newly populated query object.
 		$db->setQuery($query);
 
 		$results = $db->loadColumn();
@@ -387,7 +382,7 @@ class Pro_criticalViewDirectory_views_list extends JViewLegacy
 			$_filter = array();
 			foreach ($results as $value_view)
 			{
-				// [Interpretation 11172] Now add the value_view and its text to the options array
+				// [Interpretation 16888] Now add the value_view and its text to the options array
 				$_filter[] = JHtml::_('select.option', $value_view, $value_view);
 			}
 			return $_filter;
