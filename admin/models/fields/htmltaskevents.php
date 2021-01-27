@@ -7,7 +7,7 @@
 	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
-	@subpackage		componentnamecomhtml.php
+	@subpackage		typedeviceidhtml.php
 	@author			Nikolaychuk Oleg <https://nobd.ml>	
 	@copyright		Copyright (C) 2019. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,24 +19,28 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die('Restricted access');
 
 // import the list field type
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
-
 /**
- * Componentnamecomhtml Form Field class for the Pro_critical component
+ * Typedeviceidhtml Form Field class for the Pro_critical component
  */
-class JFormFieldComponentnamecomhtml extends JFormFieldList
+class JFormFieldHtmltaskevents extends JFormFieldList
 {
 	/**
-	 * The componentnamecomhtml field type.
+	 * The htmltaskevents field type.
 	 *
 	 * @var		string
+     * @since 3.9
 	 */
-	public $type = 'componentnamecomhtml';
+	public $type = 'htmltaskevents';
+
+
 
 	/**
 	 * Method to get a list of options for a list input.
@@ -51,42 +55,24 @@ class JFormFieldComponentnamecomhtml extends JFormFieldList
 ##
 ##
 ##
-                $viewArr = [ 'html_task'  ];
-                $app = \JFactory::getApplication() ;
-		$view = $app->input->get( 'view' , false , 'RAW' );
-
 // Get the user object.
-		$user = JFactory::getUser();
-		// Get the databse object.
-		$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select($db->quoteName(array('a.id','a.copmonent_name'),array('id','id_component_copmonent_name')));
-		$query->from($db->quoteName('#__pro_critical_directory_components', 'a'));
-		$query->where($db->quoteName('a.published') . ' = 1');
-		$query->order('a.copmonent_name ASC');
-		// Implement View Level Access (if set in table)
-		if (!$user->authorise('core.options', 'com_pro_critical'))
-		{
-			$columns = $db->getTableColumns('#__pro_critical_directory_components');
-			if(isset($columns['access']))
-			{
-				$groups = implode(',', $user->getAuthorisedViewLevels());
-				$query->where('a.access IN (' . $groups . ')');
-			}
-		}
-		$db->setQuery((string)$query);
-		$items = $db->loadObjectList();
+
+		$items = [
+		    ['id'=>'click' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_CLICK_TO_ELEMENT'],  # Клик по элементу
+		    ['id'=>'hover' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_HOVER'],  # Клик по элементу
+		    ['id'=>'mouse_move' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_MOUSE_MOVE'],   # Движение мыши(первое)
+
+            ['id'=>'scroll' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_SCROLL_WINDOW'],    # Вход в зону видимости при скроле
+
+            ['id'=>'not_interact' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_NOT_INTERACT'],# Не взаимодействовать
+        ];
 		$options = array();
 		if ($items)
 		{
-			$options[] = JHtml::_('select.option', '', 'Select an option');
-
-                        # Добавить на всех компонентах
-			if( in_array( $view , $viewArr )  ) $options[] = JHtml::_('select.option', '0', 'All component'); #END IF
-
+			$options[] = JHtml::_('select.option', '', 'Default');
 			foreach($items as $item)
 			{
-				$options[] = JHtml::_('select.option', $item->id, $item->id_component_copmonent_name);
+				$options[] = JHtml::_('select.option', $item['id'], Text::_($item['name']));
 			}
 		}
 		return $options;

@@ -19,6 +19,8 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die('Restricted access');
 
 /**
@@ -49,4 +51,40 @@ class Pro_criticalControllerCss_list extends JControllerAdmin
 	{
 		return parent::getModel($name, $prefix, $config);
 	}
+
+    const ALL_CSS_PATCH = JPATH_ROOT . DIRECTORY_SEPARATOR .'cache'. DIRECTORY_SEPARATOR .'_allCss'. DIRECTORY_SEPARATOR ;
+
+    #Custom Buttons PHP List view (controller methods) [js_file]
+    public function OnBtnCleanTable( ){
+
+        $app = Factory::getApplication() ;
+        $db = Factory::getDbo();
+
+        #  Delete all records
+        $view = 'css' ;
+        $prefix = 'pro_critical' ;
+
+
+        # Удалить все файлы AllCss из Директории /cache
+        $files = glob(self::ALL_CSS_PATCH.'*');
+        array_map('unlink', array_filter((array) $files ));
+        $app->enqueueMessage('Кеш временных файлов очищен!');
+
+
+
+
+        $db->truncateTable('#__'.$prefix.'_' . $view );
+
+
+
+
+
+        $app->enqueueMessage('Записи удалены!');
+
+        $app->redirect(JRoute::_('index.php?'
+            .'option=com_'.$prefix
+            .'&view='. $app->input->get( 'view' , false , 'RAW' )
+            , false));
+        return true ;
+    }
 }

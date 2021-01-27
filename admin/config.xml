@@ -314,7 +314,8 @@
 			</form>
 		</field>
 	</fieldset>
-<!--	Владка CSS -->
+
+	<!--	Владка CSS ============================================================================================= -->
 	<fieldset name="css_custom_config" label="COM_PRO_CRITICAL_CONFIG_CSS">
 
 		<!-- [Fields 1940] Note_one_css_style Field. Type: Note. A None Database Field. (joomla) -->
@@ -325,7 +326,8 @@
 			   heading="h4"
 			   class="alert alert-info note_one_css_style"
 			   close="false" />
-		<!-- [Fields 1635] Css_style_load_method Field. Type: Radio. (joomla) -->
+
+		<!-- [Fields 1635] Управление CSS стилями -->
 		<field name="CSS_On"
 			type="radio"
 			default="0"
@@ -338,6 +340,12 @@
 			<option value="0">JOFF</option>
 		</field>
 
+
+
+
+
+
+<!--	Не используется !!!	-->
 		<field name="css_style_load_method"
 			type="radio"
 			label="COM_PRO_CRITICAL_CONFIG_CSS_STYLE_LOAD_METHOD_LABEL"
@@ -354,6 +362,153 @@
 				COM_PRO_CRITICAL_CONFIG_NORMAL</option>
 		</field>
 	</fieldset>
+
+	<!--	Владка Critical CSS ==================================================================================== -->
+	<fieldset name="css_critical" label="JCONFIG_CSS_CRITICAL_LABEL" >
+
+		<field name="css_critical_url_api"
+			type="text"
+			default="https://pro-critical.cf/tools/assets/"
+			class="css_critical_url_api "
+			size="20"
+			readonly="1"
+			required=""
+			label="CONFIG_CSS_CRITICAL_URL_API"
+			showon=""
+			hint=""
+			filter="raw" />
+
+		<field name="css_critical_key_api"
+			type="text"
+			default=""
+			class="css_critical_key_api "
+			size="20"
+			readonly=""
+			required=""
+			label="CONFIG_CSS_CRITICAL_KEY_API"
+			description="CONFIG_CSS_CRITICAL_KEY_API_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+
+		<!--	Включить критические стили	-->
+		<field name="css_critical_on"
+			   type="radio"
+			   default="0"
+			   readonly="0"
+			   label="CONFIG_CSS_CRITICAL_ON"
+			   description="CONFIG_CSS_CRITICAL_ON_DESC"
+			   class="btn-group btn-group-yesno"
+			   showon="CSS_On:1" >
+			<option value="1">JON</option>
+			<option value="0">JOFF</option>
+		</field>
+		<!-- Добавлять <link rel=preload> для CSS файлов при созданных критических CSS	-->
+		<field name="ccss_add_preloader_ccs_link"
+			type="radio"
+			default="1"
+			readonly="0"
+			label="CONFIG_CCSS_ADD_PRELOADER_CCS_LINK"
+			description="CONFIG_CCSS_ADD_PRELOADER_CCS_LINK_DESC"
+			class="btn-group btn-group-yesno"
+			showon="css_critical_on:1">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+		<field name="screen_sizes"
+				type="subform"
+				label="CONFIG_SCREEN_SIZES"
+				description="CONFIG_SCREEN_SIZES_DESC"
+				multiple="1"
+				min="2"
+			   layout="joomla.form.field.subform.repeatable-table"
+			   buttons="false"
+			   showon="css_critical_on:1"
+		>
+			<form>
+				<field name="width"
+						type="text"
+						label="SCREEN_SIZES_WIDTH"
+				/>
+				<field name="height"
+					   type="text"
+					   label="SCREEN_SIZES_HEIGHT"
+				/>
+				<field name="ua"
+					   type="text"
+					   label="SCREEN_SIZES_UA"
+				/>
+			</form>
+		</field>
+		
+		<field name="add_to_after_ccss"
+			type="textarea"
+			default=""
+			class="add_to_after_ccss "
+			rows="8"
+			cols="128"
+			readonly=""
+			required=""
+			label="CONFIG_ADD_TO_AFTER_CCSS"
+			description="CONFIG_ADD_TO_AFTER_CCSS_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+		<field type="subform"
+				name="additional_request_parameters_ccss"
+				label="COM_PRO_CRITICAL_CONFIG_ADDITIONAL_REQUEST_PARAMETERS_CCSS_LABEL"
+				layout="joomla.form.field.subform.repeatable-table"
+				multiple="true"
+				buttons="add,remove"
+				description="COM_PRO_CRITICAL_CONFIG_ADDITIONAL_REQUEST_PARAMETERS_CCSS_DESCRIPTION"
+				default=""
+				icon="list"
+				max="50"
+				min="1">
+			<form hidden="true" name="list_excluded_request_global_modal" repeat="true">
+				<!-- [Fields 1922] Query Field. Type: Text. (joomla) -->
+				<field
+						type="text"
+						name="query"
+						label="COM_PRO_CRITICAL_CONFIG_QUERY_LABEL"
+						maxlength="64"
+						default=""
+						description="COM_PRO_CRITICAL_CONFIG_QUERY_CCSS_DESCRIPTION"
+						class="text_area"
+						readonly="false"
+						disabled="false"
+						required="false"
+						filter="STRING"
+						message="COM_PRO_CRITICAL_CONFIG_QUERY_MESSAGE"
+						hint="COM_PRO_CRITICAL_CONFIG_QUERY_HINT"
+						autocomplete="off"
+				/>
+				<!--<field type="text"
+						name="value"
+						label="COM_PRO_CRITICAL_CONFIG_VALUE_LABEL"
+						maxlength="64"
+						default=""
+						description="COM_PRO_CRITICAL_CONFIG_VALUE_DESCRIPTION"
+						class="text_area"
+						readonly="false"
+						disabled="false"
+						required="false"
+						filter="STRING"
+						message="COM_PRO_CRITICAL_CONFIG_VALUE_MESSAGE"
+						hint="en"
+						autocomplete="off"
+				/>-->
+			</form>
+		</field>
+			
+
+
+	</fieldset>
+
+
+
+
 	<fieldset
 		name="permissions"
 		label="JCONFIG_PERMISSIONS_LABEL"

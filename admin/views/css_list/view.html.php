@@ -138,6 +138,11 @@ class Pro_criticalViewCss_list extends JViewLegacy
 				JToolbarHelper::trash('css_list.trash');
 			}
 		}
+        if ($this->user->authorise('css_list.delete_all_records', 'com_pro_critical'))
+        {
+            // [Interpretation 3712] add Delete all records button.
+            JToolBarHelper::custom('css_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
+        }
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('css_list');

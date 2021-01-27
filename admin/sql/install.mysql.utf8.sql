@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS `#__pro_critical_css` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`critical_css_code` TEXT NOT NULL,
+	`add_css_code` TEXT NOT NULL COMMENT 'Добавление к CCSS',
+	`page_key` varchar(255) NOT NULL ,
 	`option` INT(11) NOT NULL DEFAULT 0,
 	`photo_afte` VARCHAR(1024) NOT NULL DEFAULT '',
 	`photo_before` VARCHAR(1024) NOT NULL DEFAULT '',
@@ -50,7 +52,8 @@ CREATE TABLE IF NOT EXISTS `#__pro_critical_css` (
 	KEY `idx_checkout` (`checked_out`),
 	KEY `idx_createdby` (`created_by`),
 	KEY `idx_modifiedby` (`modified_by`),
-	KEY `idx_state` (`published`)
+	KEY `idx_state` (`published`),
+	KEY `idx_page_key` (`page_key`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `#__pro_critical_user_agent` (
@@ -202,6 +205,7 @@ CREATE TABLE IF NOT EXISTS `#__pro_critical_html_task` (
 	`description` VARCHAR(1024) NOT NULL DEFAULT '',
 	`event_show` VARCHAR(64) NOT NULL DEFAULT '',
 	`html_processing` VARCHAR(64) NOT NULL DEFAULT '',
+	`task_data` text NOT NULL COMMENT 'параметры задачи',
 	`id_component` INT(11) NOT NULL DEFAULT 0,
 	`query_params` TEXT NOT NULL,
 	`selector` VARCHAR(1024) NOT NULL DEFAULT '',
@@ -219,6 +223,10 @@ CREATE TABLE IF NOT EXISTS `#__pro_critical_html_task` (
 	`checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	`version` INT(10) unsigned NOT NULL DEFAULT 1,
 	`hits` INT(10) unsigned NOT NULL DEFAULT 0,
+	`file_for_task` varchar(256) NOT NULL COMMENT 'Шаблон замены',
+	`repeat_replacement_pattern` INT(11) NOT NULL COMMENT 'Количество повторений шаблона',
+	`asset_load_before_task` varchar(1024) NOT NULL COMMENT 'загрузка перед задачей',
+	`additional_task_settings_add_preloader` varchar(1024) NOT NULL COMMENT 'Link preloader',
 	`ordering` INT(11) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`),
 	KEY `idx_task_id` (`task_id`),

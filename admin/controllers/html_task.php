@@ -19,6 +19,8 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die('Restricted access');
 
 /**
@@ -44,11 +46,16 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	 */
 	public function __construct($config = array())
 	{
-		$this->view_list = 'Html_task_list'; // safeguard for setting the return view listing to the main view.
+	    # защита для установки списка просмотра возврата в главное представление.
+        // safeguard for setting the return view listing to the main view.
+	    $this->view_list = 'Html_task_list';
 		parent::__construct($config);
+
+
 	}
 
-        /**
+	/**
+     * Переопределение метода, чтобы проверить, можете ли вы добавить новую запись.
 	 * Method override to check if you can add a new record.
 	 *
 	 * @param   array  $data  An array of input data.
@@ -67,6 +74,7 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	}
 
 	/**
+     * Переопределение метода, чтобы проверить, можете ли вы редактировать существующую запись.
 	 * Method override to check if you can edit an existing record.
 	 *
 	 * @param   array   $data  An array of input data.
@@ -123,6 +131,7 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	}
 
 	/**
+     * Получает аргументы URL-адреса для добавления к перенаправлению элемента.
 	 * Gets the URL arguments to append to an item redirect.
 	 *
 	 * @param   integer  $recordId  The primary key id for the item.
@@ -155,6 +164,7 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	}
 
 	/**
+     * Метод для выполнения пакетных операций.
 	 * Method to run batch operations.
 	 *
 	 * @param   object  $model  The model.
@@ -177,6 +187,7 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	}
 
 	/**
+     * Метод отмены редактирования.
 	 * Method to cancel an edit.
 	 *
 	 * @param   string  $key  The name of the primary key of the URL variable.
@@ -232,7 +243,10 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 		return $cancel;
 	}
 
+
+
 	/**
+     * Способ сохранения записи.
 	 * Method to save a record.
 	 *
 	 * @param   string  $key     The name of the primary key of the URL variable.
@@ -244,13 +258,15 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	 */
 	public function save($key = null, $urlVar = null)
 	{
+
 		// get the referral options
 		$this->ref = $this->input->get('ref', 0, 'word');
 		$this->refid = $this->input->get('refid', 0, 'int');
 
 		// Check if there is a return value
 		$return = $this->input->get('return', null, 'base64');
-		$canReturn = (!is_null($return) && JUri::isInternal(base64_decode($return)));
+		# Проверяет, является ли указанный URL-адрес внутренним
+		$canReturn = (!is_null($return) && Uri::isInternal(base64_decode($return)));
 
 		if ($this->ref || $this->refid || $canReturn)
 		{
@@ -299,6 +315,8 @@ class Pro_criticalControllerHtml_task extends JControllerForm
 	}
 
 	/**
+     * Функция, которая позволяет дочернему контроллеру получить доступ к данным модели
+     * после того, как данные были сохранены.
 	 * Function that allows child controller access to model data
 	 * after the data has been saved.
 	 *

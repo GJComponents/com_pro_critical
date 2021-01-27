@@ -82,7 +82,9 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 	}
 
 	/**
+     * Установка элементов  в Toolbar
 	 * Setting the toolbar
+     * @since 3.9
 	 */
 	protected function addToolBar()
 	{
@@ -138,6 +140,13 @@ class Pro_criticalViewCss_file_list extends JViewLegacy
 				JToolbarHelper::trash('css_file_list.trash');
 			}
 		}
+
+		# Кнопка очистить справочник
+        if ($this->user->authorise('css_file.delete_all_records', 'com_pro_critical'))
+        {
+            // [Interpretation 3712] add Delete all records button.
+            JToolBarHelper::custom('css_file_list.OnBtnCleanTable', 'delete', '', 'COM_PRO_CRITICAL_DELETE_ALL_RECORDS', false);
+        }
 
 		// set help url for this view if found
 		$help_url = Pro_criticalHelper::getHelpUrl('css_file_list');

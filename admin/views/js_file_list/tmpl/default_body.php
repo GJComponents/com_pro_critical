@@ -69,6 +69,7 @@ $edit = "index.php?option=com_pro_critical&view=js_file_list&task=js_file.edit";
 			&#9633;
 		<?php endif; ?>
 		</td>
+
 		<td class="nowrap">
 			<div class="name">
 				<?php if ($canDo->get('core.edit')): ?>
@@ -82,7 +83,9 @@ $edit = "index.php?option=com_pro_critical&view=js_file_list&task=js_file.edit";
 			</div>
 		</td>
 		<td class="hidden-phone">
-			<?php echo JText::_($item->load); ?>
+            <?= $item->load == 'JNO'?'<span class="control-element icon-unpublish"> </span>':'<span class="control-element icon-publish"> </span>' ; ?>
+
+<!--			--><?php //echo JText::_($item->load); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo JText::_($item->override); ?>

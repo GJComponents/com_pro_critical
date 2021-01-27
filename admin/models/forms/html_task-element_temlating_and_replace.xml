@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+        addrulepath="/administrator/components/com_pro_critical/models/rules"
+        addfieldpath="/administrator/components/com_pro_critical/models/fields"
+>
+    <fieldset name="details">
+        <field type="htmltaskevents"
+                name="event_show"
+                label="COM_PRO_CRITICAL_HTML_TASK_EVENT_SHOW_LABEL"
+                description="COM_PRO_CRITICAL_HTML_TASK_EVENT_SHOW_DESCRIPTION"
+                class="list_class"
+                multiple="false"
+                useglobal="false"
+                default="0" />
+
+        <field name="selector_show"
+               type="text"
+               default=""
+               class="selector_click text_area"
+               size="20"
+               readonly=""
+               required=""
+               label="HTML_TASK_ELEMENT_TEMLATING_SELECTOR_CLICK"
+               description="HTML_TASK_ELEMENT_TEMLATING_SELECTOR_CLICK_DESC"
+               showon="event_show:click,hover"
+               hint=""
+               filter="raw" />
+        <field name="file_replace"
+        	type="text"
+        	default=""
+        	class="file_for_task "
+        	size="20"
+        	readonly=""
+        	required=""
+        	label="HTML_TASK_FILE_FOR_TASK"
+        	description="HTML_TASK_FILE_FOR_TASK_DESC"
+        	showon=""
+        	hint=""
+        	filter="raw" />
+        	
+        	
+
+
+    </fieldset>
+
+
+</form>

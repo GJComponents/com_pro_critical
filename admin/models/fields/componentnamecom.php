@@ -25,6 +25,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
+
 /**
  * Componentnamecom Form Field class for the Pro_critical component
  */
@@ -34,6 +35,7 @@ class JFormFieldComponentnamecom extends JFormFieldList
 	 * The componentnamecom field type.
 	 *
 	 * @var		string
+     * @since 3.9
 	 */
 	public $type = 'componentnamecom';
 
@@ -50,6 +52,11 @@ class JFormFieldComponentnamecom extends JFormFieldList
 		$set_button = $this->getAttribute('button');
 		// [Fields 4766] get html
 		$html = parent::getInput();
+
+
+
+
+
 		// [Fields 4769] if true set button
 		if ($set_button === 'true')
 		{
@@ -145,6 +152,8 @@ class JFormFieldComponentnamecom extends JFormFieldList
 	 * Method to get a list of options for a list input.
 	 *
 	 * @return	array    An array of JHtml options.
+     *
+     * @since 3.9
 	 */
 	protected function getOptions()
 	{
@@ -158,6 +167,7 @@ class JFormFieldComponentnamecom extends JFormFieldList
 		$viewArr = [ 'html_task'  ];
                 $app = \JFactory::getApplication() ;
 		$view = $app->input->get( 'view' , false , 'RAW' );
+
 
 
 // Get the user object.

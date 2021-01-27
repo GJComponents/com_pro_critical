@@ -90,6 +90,20 @@
 			readonly="true"
 			button="false"
 		/>
+		<field name="page_key"
+			type="text"
+			default=""
+			class="page_key "
+			size="20"
+			readonly=""
+			required=""
+			label="CSS_PAGE_KEY"
+			description="CSS_PAGE_KEY_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+			
+			
 		<!-- [Fields 2319] Option Field. Type: Criticalcssoption. (custom) -->
 		<field
 			type="criticalcssoption"
@@ -99,7 +113,7 @@
 			class="list_class"
 			multiple="false"
 			default="0"
-			required="true"
+			required="0"
 			readonly="false"
 			disabled="false"
 			button="true"
@@ -113,7 +127,7 @@
 			class="list_class"
 			multiple="false"
 			default="0"
-			required="true"
+			required="0"
 			readonly="false"
 			disabled="false"
 			button="true"
@@ -127,7 +141,7 @@
 			class="list_class"
 			multiple="false"
 			default="0"
-			required="true"
+			required="0"
 			readonly="false"
 			disabled="false"
 			button="true"
@@ -147,6 +161,21 @@
 			readonly="true"
 			disabled="false"
 		/>
+		<field name="add_css_code"
+			type="textarea"
+			default=""
+			class="add_css_code span8"
+			   rows="10"
+			   cols="5"
+			readonly=""
+			required=""
+			label="CSS_ADD_CSS_CODE"
+			description="CSS_ADD_CSS_CODE_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+			
+			
 		<!-- [Fields 1922] Photo_afte Field. Type: Text. (joomla) -->
 		<field
 			type="text"

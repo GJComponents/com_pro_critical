@@ -34,6 +34,7 @@ class JFormFieldTypedeviceidhtml extends JFormFieldList
 	 * The typedeviceidhtml field type.
 	 *
 	 * @var		string
+     * @since 3.9
 	 */
 	public $type = 'typedeviceidhtml';
 
@@ -46,6 +47,10 @@ class JFormFieldTypedeviceidhtml extends JFormFieldList
 	 */
 	protected function getInput()
 	{
+
+
+
+
 		// [Fields 4762] see if we should add buttons
 		$set_button = $this->getAttribute('button');
 		// [Fields 4766] get html
@@ -79,6 +84,16 @@ class JFormFieldTypedeviceidhtml extends JFormFieldList
 				$ref .= '&amp;return=' . $_return;
 				$refJ .= '&return=' . $_return;
 			}
+
+			/*echo'<pre>';print_r( $button_code_name );echo'</pre>'.__FILE__.' '.__LINE__;
+			echo'<pre>';print_r( $ref );echo'</pre>'.__FILE__.' '.__LINE__;
+			echo'<pre>';print_r( $refJ );echo'</pre>'.__FILE__.' '.__LINE__;
+			echo'<pre>';print_r( $values );echo'</pre>'.__FILE__.' '.__LINE__;
+			die(__FILE__ .' '. __LINE__ );*/
+
+
+
+
 			// [Fields 4842] get button label
 			$button_label = trim($button_code_name);
 			$button_label = preg_replace('/_+/', ' ', $button_label);
@@ -91,7 +106,9 @@ class JFormFieldTypedeviceidhtml extends JFormFieldList
 			if ($user->authorise('core.create', 'com_pro_critical') && $app->isAdmin()) // TODO for now only in admin area.
 			{
 				// [Fields 4881] build Create button
-				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'.JText::sprintf('COM_PRO_CRITICAL_CREATE_NEW_S', $button_label).'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
+				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'
+                    .JText::sprintf('COM_PRO_CRITICAL_CREATE_NEW_S', $button_label)
+                    .'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
 					href="index.php?option=com_pro_critical&amp;view=type_device&amp;layout=edit'.$ref.'" >
 					<span class="icon-new icon-white"></span></a>';
 			}

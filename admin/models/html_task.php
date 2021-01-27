@@ -29,9 +29,10 @@ use Joomla\Registry\Registry;
 class Pro_criticalModelHtml_task extends JModelAdmin
 {
 	/**
+     * Массив полей макета вкладки.
 	 * The tab layout fields array.
-	 *
 	 * @var      array
+     * @since 3.9
 	 */
 	protected $tabLayoutFields = array(
 		'manager_html_task_seting' => array(
@@ -42,6 +43,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 				'component_view_id',
 				'type_device_id',
 				'html_processing',
+				'task_data',
 				'event_show'
 			),
 			'above' => array(
@@ -60,12 +62,14 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	);
 
 	/**
+     * Префикс для использования с сообщениями контроллера.
 	 * @var        string    The prefix to use with controller messages.
 	 * @since   1.6
 	 */
 	protected $text_prefix = 'COM_PRO_CRITICAL';
 
 	/**
+     * Псевдоним типа для этого типа контента.
 	 * The type alias for this content type.
 	 *
 	 * @var      string
@@ -74,6 +78,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	public $typeAlias = 'com_pro_critical.html_task';
 
 	/**
+     * Возвращает объект Table, всегда создавая его
 	 * Returns a Table object, always creating it
 	 *
 	 * @param   type    $type    The table type to instantiate
@@ -93,6 +98,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
     
 	/**
+     * Метод получения единственной записи.
 	 * Method to get a single record.
 	 *
 	 * @param   integer  $pk  The id of the primary key.
@@ -140,6 +146,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Способ получения формы записи.
 	 * Method to get the record form.
 	 *
 	 * @param   array    $data      Data for the form.
@@ -152,8 +159,11 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	 */
 	public function getForm($data = array(), $loadData = true, $options = array('control' => 'jform'))
 	{
+	    # установить опцию загрузки данных
 		// set load data option
 		$options['load_data'] = $loadData;
+
+		# проверьте, установлен ли xpath в параметрах
 		// [Interpretation 17799] check if xpath was set in options
 		$xpath = false;
 		if (isset($options['xpath']))
@@ -161,7 +171,9 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 			$xpath = $options['xpath'];
 			unset($options['xpath']);
 		}
-		// [Interpretation 17807] check if clear form was set in options
+
+		// проверьте, была ли установлена clear форма в настройках
+		// [Interpretation 17807]  check if clear form was set in options
 		$clear = false;
 		if (isset($options['clear']))
 		{
@@ -179,12 +191,19 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 
 		$jinput = JFactory::getApplication()->input;
 
-		// [Interpretation 17978] The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
+		# Внешний интерфейс вызывает эту модель и использует a_id,
+        # чтобы избежать конфликтов идентификаторов, поэтому нам нужно сначала проверить это.
+		// [Interpretation 17978]
+        # The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
 		if ($jinput->get('a_id'))
 		{
 			$id = $jinput->get('a_id', 0, 'INT');
 		}
-		// [Interpretation 17986] The back end uses id so we use that the rest of the time and set it to 0 by default.
+
+		# Серверная часть использует идентификатор, поэтому мы используем его в
+        # остальное время и по умолчанию устанавливаем значение 0.
+		# The back end uses id so we use that the rest of the time and set it to 0 by default.
+		// [Interpretation 17986]
 		else
 		{
 			$id = $jinput->get('id', 0, 'INT');
@@ -249,9 +268,11 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Метод получения скрипта, который необходимо включить в форму
 	 * Method to get the script that have to be included on the form
 	 *
 	 * @return string	script files
+     * @since 3.9
 	 */
 	public function getScript()
 	{
@@ -259,6 +280,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
     
 	/**
+     * Метод проверки возможности удаления записи.
 	 * Method to test whether a record can be deleted.
 	 *
 	 * @param   object  $record  A record object.
@@ -284,6 +306,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Метод проверки, можно ли изменить состояние записи.
 	 * Method to test whether a record can have its state edited.
 	 *
 	 * @param   object  $record  A record object.
@@ -311,6 +334,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
     
 	/**
+     * Переопределение метода, чтобы проверить, можете ли вы редактировать существующую запись.
 	 * Method override to check if you can edit an existing record.
 	 *
 	 * @param	array	$data	An array of input data.
@@ -327,6 +351,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
     
 	/**
+     * Подготовьте и очистите данные таблицы перед сохранением.
 	 * Prepare and sanitise the table data prior to saving.
 	 *
 	 * @param   JTable  $table  A JTable object.
@@ -385,6 +410,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Метод получения данных, которые следует ввести в форму.
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return  mixed  The data for the form.
@@ -399,6 +425,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 		if (empty($data))
 		{
 			$data = $this->getItem();
+			# запустить перпроцесс данных
 			// run the perprocess of the data
 			$this->preprocessData('com_pro_critical.html_task', $data);
 		}
@@ -407,6 +434,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Метод получения уникальных полей этой таблицы.
 	 * Method to get the unique fields of this table.
 	 *
 	 * @return  mixed  An array of field names, boolean false if none is set.
@@ -419,6 +447,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 	
 	/**
+     * Метод удаления одной или нескольких записей.
 	 * Method to delete one or more records.
 	 *
 	 * @param   array  &$pks  An array of record primary keys.
@@ -438,6 +467,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Метод изменения опубликованного состояния одной или нескольких записей.
 	 * Method to change the published state of one or more records.
 	 *
 	 * @param   array    &$pks   A list of the primary keys to change.
@@ -458,6 +488,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
         }
     
 	/**
+     * Метод для выполнения пакетных операций с элементом или набором элементов.
 	 * Method to perform batch operations on an item or a set of items.
 	 *
 	 * @param   array  $commands  An array of commands to perform.
@@ -554,6 +585,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Пакетное копирование элементов в новую категорию или текущую.
 	 * Batch copy items to a new category or current.
 	 *
 	 * @param   integer  $values    The new values.
@@ -697,6 +729,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Пакетное перемещение элементов в новую категорию
 	 * Batch move items to a new category
 	 *
 	 * @param   integer  $value     The new category ID.
@@ -805,6 +838,7 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 	
 	/**
+     * Method сохранения данных формы.
 	 * Method to save the form data.
 	 *
 	 * @param   array  $data  The form data.
@@ -869,18 +903,19 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 		}
 		return false;
 	}
-	
-	/**
-	 * Method to generate a uniqe value.
-	 *
-	 * @param   string  $field name.
-	 * @param   string  $value data.
-	 *
-	 * @return  string  New value.
-	 *
-	 * @since   3.0
-	 */
-	protected function generateUniqe($field,$value)
+
+    /**
+     * Метод создания уникального значения.
+     * Method to generate a uniqe value.
+     *
+     * @param string $field name.
+     * @param string $value data.
+     *
+     * @return  string  New value.
+     *
+     * @since   3.0
+     */
+	protected function generateUniqe(string $field, string $value)
 	{
 
 		// set field value uniqe 
@@ -895,12 +930,14 @@ class Pro_criticalModelHtml_task extends JModelAdmin
 	}
 
 	/**
+     * Способ изменения заголовка
 	 * Method to change the title
 	 *
 	 * @param   string   $title   The title.
 	 *
-	 * @return	array  Contains the modified title and alias.
-	 *
+	 * @return	array   Содержит измененный заголовок и псевдоним.
+     *                  Contains the modified title and alias.
+	 * @since   3.0
 	 */
 	protected function _generateNewTitle($title)
 	{

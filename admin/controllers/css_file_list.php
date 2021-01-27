@@ -19,6 +19,9 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die('Restricted access');
 
 /**
@@ -49,4 +52,31 @@ class Pro_criticalControllerCss_file_list extends JControllerAdmin
 	{
 		return parent::getModel($name, $prefix, $config);
 	}
+
+    /**
+     * Очистить Справочник CSS файлов
+     * Удалит все записи в таблице #__pro_critical_css_file
+     * #Custom Buttons PHP List view (controller methods) [css_file]
+     * @return bool
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 12.11.2020 18:41
+     *
+     */
+    public function OnBtnCleanTable( ){
+
+        #  Delete all records
+        $view = 'css_file' ;
+
+        $prefix = 'pro_critical' ;
+        $app = Factory::getApplication() ;
+        $db = Factory::getDbo();
+        $db->truncateTable('#__'.$prefix.'_' . $view );
+        $app->enqueueMessage('Записи удалены!');
+        $app->redirect(Route::_('index.php?'
+            .'option=com_'.$prefix
+            .'&view='. $app->input->get( 'view' , false , 'RAW' )
+            , false));
+        return true ;
+    }
 }

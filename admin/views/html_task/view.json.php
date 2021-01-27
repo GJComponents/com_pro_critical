@@ -20,36 +20,61 @@
 
 // No direct access to this file
 use GNZ11\Core\Js;
+use Joomla\CMS\Form\Form;
 
 defined('_JEXEC') or die('Restricted access');
 
 /**
  * Html_task View class
+ * @since 3.9
  */
 class Pro_criticalViewHtml_task extends JViewLegacy
 {
+
+
+
 	/**
 	 * display method of View
 	 * @return void
+     * @since 3.9
 	 */
 	public function display($tpl = null)
 	{
 		// set params
 		$this->params = JComponentHelper::getParams('com_pro_critical');
 		// Assign the variables
-		$this->form = $this->get('Form');
+		/*$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
 		$this->script = $this->get('Script');
 		$this->state = $this->get('State');
 		// get action permissions
 		$this->canDo = Pro_criticalHelper::getActions('html_task', $this->item);
+		*/
+
+
+
 		// get input
-		$jinput = JFactory::getApplication()->input;
+ 		$jinput = JFactory::getApplication()->input;
+        $dataJson = $jinput->get('task_data' , false , 'RAW');
+        $data = json_decode( $dataJson );
+
+        $Layout = $this->getLayout();
+        $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/models/forms/' ;
+        $this->form = Form::getInstance("sample",  $formPath . 'html_task-'.$Layout.'.xml' , array("control" => "jform"));
+
+        $this->form->bind($data);
 
 
 
 
+        $html =  $this->loadTemplate();
 
+        echo new \JResponseJson( [ 'html'=> $html ] );
+        die( );
+
+
+
+/*
 		$this->ref = $jinput->get('ref', 0, 'word');
 		$this->refid = $jinput->get('refid', 0, 'int');
 		$return = $jinput->get('return', null, 'base64');
@@ -79,16 +104,29 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors), 500);
-		}
+		}*/
 
 
 
-		// Display the template
-		parent::display($tpl);
 
-		// Set the document
-		$this->setDocument();
+
+
+$model = $this->getModel();
+
+
+
+
+
+        $document = JFactory::getDocument();
+
+
+
+
+
+
+
 	}
+
 
 
 	/**
@@ -216,10 +254,6 @@ class Pro_criticalViewHtml_task extends JViewLegacy
 ### /administrator/components/com_pro_critical/views/html_task/view.html.php
 ##########################################
 
-        $app = \Joomla\CMS\Factory::getApplication();
-
-        $this->document->addStyleSheet(JURI::root() . "administrator/components/com_pro_critical/assets/css/html_task.processingForm.css", (Pro_criticalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
-
         $doc = \Joomla\CMS\Factory::getDocument();
         try
         {
@@ -234,7 +268,7 @@ class Pro_criticalViewHtml_task extends JViewLegacy
             }#END IF
             throw new \Exception('Должна быть установлена бибиотека GNZ11' , 400 ) ;
         }
-
+        $app = \Joomla\CMS\Factory::getApplication();
 
         $doc->addScriptOptions('siteUrl', JUri::root());
         $doc->addScriptOptions('isClient', $app->isClient('administrator'));

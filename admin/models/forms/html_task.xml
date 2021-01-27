@@ -98,10 +98,11 @@
 			type="text"
 			name="short_description"
 			label="COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_LABEL"
-			maxlength="50"
+			size="135"
+			maxlength="100"
 			default=""
 			description="COM_PRO_CRITICAL_HTML_TASK_SHORT_DESCRIPTION_DESCRIPTION"
-			class="text_area"
+			class="text_area span9"
 			readonly="false"
 			disabled="false"
 			required="true"
@@ -130,14 +131,16 @@
 			name="html_processing"
 			label="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_LABEL"
 			description="COM_PRO_CRITICAL_HTML_TASK_HTML_PROCESSING_DESCRIPTION"
-			class="list_class"
+			class="list_class span6"
 			multiple="false"
 			required="true"
 			useglobal="false"
 			default="0">
 			<!-- [Fields 1898] Option Set. -->
-			<option value="element_temlating">
-				COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES</option>
+			<option value="img_deferred">COM_PRO_CRITICAL_HTML_TASK_IMG_DEFERRED</option>
+			<option value="element_temlating">COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES</option>
+			<option value="element_temlating_and_replace">COM_PRO_CRITICAL_HTML_TASK_ELEMENT_TO_TEMLATES_AND_REPLACE</option>
+
 			<option value="fire_action">
 				COM_PRO_CRITICAL_HTML_TASK_FIRE_ELEMENTS</option>
 			<option value="remove_attr">
@@ -145,6 +148,82 @@
 			<option value="tabs_effect">
 				COM_PRO_CRITICAL_HTML_TASK_TABS_EFFECT</option>
 		</field>
+		<field name="task_data"
+			type="text"
+			default=""
+			class="task_data span9"
+			size="20"
+			readonly="true"
+			required=""
+			label="HTML_TASK_TASK_DATA"
+			description="HTML_TASK_TASK_DATA_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+			
+			
+
+		<field name="file_for_task"
+			type="text"
+			default=""
+			class="file_for_task span9"
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_FILE_FOR_TASK"
+			description="HTML_TASK_FILE_FOR_TASK_DESC"
+			showon="html_processing:element_temlating_and_replace"
+			hint=""
+			filter="raw" />
+
+		<field name="repeat_replacement_pattern"
+			type="text"
+			default="1"
+			class="repeat_replacement_pattern span2"
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_REPEAT_REPLACEMENT_PATTERN"
+			description="HTML_TASK_REPEAT_REPLACEMENT_PATTERN_DESC"
+			showon="html_processing:element_temlating_and_replace"
+			hint=""
+			filter="raw" />
+			
+			
+		
+		<field name="asset_load_before_task"
+			type="text"
+			default=""
+			class="asset_load_before_task span9"
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_ASSET_LOAD_BEFORE_TASK"
+			description="HTML_TASK_ASSET_LOAD_BEFORE_TASK_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+		
+		<field name="additional_task_settings_add_preloader"
+			type="text"
+			default=""
+			class="additional_task_settings_add_preloader "
+			size="100"
+			readonly=""
+			required=""
+			label="HTML_TASK_ADDITIONAL_TASK_SETTINGS_ADD_PRELOADER"
+			description="HTML_TASK_ADDITIONAL_TASK_SETTINGS_ADD_PRELOADER_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+			
+
+
+
+			
+			
+			
+			
 		<!-- [Fields 2319] Type_device_id Field. Type: Typedeviceidhtml. (custom) -->
 		<field
 			type="typedeviceidhtml"
@@ -222,7 +301,7 @@
 			readonly="false"
 			disabled="false"
 		/>
-		<!-- [Fields 1635] Event_show Field. Type: List. (joomla) -->
+
 		<field
 			type="list"
 			name="event_show"

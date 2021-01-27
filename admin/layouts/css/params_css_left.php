@@ -20,7 +20,9 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
+/**
+ * @var $displayData object
+ */
 // get the form
 $form = $displayData->getForm();
 
@@ -35,6 +37,7 @@ $fields_tab_layout = 'fields_' . $layout_path_array[1];
 
 // get the fields
 $fields = $displayData->get($fields_tab_layout) ?: array(
+	'page_key',
 	'option',
 	'view',
 	'query_params',

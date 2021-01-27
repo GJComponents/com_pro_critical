@@ -73,6 +73,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
+    <!-- photos   -->
 	<?php echo JHtml::_('bootstrap.addTab', 'cssTab', 'photos', JText::_('COM_PRO_CRITICAL_CSS_PHOTOS', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span6">
@@ -84,13 +85,33 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'cssTab', 'critical_css', JText::_('COM_PRO_CRITICAL_CSS_CRITICAL_CSS', true)); ?>
+
+    <!-- Critical CSS    -->
+	<?= JHtml::_('bootstrap.addTab', 'cssTab', 'critical_css', JText::_('COM_PRO_CRITICAL_CSS_CRITICAL_CSS', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('css.critical_css_left', $this); ?>
 			</div>
 		</div>
-	<?php echo JHtml::_('bootstrap.endTab'); ?>
+	<?= JHtml::_('bootstrap.endTab'); ?>
+
+
+
+
+    <!-- ADD_CSS    -->
+    <?= JHtml::_('bootstrap.addTab', 'cssTab', 'add_css_left', JText::_('COM_PRO_CRITICAL_CSS_ADD_CSS', true)); ?>
+    <div class="row-fluid form-horizontal-desktop">
+        <div class="span12">
+            <?php echo JLayoutHelper::render('css.add_css_left', $this); ?>
+        </div>
+    </div>
+    <?= JHtml::_('bootstrap.endTab'); ?>
+
+
+
+
+
+
 
 	<?php $this->ignore_fieldsets = array('details','metadata','vdmmetadata','accesscontrol'); ?>
 	<?php $this->tab_name = 'cssTab'; ?>

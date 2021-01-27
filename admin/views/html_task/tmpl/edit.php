@@ -37,13 +37,31 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 
 	<?php echo JHtml::_('bootstrap.startTabSet', 'html_taskTab', array('active' => 'manager_html_task_seting')); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'html_taskTab', 'manager_html_task_seting', JText::_('COM_PRO_CRITICAL_HTML_TASK_MANAGER_HTML_TASK_SETING', true)); ?>
-		<div class="row-fluid form-horizontal-desktop">
-			<div class="span12">
-				<?php echo JLayoutHelper::render('html_task.manager_html_task_seting_left', $this); ?>
-			</div>
-		</div>
-	<?php echo JHtml::_('bootstrap.endTab'); ?>
+
+
+        <?php # Настройки менеджера HTML задач ?>
+        <?= JHtml::_('bootstrap.addTab', 'html_taskTab', 'manager_html_task_seting', JText::_('COM_PRO_CRITICAL_HTML_TASK_MANAGER_HTML_TASK_SETING', true)); ?>
+            <div class="row-fluid form-horizontal-desktop">
+                <div class="span12">
+                    <?php echo JLayoutHelper::render('html_task.manager_html_task_seting_left', $this); ?>
+                </div>
+            </div>
+        <?= JHtml::_('bootstrap.endTab'); ?>
+
+
+        <?php # Дополнительные настройки задачи ?>
+        <?= JHtml::_('bootstrap.addTab', 'html_taskTab', 'additional_task_settings', JText::_('COM_PRO_CRITICAL_ADDITIONAL_TASK_SETTINGS', true)); ?>
+            <div class="row-fluid form-horizontal-desktop">
+                <div class="span12">
+                    <?php echo JLayoutHelper::render('html_task.additional_task_settings_left', $this ); ?>
+                </div>
+            </div>
+        <?= JHtml::_('bootstrap.endTab'); ?>
+
+
+
+
+
 
 	<?php echo JHtml::_('bootstrap.addTab', 'html_taskTab', 'params_query', JText::_('COM_PRO_CRITICAL_HTML_TASK_PARAMS_QUERY', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">

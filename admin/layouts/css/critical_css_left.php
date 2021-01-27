@@ -40,6 +40,9 @@ $fields = $displayData->get($fields_tab_layout) ?: array(
 
 $hiddenFields = $displayData->get('hidden_fields') ?: array();
 
+
+
+
 ?>
 <?php if ($fields && count((array) $fields)) :?>
 <?php foreach($fields as $field): ?>

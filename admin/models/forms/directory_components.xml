@@ -104,7 +104,7 @@
 			default=""
 			description="COM_PRO_CRITICAL_DIRECTORY_COMPONENTS_VALUE_OPTION_DESCRIPTION"
 			class="text_area"
-			readonly="true"
+			readonly="false"
 			disabled="false"
 			required="true"
 			filter="STRING"

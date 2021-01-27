@@ -42,7 +42,21 @@ class Pro_criticalModelAjax extends JModelList
 ###
 ### /administrator/components/com_pro_critical/models/ajax.php
 ####################################
-	public function getListViewsForComponent ($ajax_component_idValue){
+    /**
+     * Получить форму для Настройки Html задачи
+     * @since 3.9
+     * @auhtor Gartes | sad.net79@gmail.com | Skype : agroparknew | Telegram : @gartes
+     * @date 25.11.2020 22:42
+     *
+     */
+    public function getFormSetUpTask( $html_processing , $task_data ){
+        echo'<pre>';print_r( $html_processing );echo'</pre>'.__FILE__.' '.__LINE__;
+        
+        die(__FILE__ .' '. __LINE__ );
+
+    }
+
+    public function getListViewsForComponent ($ajax_component_idValue){
 		$app = \JFactory::getApplication() ;
 		$data = $app->input->get('taskData' , false , 'ARRAY');
 		

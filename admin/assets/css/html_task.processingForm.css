@@ -6,7 +6,7 @@
 	@build			23rd августа, 2020
 	@created		5th мая, 2019
 	@package		proCritical
-	@subpackage		admin.js
+	@subpackage		html_task.css
 	@author			Nikolaychuk Oleg <https://nobd.ml>	
 	@copyright		Copyright (C) 2019. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,5 +17,38 @@
 
 /------------------------------------------------------------------------------------------------------*/
 
-/* JS Document */
+/* CSS Document */
+body .popover{
+	z-index: 99999;
+}
+.processingForm .fancybox-stage{}
+.processingForm .fancybox-content *{
+	box-sizing: unset;
+}
+.processingForm .fancybox-content {
+    padding: 44px 20px;
+    min-width: 50%;
+    min-height: 50%;
+    position: relative;
+}
+.processingForm .processingForm-footer{
+	
+padding: 10px;
+	
+position: absolute;
+	
+bottom: 0;
+	
+left: 0;
+	
+width: calc(100% - 20px);
+	
+border-top: 1px solid #ccc;
+}
+
+.processingForm-footer .btn-wrapper.fl-right{
+	
+float: right;
+}
+
 

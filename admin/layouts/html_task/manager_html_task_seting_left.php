@@ -20,6 +20,10 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+/**
+ * @var $displayData Object Pro_criticalViewHtml_task
+ */
+
 
 // get the form
 $form = $displayData->getForm();
@@ -35,23 +39,30 @@ $fields_tab_layout = 'fields_' . $layout_path_array[1];
 
 // get the fields
 $fields = $displayData->get($fields_tab_layout) ?: array(
-	'selector_element_for_event',
-	'selector',
-	'id_component',
-	'component_view_id',
-	'type_device_id',
-	'html_processing',
-	'event_show'
+    'selector_element_for_event',
+    'selector',
+    'id_component',
+    'component_view_id',
+    'type_device_id',
+    'html_processing',
+    'task_data',
+    /******************************/
+    'file_for_task',
+    'repeat_replacement_pattern',
+
+
+    /******************************/
+    'event_show'
 );
 
 $hiddenFields = $displayData->get('hidden_fields') ?: array();
 
 ?>
-<?php if ($fields && count((array) $fields)) :?>
-<?php foreach($fields as $field): ?>
-	<?php if (in_array($field, $hiddenFields)) : ?>
-		<?php $form->setFieldAttribute($field, 'type', 'hidden'); ?>
-	<?php endif; ?>
-	<?php echo $form->renderField($field, null, null, array('class' => 'control-wrapper-' . $field)); ?>
-<?php endforeach; ?>
+<?php if ($fields && count((array)$fields)) : ?>
+    <?php foreach ($fields as $field): ?>
+        <?php if (in_array($field, $hiddenFields)) : ?>
+            <?php $form->setFieldAttribute($field, 'type', 'hidden'); ?>
+        <?php endif; ?>
+        <?php echo $form->renderField($field, null, null, array('class' => 'control-wrapper-' . $field)); ?>
+    <?php endforeach; ?>
 <?php endif; ?>

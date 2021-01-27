@@ -18,6 +18,11 @@
 
 /------------------------------------------------------------------------------------------------------*/
 
+
+use Joomla\CMS\Factory;
+
+use Joomla\CMS\MVC\Controller\BaseController as JControllerLegacy; //
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -28,13 +33,18 @@ class Pro_criticalControllerAjax extends JControllerLegacy
 {
 	public function __construct($config)
 	{
-		parent::__construct($config);
+        parent::__construct($config);
 		// make sure all json stuff are set
-		JFactory::getDocument()->setMimeEncoding( 'application/json' );
+		Factory::getDocument()->setMimeEncoding( 'application/json' );
 		JResponse::setHeader('Content-Disposition','attachment;filename="getajax.json"');
 		JResponse::setHeader("Access-Control-Allow-Origin", "*");
 		// load the tasks 
 		$this->registerTask('getViewsList', 'ajax');
+
+
+
+
+
 	}
 
 	public function ajax()
@@ -49,9 +59,11 @@ class Pro_criticalControllerAjax extends JControllerLegacy
 			$task = $this->getTask();
 			switch($task)
 			{
+
 				case 'getViewsList':
 					try
 					{
+
 						$returnRaw = $jinput->get('raw', false, 'BOOLEAN');
 						$ajax_component_idValue = $jinput->get('ajax_component_id', NULL, 'INT');
 						$result = $this->getModel('ajax')->getListViewsForComponent($ajax_component_idValue);
@@ -80,6 +92,30 @@ class Pro_criticalControllerAjax extends JControllerLegacy
 						}
 					}
 				break;
+                case 'getFormSetUpTask':
+                    try
+                    {
+                        $html_processing = $jinput->get('html_processing', NULL, 'STRING');
+                        $task_data = $jinput->get('task_data', NULL, 'RAW');
+                        $task_data = json_decode($task_data) ;
+                        $result = $this->getModel('ajax')->getFormSetUpTask( $html_processing , $task_data ); ;
+                        parent::display();
+                        die(__FILE__ .' '. __LINE__ );
+                    }catch(Exception $e)
+                    {
+                        if($callback = $jinput->get('callback', null, 'CMD'))
+                        {
+                            echo $callback."(".json_encode($e).");";
+                        }
+                        else
+                        {
+                            echo "(".json_encode($e).");";
+                        }
+                    }
+
+
+                    break ;
+
 			}
 		}
 		else

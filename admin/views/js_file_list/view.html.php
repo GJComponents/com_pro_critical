@@ -101,7 +101,9 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 	}
 
 	/**
+     * Установка элементов  в Toolbar
 	 * Setting the toolbar
+     * @since 3.9
 	 */
 	protected function addToolBar()
 	{
@@ -157,6 +159,8 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 				JToolbarHelper::trash('js_file_list.trash');
 			}
 		}
+
+        # Кнопка очистить справочник
 		if ($this->user->authorise('js_file.delete_all_records', 'com_pro_critical'))
 		{
 			// [Interpretation 3712] add Delete all records button.
@@ -211,6 +215,7 @@ class Pro_criticalViewJs_file_list extends JViewLegacy
 
 		// [Interpretation 11272] Set Load Selection
 		$this->loadOptions = $this->getTheLoadSelections();
+
 		// [Interpretation 11274] We do some sanitation for Load filter
 		if (Pro_criticalHelper::checkArray($this->loadOptions) &&
 			isset($this->loadOptions[0]->value) &&

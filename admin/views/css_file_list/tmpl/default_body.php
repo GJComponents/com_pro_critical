@@ -82,7 +82,8 @@ $edit = "index.php?option=com_pro_critical&view=css_file_list&task=css_file.edit
 			</div>
 		</td>
 		<td class="hidden-phone">
-			<?php echo JText::_($item->load); ?>
+            <?= $item->load == 'JNO'?'<span class="control-element icon-unpublish"> </span>':'<span class="control-element icon-publish"> </span>' ; ?>
+<!--			--><?php //echo JText::_($item->load); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo JText::_($item->override); ?>

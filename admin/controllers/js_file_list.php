@@ -50,7 +50,7 @@ class Pro_criticalControllerJs_file_list extends JControllerAdmin
 		return parent::getModel($name, $prefix, $config);
 	}
 
-#Custom Buttons PHP List view (controller methods) [js_file]
+    #Custom Buttons PHP List view (controller methods) [js_file]
     public function OnBtnCleanTable( ){
              #  Delete all records
              $view = 'js_file' ;

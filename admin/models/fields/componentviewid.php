@@ -27,6 +27,7 @@ JFormHelper::loadFieldClass('list');
 
 /**
  * Componentviewid Form Field class for the Pro_critical component
+ * @since 3.9
  */
 class JFormFieldComponentviewid extends JFormFieldList
 {
@@ -34,6 +35,7 @@ class JFormFieldComponentviewid extends JFormFieldList
 	 * The componentviewid field type.
 	 *
 	 * @var		string
+     * @since 3.9
 	 */
 	public $type = 'componentviewid';
 
@@ -46,6 +48,10 @@ class JFormFieldComponentviewid extends JFormFieldList
 	 */
 	protected function getInput()
 	{
+
+
+
+
 		// [Fields 4762] see if we should add buttons
 		$set_button = $this->getAttribute('button');
 		// [Fields 4766] get html
