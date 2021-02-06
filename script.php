@@ -78,6 +78,8 @@ class com_pro_criticalInstallerScript
 	 */
 	public function preflight($type, JAdapterInstance $parent)
 	{
+
+
 		// get application
 		$app = JFactory::getApplication();
 		// is redundant or so it seems ...hmmm let me know if it works again

@@ -287,6 +287,22 @@
 			<option value="1">JON</option>
 			<option value="0">JOFF</option>
 		</field>
+		<field name="save_books_js_script"
+			type="radio"
+			default="0"
+			readonly="0"
+			label="CONFIG_SAVE_BOOKS_JS_SCRIPT"
+			description="CONFIG_SAVE_BOOKS_JS_SCRIPT_DESC"
+			class="btn-group btn-group-yesno"
+			showon="JS_On:1"
+
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+
+
 		<!--		Перенос скриптов 		-->
 		<field name="moving_scripts_to_bottom"
 			type="radio"
@@ -506,7 +522,39 @@
 
 	</fieldset>
 
+	<!--	Вкладка Кеш -->
+	<fieldset name="cache_config" label="COM_PRO_CRITICAL_CONFIG_CACHE">
+		<field name="cache_on"
+			type="radio"
+			default="0"
+			readonly="0"
+			label="COM_PRO_CRITICAL_CONFIG_CACHE_ON"
+			description="COM_PRO_CRITICAL_CONFIG_CACHE_ON_DESC"
+			class="btn-group btn-group-yesno"
+			showon=""
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		<field
+				name="cache_exclude_menu_items"
+				type="menuitem"
+				label="COM_PRO_CRITICAL_CONFIG_FIELD_EXCLUDE_MENU_ITEMS_LABEL"
+				description="COM_PRO_CRITICAL_CONFIG_FIELD_EXCLUDE_MENU_ITEMS_DESC"
+				multiple="multiple"
+				filter="int_array"
+		/>
+		<field
+				name="cache_exclude"
+				type="textarea"
+				label="COM_PRO_CRITICAL_CONFIG_CACHE_FIELD_EXCLUDE_LABEL"
+				description="COM_PRO_CRITICAL_CONFIG_CACHE_FIELD_EXCLUDE_DESC"
+				class="input-xxlarge"
+				rows="15"
+				filter="raw"
+		/>
 
+	</fieldset>
 
 
 	<fieldset

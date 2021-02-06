@@ -46,6 +46,7 @@ class JFormFieldHtmltaskevents extends JFormFieldList
 	 * Method to get a list of options for a list input.
 	 *
 	 * @return	array    An array of JHtml options.
+     * @since 3.9
 	 */
 	protected function getOptions()
 	{
@@ -65,6 +66,8 @@ class JFormFieldHtmltaskevents extends JFormFieldList
             ['id'=>'scroll' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_SCROLL_WINDOW'],    # Вход в зону видимости при скроле
 
             ['id'=>'not_interact' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_NOT_INTERACT'],# Не взаимодействовать
+            ['id'=>'removeElement' , 'name' => 'COM_PRO_CRITICAL_HTML_TASK_REMOVE_ELEMENT'],# Не взаимодействовать
+
         ];
 		$options = array();
 		if ($items)
