@@ -464,6 +464,72 @@
 				</field>
 			</form>
 		</field>
+
+
+		<!-- атрибуты файла  -->
+		<field
+				type="subform"
+				name="attributes_file"
+				label="COM_PRO_CRITICAL_CSS_FILE_ATTRIBUTES_LABEL"
+				layout="joomla.form.field.subform.repeatable-table"
+				multiple="true"
+				buttons="add,remove,move"
+				description="COM_PRO_CRITICAL_CSS_FILE_ATTRIBUTES_DESCRIPTION"
+				default=""
+				icon="list"
+				filter="load:1">
+			<form hidden="true" name="list_attributes_modal" repeat="true">
+				<!-- [Fields 1922] Name Field. Type: Text. (joomla) -->
+				<field
+						type="text"
+						name="attr"
+						label="COM_PRO_CRITICAL_CSS_FILE_ATTR_LABEL"
+						maxlength="255"
+						default=""
+						class="text_area"
+						readonly="false"
+						disabled="false"
+						required="1"
+						filter="STRING"
+						message="COM_PRO_CRITICAL_CSS_FILE_NAME_MESSAGE"
+						autocomplete="on"
+				/>
+				<!-- [Fields 1922] Value Field. Type: Text. (joomla) -->
+				<field
+						type="text"
+						name="value"
+						label="COM_PRO_CRITICAL_CSS_FILE_VALUE_LABEL"
+						maxlength="255"
+						default=""
+						class="text_area"
+						readonly="false"
+						disabled="false"
+						required="false"
+						filter="STRING"
+						autocomplete="on"
+				/>
+				<!-- [Fields 1635] Published Field. Type: Radio. (joomla) -->
+				<field
+						type="radio"
+						name="published"
+						label="COM_PRO_CRITICAL_CSS_FILE_PUBLISHED_LABEL"
+						class="btn-group btn-group-yesno"
+						default="1"
+						readonly="false"
+						disabled="false">
+					<!-- [Fields 1898] Option Set. -->
+					<option value="1">
+						COM_PRO_CRITICAL_CSS_FILE_YES</option>
+					<option value="0">
+						COM_PRO_CRITICAL_CSS_FILE_NO</option>
+				</field>
+			</form>
+		</field>
+
+
+
+
+
 		<!-- [Fields 1922] Override_file Field. Type: Text. (joomla) -->
 		<field
 			type="text"

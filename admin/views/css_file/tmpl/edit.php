@@ -83,6 +83,17 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
+        <?php echo JHtml::_('bootstrap.addTab', 'css_fileTab', 'attributes_file_tab', JText::_('COM_PRO_CRITICAL_CSS_FILE_ATTRIBUTES_TAB', true)); ?>
+        <div class="row-fluid form-horizontal-desktop">
+            <div class="span12">
+                <?php
+
+
+                    echo \Joomla\CMS\Layout\LayoutHelper::render('css_file.attributes_file_tab', $this); ?>
+            </div>
+        </div>
+        <?php echo JHtml::_('bootstrap.endTab'); ?>
+
 	<?php echo JHtml::_('bootstrap.addTab', 'css_fileTab', 'errors', JText::_('COM_PRO_CRITICAL_CSS_FILE_ERRORS', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">

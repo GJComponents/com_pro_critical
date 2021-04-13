@@ -1,321 +1,326 @@
 <?php
-/*----------------------------------------------------------------------------------|  www.vdm.io  |----/
-				Gartes 
-/-------------------------------------------------------------------------------------------------------/
+    /*----------------------------------------------------------------------------------|  www.vdm.io  |----/
+                    Gartes
+    /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.5.19
-	@build			23rd декабря, 2019
-	@created		5th мая, 2019
-	@package		proCritical
-	@subpackage		js_file.php
-	@author			Nikolaychuk Oleg <https://nobd.ml>	
-	@copyright		Copyright (C) 2019. All Rights Reserved
-	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
-  ____  _____  _____  __  __  __      __       ___  _____  __  __  ____  _____  _  _  ____  _  _  ____ 
- (_  _)(  _  )(  _  )(  \/  )(  )    /__\     / __)(  _  )(  \/  )(  _ \(  _  )( \( )( ___)( \( )(_  _)
-.-_)(   )(_)(  )(_)(  )    (  )(__  /(__)\   ( (__  )(_)(  )    (  )___/ )(_)(  )  (  )__)  )  (   )(  
-\____) (_____)(_____)(_/\/\_)(____)(__)(__)   \___)(_____)(_/\/\_)(__)  (_____)(_)\_)(____)(_)\_) (__) 
+        @version		1.5.19
+        @build			23rd декабря, 2019
+        @created		5th мая, 2019
+        @package		proCritical
+        @subpackage		js_file.php
+        @author			Nikolaychuk Oleg <https://nobd.ml>
+        @copyright		Copyright (C) 2019. All Rights Reserved
+        @license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
+      ____  _____  _____  __  __  __      __       ___  _____  __  __  ____  _____  _  _  ____  _  _  ____
+     (_  _)(  _  )(  _  )(  \/  )(  )    /__\     / __)(  _  )(  \/  )(  _ \(  _  )( \( )( ___)( \( )(_  _)
+    .-_)(   )(_)(  )(_)(  )    (  )(__  /(__)\   ( (__  )(_)(  )    (  )___/ )(_)(  )  (  )__)  )  (   )(
+    \____) (_____)(_____)(_/\/\_)(____)(__)(__)   \___)(_____)(_/\/\_)(__)  (_____)(_)\_)(____)(_)\_) (__)
 
-/------------------------------------------------------------------------------------------------------*/
+    /------------------------------------------------------------------------------------------------------*/
 
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
+    defined('_JEXEC') or die('Restricted access');
 
-/**
- * Js_file Controller
- */
-class Pro_criticalControllerJs_file extends JControllerForm
-{
-	/**
-	 * Current or most recently performed task.
-	 *
-	 * @var    string
-	 * @since  12.2
-	 * @note   Replaces _task.
-	 */
-	protected $task;
-
-	/**
-	 * Class constructor.
-	 *
-	 * @param   array  $config  A named array of configuration variables.
-	 *
-	 * @since   1.6
-	 */
-	public function __construct($config = array())
-	{
-		$this->view_list = 'Js_file_list'; // safeguard for setting the return view listing to the main view.
-		parent::__construct($config);
-	}
-
-#Custom Buttons PHP (controller methods) [js_file]
+    /**
+     * Js_file Controller
+     */
+    class Pro_criticalControllerJs_file extends JControllerForm
+    {
+        /**
+         * Current or most recently performed task.
+         *
+         * @var    string
+         * @since  12.2
+         * @note   Replaces _task.
+         */
+        protected $task;
 
         /**
-	 * Method override to check if you can add a new record.
-	 *
-	 * @param   array  $data  An array of input data.
-	 *
-	 * @return  boolean
-	 *
-	 * @since   1.6
-	 */
-	protected function allowAdd($data = array())
-	{
-		// [Interpretation 11483] Get user object.
-		$user = JFactory::getUser();
+         * Class constructor.
+         *
+         * @param array $config A named array of configuration variables.
+         *
+         * @since   1.6
+         */
+        public function __construct( $config = array() )
+        {
+            # защита для установки списка просмотра возврата в главное представление.
+            # safeguard for setting the return view listing to the main view.
+            $this->view_list = 'Js_file_list';
+            parent::__construct($config);
+
+        }
+
+        #Custom Buttons PHP (controller methods) [js_file]
+
+        /**
+         * Переопределение метода, чтобы проверить, можете ли вы добавить новую запись.
+         * Method override to check if you can add a new record.
+         *
+         * @param array $data An array of input data.
+         *
+         * @return  boolean
+         *
+         * @since   1.6
+         */
+        protected function allowAdd( $data = array() )
+        {
+            // [Interpretation 11483] Get user object.
+            $user = JFactory::getUser();
 #Add PHP (allowAdd Method) *
-		// [Interpretation 11507] In the absense of better information, revert to the component permissions.
-		return parent::allowAdd($data);
-	}
+            // [Interpretation 11507] In the absense of better information, revert to the component permissions.
+            return parent::allowAdd($data);
+        }
 
-	/**
-	 * Method override to check if you can edit an existing record.
-	 *
-	 * @param   array   $data  An array of input data.
-	 * @param   string  $key   The name of the key for the primary key.
-	 *
-	 * @return  boolean
-	 *
-	 * @since   1.6
-	 */
-	protected function allowEdit($data = array(), $key = 'id')
-	{
-		// [Interpretation 11638] get user object.
-		$user = JFactory::getUser();
-		// [Interpretation 11640] get record id.
-		$recordId = (int) isset($data[$key]) ? $data[$key] : 0;
+        /**
+         * Method override to check if you can edit an existing record.
+         *
+         * @param array  $data An array of input data.
+         * @param string $key  The name of the key for the primary key.
+         *
+         * @return  boolean
+         *
+         * @since   1.6
+         */
+        protected function allowEdit( $data = array() , $key = 'id' )
+        {
+            // [Interpretation 11638] get user object.
+            $user = JFactory::getUser();
+            // [Interpretation 11640] get record id.
+            $recordId = (int)isset($data[$key]) ? $data[$key] : 0;
 
 
-		if ($recordId)
-		{
-			// [Interpretation 11656] The record has been set. Check the record permissions.
-			$permission = $user->authorise('core.edit', 'com_pro_critical.js_file.' . (int) $recordId);
-			if (!$permission)
-			{
-				if ($user->authorise('core.edit.own', 'com_pro_critical.js_file.' . $recordId))
-				{
-					// [Interpretation 11678] Now test the owner is the user.
-					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
-					if (empty($ownerId))
-					{
-						// [Interpretation 11682] Need to do a lookup from the model.
-						$record = $this->getModel()->getItem($recordId);
-
-						if (empty($record))
-						{
-							return false;
-						}
-						$ownerId = $record->created_by;
-					}
-
-					// [Interpretation 11690] If the owner matches 'me' then allow.
-					if ($ownerId == $user->id)
-					{
-						if ($user->authorise('core.edit.own', 'com_pro_critical'))
-						{
-							return true;
-						}
-					}
-				}
-				return false;
-			}
-		}
-		// [Interpretation 11717] Since there is no permission, revert to the component permissions.
-		return parent::allowEdit($data, $key);
-	}
-
-	/**
-	 * Gets the URL arguments to append to an item redirect.
-	 *
-	 * @param   integer  $recordId  The primary key id for the item.
-	 * @param   string   $urlVar    The name of the URL variable for the id.
-	 *
-	 * @return  string  The arguments to append to the redirect URL.
-	 *
-	 * @since   1.6
-	 */
-	protected function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
-	{
-		// get the referral options (old method use return instead see parent)
-		$ref = $this->input->get('ref', 0, 'string');
-		$refid = $this->input->get('refid', 0, 'int');
-
-		// get redirect info.
-		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
-
-		// set the referral options
-		if ($refid && $ref)
+            if( $recordId )
+            {
+                // [Interpretation 11656] The record has been set. Check the record permissions.
+                $permission = $user->authorise('core.edit' , 'com_pro_critical.js_file.' . (int)$recordId);
+                if( !$permission )
                 {
-			$append = '&ref=' . (string)$ref . '&refid='. (int)$refid . $append;
-		}
-		elseif ($ref)
-		{
-			$append = '&ref='. (string)$ref . $append;
-		}
+                    if( $user->authorise('core.edit.own' , 'com_pro_critical.js_file.' . $recordId) )
+                    {
+                        // [Interpretation 11678] Now test the owner is the user.
+                        $ownerId = (int)isset($data['created_by']) ? $data['created_by'] : 0;
+                        if( empty($ownerId) )
+                        {
+                            // [Interpretation 11682] Need to do a lookup from the model.
+                            $record = $this->getModel()->getItem($recordId);
 
-		return $append;
-	}
+                            if( empty($record) )
+                            {
+                                return false;
+                            }
+                            $ownerId = $record->created_by;
+                        }
 
-	/**
-	 * Method to run batch operations.
-	 *
-	 * @param   object  $model  The model.
-	 *
-	 * @return  boolean   True if successful, false otherwise and internal error is set.
-	 *
-	 * @since   2.5
-	 */
-	public function batch($model = null)
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+                        // [Interpretation 11690] If the owner matches 'me' then allow.
+                        if( $ownerId == $user->id )
+                        {
+                            if( $user->authorise('core.edit.own' , 'com_pro_critical') )
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+            // [Interpretation 11717] Since there is no permission, revert to the component permissions.
+            return parent::allowEdit($data , $key);
+        }
 
-		// Set the model
-		$model = $this->getModel('Js_file', '', array());
+        /**
+         * Получает аргументы URL-адреса для добавления к перенаправлению элемента.
+         * Gets the URL arguments to append to an item redirect.
+         *
+         * @param integer $recordId The primary key id for the item.
+         * @param string  $urlVar   The name of the URL variable for the id.
+         *
+         * @return  string  The arguments to append to the redirect URL.
+         *
+         * @since   1.6
+         */
+        protected function getRedirectToItemAppend( $recordId = null , $urlVar = 'id' )
+        {
+            // get the referral options (old method use return instead see parent)
+            $ref = $this->input->get('ref' , 0 , 'string');
+            $refid = $this->input->get('refid' , 0 , 'int');
 
-		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_pro_critical&view=js_file_list' . $this->getRedirectToListAppend(), false));
+            // get redirect info.
+            $append = parent::getRedirectToItemAppend($recordId , $urlVar);
 
-		return parent::batch($model);
-	}
+            // set the referral options
+            if( $refid && $ref )
+            {
+                $append = '&ref=' . (string)$ref . '&refid=' . (int)$refid . $append;
+            } elseif( $ref )
+            {
+                $append = '&ref=' . (string)$ref . $append;
+            }
 
-	/**
-	 * Method to cancel an edit.
-	 *
-	 * @param   string  $key  The name of the primary key of the URL variable.
-	 *
-	 * @return  boolean  True if access level checks pass, false otherwise.
-	 *
-	 * @since   12.2
-	 */
-	public function cancel($key = null)
-	{
-		// get the referral options
-		$this->ref = $this->input->get('ref', 0, 'word');
-		$this->refid = $this->input->get('refid', 0, 'int');
+            return $append;
+        }
 
-		// Check if there is a return value
-		$return = $this->input->get('return', null, 'base64');
+        /**
+         * Метод для выполнения пакетных операций.
+         * Method to run batch operations.
+         *
+         * @param object $model The model.
+         *
+         * @return  boolean   True if successful, false otherwise and internal error is set.
+         *
+         * @since   2.5
+         */
+        public function batch( $model = null )
+        {
+            JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$cancel = parent::cancel($key);
+            // Set the model
+            $model = $this->getModel('Js_file' , '' , array());
 
-		if (!is_null($return) && JUri::isInternal(base64_decode($return)))
-		{
-			$redirect = base64_decode($return);
+            // Preset the redirect
+            $this->setRedirect(JRoute::_('index.php?option=com_pro_critical&view=js_file_list' . $this->getRedirectToListAppend() , false));
 
-			// Redirect to the return value.
-			$this->setRedirect(
-				JRoute::_(
-					$redirect, false
-				)
-			);
-		}
-		elseif ($this->refid && $this->ref)
-		{
-			$redirect = '&view=' . (string)$this->ref . '&layout=edit&id=' . (int)$this->refid;
+            return parent::batch($model);
+        }
 
-			// Redirect to the item screen.
-			$this->setRedirect(
-				JRoute::_(
-					'index.php?option=' . $this->option . $redirect, false
-				)
-			);
-		}
-		elseif ($this->ref)
-		{
-			$redirect = '&view='.(string)$this->ref;
+        /**
+         * Способ отмены редактирования.
+         * Method to cancel an edit.
+         *
+         * @param string $key The name of the primary key of the URL variable.
+         *
+         * @return  boolean  True if access level checks pass, false otherwise.
+         *
+         * @since   12.2
+         */
+        public function cancel( $key = null )
+        {
+            // get the referral options
+            $this->ref = $this->input->get('ref' , 0 , 'word');
+            $this->refid = $this->input->get('refid' , 0 , 'int');
 
-			// Redirect to the list screen.
-			$this->setRedirect(
-				JRoute::_(
-					'index.php?option=' . $this->option . $redirect, false
-				)
-			);
-		}
-		return $cancel;
-	}
+            // Check if there is a return value
+            $return = $this->input->get('return' , null , 'base64');
 
-	/**
-	 * Method to save a record.
-	 *
-	 * @param   string  $key     The name of the primary key of the URL variable.
-	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
-	 *
-	 * @return  boolean  True if successful, false otherwise.
-	 *
-	 * @since   12.2
-	 */
-	public function save($key = null, $urlVar = null)
-	{
-		// get the referral options
-		$this->ref = $this->input->get('ref', 0, 'word');
-		$this->refid = $this->input->get('refid', 0, 'int');
+            $cancel = parent::cancel($key);
 
-		// Check if there is a return value
-		$return = $this->input->get('return', null, 'base64');
-		$canReturn = (!is_null($return) && JUri::isInternal(base64_decode($return)));
+            if( !is_null($return) && JUri::isInternal(base64_decode($return)) )
+            {
+                $redirect = base64_decode($return);
 
-		if ($this->ref || $this->refid || $canReturn)
-		{
-			// to make sure the item is checkedin on redirect
-			$this->task = 'save';
-		}
+                // Redirect to the return value.
+                $this->setRedirect(
+                    JRoute::_(
+                        $redirect , false
+                    )
+                );
+            } elseif( $this->refid && $this->ref )
+            {
+                $redirect = '&view=' . (string)$this->ref . '&layout=edit&id=' . (int)$this->refid;
 
-		$saved = parent::save($key, $urlVar);
+                // Redirect to the item screen.
+                $this->setRedirect(
+                    JRoute::_(
+                        'index.php?option=' . $this->option . $redirect , false
+                    )
+                );
+            } elseif( $this->ref )
+            {
+                $redirect = '&view=' . (string)$this->ref;
 
-		// This is not needed since parent save already does this
-		// Due to the ref and refid implementation we need to add this
-		if ($canReturn)
-		{
-			$redirect = base64_decode($return);
+                // Redirect to the list screen.
+                $this->setRedirect(
+                    JRoute::_(
+                        'index.php?option=' . $this->option . $redirect , false
+                    )
+                );
+            }
+            return $cancel;
+        }
 
-			// Redirect to the return value.
-			$this->setRedirect(
-				JRoute::_(
-					$redirect, false
-				)
-			);
-		}
-		elseif ($this->refid && $this->ref)
-		{
-			$redirect = '&view=' . (string)$this->ref . '&layout=edit&id=' . (int)$this->refid;
+        /**
+         * Способ сохранения записи.
+         * Method to save a record.
+         *
+         * @param string $key    The name of the primary key of the URL variable.
+         * @param string $urlVar The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
+         *
+         * @return  boolean  True if successful, false otherwise.
+         *
+         * @since   12.2
+         */
+        public function save( $key = null , $urlVar = null )
+        {
+            // get the referral options
+            $this->ref = $this->input->get('ref' , 0 , 'word');
+            $this->refid = $this->input->get('refid' , 0 , 'int');
 
-			// Redirect to the item screen.
-			$this->setRedirect(
-				JRoute::_(
-					'index.php?option=' . $this->option . $redirect, false
-				)
-			);
-		}
-		elseif ($this->ref)
-		{
-			$redirect = '&view=' . (string)$this->ref;
+            // Check if there is a return value
+            $return = $this->input->get('return' , null , 'base64');
+            $canReturn = (!is_null($return) && JUri::isInternal(base64_decode($return)));
 
-			// Redirect to the list screen.
-			$this->setRedirect(
-				JRoute::_(
-					'index.php?option=' . $this->option . $redirect, false
-				)
-			);
-		}
-		return $saved;
-	}
+            if( $this->ref || $this->refid || $canReturn )
+            {
+                // to make sure the item is checkedin on redirect
+                $this->task = 'save';
+            }
 
-	/**
-	 * Function that allows child controller access to model data
-	 * after the data has been saved.
-	 *
-	 * @param   JModel  &$model     The data model object.
-	 * @param   array   $validData  The validated data.
-	 *
-	 * @return  void
-	 *
-	 * @since   11.1
-	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
-	{
-#Add PHP (postSaveHook Method) *
+            $saved = parent::save($key , $urlVar);
 
-		return;
-	}
+            // This is not needed since parent save already does this
+            // Due to the ref and refid implementation we need to add this
+            if( $canReturn )
+            {
+                $redirect = base64_decode($return);
 
-}
+                // Redirect to the return value.
+                $this->setRedirect(
+                    JRoute::_(
+                        $redirect , false
+                    )
+                );
+            } elseif( $this->refid && $this->ref )
+            {
+                $redirect = '&view=' . (string)$this->ref . '&layout=edit&id=' . (int)$this->refid;
+
+                // Redirect to the item screen.
+                $this->setRedirect(
+                    JRoute::_(
+                        'index.php?option=' . $this->option . $redirect , false
+                    )
+                );
+            } elseif( $this->ref )
+            {
+                $redirect = '&view=' . (string)$this->ref;
+
+                // Redirect to the list screen.
+                $this->setRedirect(
+                    JRoute::_(
+                        'index.php?option=' . $this->option . $redirect , false
+                    )
+                );
+            }
+            return $saved;
+        }
+
+        /**
+         * Функция, позволяющая дочернему контроллеру получить доступ к данным модели
+         * после сохранения данных.
+         * Function that allows child controller access to model data
+         * after the data has been saved.
+         *
+         * @param JModel  &$model     The data model object.
+         * @param array    $validData The validated data.
+         *
+         * @return  void
+         *
+         * @since   11.1
+         */
+        protected function postSaveHook( JModelLegacy $model , $validData = array() )
+        {
+            #Add PHP (postSaveHook Method) *
+
+            return;
+        }
+
+    }

@@ -28,6 +28,7 @@
  */
 class Pro_criticalViewJs_file extends JViewLegacy
 {
+     
     /**
      * display method of View
      *
@@ -37,73 +38,26 @@ class Pro_criticalViewJs_file extends JViewLegacy
      */
 	public function display($tpl = null)
 	{
-        $this->app = \Joomla\CMS\Factory::getApplication();
-        $this->patchGnz11 = JPATH_LIBRARIES . '/GNZ11' ;
-        try
-        {
-            JLoader::registerNamespace( 'GNZ11' ,  $this->patchGnz11 , $reset = false , $prepend = false , $type = 'psr4' );
-            $GNZ11_js =  \GNZ11\Core\Js::instance();
+        $patchPlugin = JPATH_PLUGINS . '/system/pro_critical/Helpers' ;
+        JLoader::registerNamespace( 'Plg\Pro_critical' ,  $patchPlugin , $reset = false , $prepend = false , $type = 'psr4' );
 
-        }
-        catch( Exception $e )
-        {
-            if( !Folder::exists( $this->patchGnz11 ) && $this->app->isClient('administrator') )
-            {
-                $this->app->enqueueMessage('Для правильно работы - Должна быть установлена библиотека GNZ11' , 'error');
-            }#END IF
+        $app = \Joomla\CMS\Factory::getApplication();
+        $fileOrig = $app->input->get('fileOrig' , false , 'RAW') ;
 
-        }
+        $app->input->set('data' ,   '/' .$fileOrig );
+        $Js_css = new \Plg\Pro_critical\Optimize\Js_css() ;
+        $dataResult = $Js_css->minify() ;
+
+        echo new JResponseJson( $dataResult );
+        die();
 
 
-		// set params
-		$this->params = JComponentHelper::getParams('com_pro_critical');
-		// Assign the variables
-		$this->form = $this->get('Form');
-		$this->item = $this->get('Item');
-		$this->script = $this->get('Script');
-		$this->state = $this->get('State');
-		// get action permissions
-		$this->canDo = Pro_criticalHelper::getActions('js_file', $this->item);
-		// get input
-		$jinput = JFactory::getApplication()->input;
-		$this->ref = $jinput->get('ref', 0, 'word');
-		$this->refid = $jinput->get('refid', 0, 'int');
-		$return = $jinput->get('return', null, 'base64');
-		// set the referral string
-		$this->referral = '';
-		if ($this->refid && $this->ref)
-		{
-			// return to the item that referred to this item
-			$this->referral = '&ref=' . (string)$this->ref . '&refid=' . (int)$this->refid;
-		}
-		elseif($this->ref)
-		{
-			// return to the list view that referred to this item
-			$this->referral = '&ref=' . (string)$this->ref;
-		}
-		// check return value
-		if (!is_null($return))
-		{
-			// add the return value
-			$this->referral .= '&return=' . (string)$return;
-		}
-
-		// Set the toolbar
-		$this->addToolBar();
-		
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
-		}
-
-		// Display the template
-		parent::display($tpl);
-
-		// Set the document
-		$this->setDocument();
 	}
 
+	public function getMinify(){
+	    die(__FILE__ .' '. __LINE__ );
+
+    }
 
 	/**
 	 * Setting the toolbar

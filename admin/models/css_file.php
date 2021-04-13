@@ -81,7 +81,12 @@ class Pro_criticalModelCss_file extends JModelAdmin
 			'left' => array(
 				'params_query'
 			)
-		)
+		),
+        'attributes_file_tab' => [
+            'left' => array(
+                'attributes_file'
+            ),
+        ],
 	);
 
 	/**
@@ -146,6 +151,9 @@ class Pro_criticalModelCss_file extends JModelAdmin
 				$item->metadata = $registry->toArray();
 			}
 
+            /**
+             * Параметры GET запроса
+             */
 			if (!empty($item->params_query))
 			{
 				// [Interpretation 7147] Convert the params_query field to an array.
@@ -153,6 +161,17 @@ class Pro_criticalModelCss_file extends JModelAdmin
 				$params_query->loadString($item->params_query);
 				$item->params_query = $params_query->toArray();
 			}
+
+            /**
+             * Таблица атрибутов файла
+             */
+            if (!empty($item->attributes_file))
+            {
+                // [Interpretation 4715] Convert the attributes_file field to an array.
+                $params_query = new Registry;
+                $params_query->loadString($item->attributes_file);
+                $item->attributes_file = $params_query->toArray();
+            }
 
 # PHP getItem Method Справочник Css файлов
 			
@@ -864,6 +883,21 @@ class Pro_criticalModelCss_file extends JModelAdmin
 			// [Interpretation 7297] Set the empty params_query to data
 			$data['params_query'] = '';
 		}
+
+        /**
+         * Таблица атрибутов файла
+         */
+        if (isset($data['attributes_file']) && is_array($data['attributes_file']))
+        {
+            $attributes_file = new JRegistry;
+            $attributes_file->loadArray($data['attributes_file']);
+            $data['attributes_file'] = (string) $attributes_file;
+        }
+        elseif (!isset($data['attributes_file']))
+        {
+            // [Interpretation 7297] Set the empty attributes_file to data
+            $data['attributes_file'] = '';
+        }
 
 #Add PHP (save Method - after data modeling) *
         

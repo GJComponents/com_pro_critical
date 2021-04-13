@@ -1,0 +1,1 @@
+ALTER TABLE `#__pro_critical_css_file` ADD `attributes_file` TEXT NOT NULL AFTER `params_query`

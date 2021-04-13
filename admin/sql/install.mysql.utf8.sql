@@ -359,6 +359,7 @@ CREATE TABLE IF NOT EXISTS `#__pro_critical_css_file` (
 	`override` INT(10) NOT NULL DEFAULT 0,
 	`override_file` VARCHAR(255) NOT NULL DEFAULT '',
 	`params_query` TEXT NOT NULL,
+	`attributes_file` TEXT NOT NULL,
 	`preload` INT(11) NOT NULL DEFAULT 0,
 	`revision_id` VARCHAR(255) NOT NULL DEFAULT '',
 	`type` VARCHAR(64) NOT NULL DEFAULT '',

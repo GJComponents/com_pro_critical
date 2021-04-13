@@ -300,6 +300,21 @@
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</field>
+		<field name="not_save_js_inline"
+			type="radio"
+			default="1"
+			readonly="0"
+			label="CONFIG_NOT_SAVE_JS_INLINE"
+			description="CONFIG_NOT_SAVE_JS_INLINE_DESC"
+			class="btn-group btn-group-yesno"
+			showon=""
+
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+
 
 
 
@@ -406,6 +421,21 @@
 			showon=""
 			hint=""
 			filter="raw" />
+		<field name="creation_mode_ccss"
+			type="radio"
+			default="0"
+			readonly="0"
+			label="CONFIG_CREATION_MODE_CCSS"
+			description="CONFIG_CREATION_MODE_CCSS_DESC"
+			class="btn-group btn-group-yesno"
+			showon=""
+			 
+			>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		
+		 
 
 		<!--	Включить критические стили	-->
 		<field name="css_critical_on"

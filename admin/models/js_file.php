@@ -151,7 +151,9 @@ class Pro_criticalModelJs_file extends JModelAdmin
 				$registry->loadString($item->metadata);
 				$item->metadata = $registry->toArray();
 			}
-
+            /**
+             * Параметры GET запроса
+             */
 			if (!empty($item->params_query))
 			{
 				// [Interpretation 4715] Convert the params_query field to an array.
@@ -159,6 +161,16 @@ class Pro_criticalModelJs_file extends JModelAdmin
 				$params_query->loadString($item->params_query);
 				$item->params_query = $params_query->toArray();
 			}
+            /**
+             * Таблица атрибутов файла
+             */
+            if (!empty($item->attributes_file))
+            {
+                // [Interpretation 4715] Convert the params_query field to an array.
+                $params_query = new Registry;
+                $params_query->loadString($item->attributes_file);
+                $item->attributes_file = $params_query->toArray();
+            }
 
 # PHP getItem Method Справочник JS файлов
            /* JLoader::registerNamespace( 'Plg\Pro_critical' , JPATH_PLUGINS . '/system/pro_critical/Helpers' , $reset = false , $prepend = false , $type = 'psr4' );
