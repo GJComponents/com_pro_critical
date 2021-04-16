@@ -4,7 +4,7 @@
 		<description>Критические Css and Js</description>
 		<element>com_pro_critical</element>
 		<type>component</type>
-		<version>1.4.76</version>
+		<version>1.4.78</version>
 		<infourl title="proCritical!">https://nobd.ml</infourl>
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/GJComponents/com_pro_critical/archive/master.zip</downloadurl>

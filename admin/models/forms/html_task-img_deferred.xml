@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_pro_critical/models/rules"
+	addfieldpath="/administrator/components/com_pro_critical/models/fields"
+>
+<!--	{"event_show":"hover","selector_click":"#elektro-topmenu","file_replace":"dummys.dummy-gorizont_menu"} -->
+	<fieldset name="details">
+		<field
+				type="htmltaskevents"
+				name="event_show"
+				label="COM_PRO_CRITICAL_HTML_TASK_EVENT_SHOW_LABEL"
+				description="COM_PRO_CRITICAL_HTML_TASK_EVENT_SHOW_DESCRIPTION"
+				class="list_class"
+				multiple="false"
+				useglobal="false"
+				default="0" />
+		
+		<field name="width"
+			type="text"
+			default=""
+			class="width "
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_IMG_DEFERRED_WIDTH"
+			description="HTML_TASK_IMG_DEFERRED_WIDTH_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+		<field name="height"
+			type="text"
+			default=""
+			class="height "
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_IMG_DEFERRED_HEIGHT"
+			description="HTML_TASK_IMG_DEFERRED_HEIGHT_DESC"
+			showon=""
+			hint=""
+			filter="raw" />
+			
+				
+			
+
+		<field name="selector_show"
+			type="text"
+			default=""
+			class="selector_click text_area"
+			size="20"
+			readonly=""
+			required=""
+			label="HTML_TASK_ELEMENT_TEMLATING_SELECTOR_CLICK"
+			description="HTML_TASK_ELEMENT_TEMLATING_SELECTOR_CLICK_DESC"
+			showon="event_show:click,hover"
+			hint=""
+			filter="raw" />
+			
+			
+			
+	</fieldset>
+	
+	 
+</form>

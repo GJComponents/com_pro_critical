@@ -264,9 +264,9 @@ $model = $this->getModel();
         {
             if( !\Joomla\CMS\Filesystem\Folder::exists( $this->patchGnz11 ) && $this->app->isClient('administrator') )
             {
-                $this->app->enqueueMessage('Должна быть установлена бибиотека GNZ11' , 'error');
+                $this->app->enqueueMessage('Должна быть установлена библиотека GNZ11' , 'error');
             }#END IF
-            throw new \Exception('Должна быть установлена бибиотека GNZ11' , 400 ) ;
+            throw new \Exception('Должна быть установлена библиотека GNZ11' , 400 ) ;
         }
         $app = \Joomla\CMS\Factory::getApplication();
 
